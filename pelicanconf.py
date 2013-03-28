@@ -8,7 +8,7 @@ RELATIVE_URLS = False
 #RELATIVE_URLS = True
 TIMEZONE = 'Europe/Paris'
 
-THEME = 'notmyidea'
+THEME = 'theme'
 DEFAULT_LANG = 'fr'
 
 PIWIK_URL='stats.imirhil.fr'
