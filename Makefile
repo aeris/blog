@@ -1,4 +1,4 @@
-PELICAN=/home/nicolas/.virtualenvs/pelican/bin/pelican
+PELICAN=$(WORKON_HOME)/pelican/bin/pelican
 PELICANOPTS=
 
 BASEDIR=$(CURDIR)
