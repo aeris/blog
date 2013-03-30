@@ -34,7 +34,7 @@ Plus de soucis de mise-à-jour à chaque version d'un navigateur, pour peu qu'on
 Et souvent, des bonus loin d'être négligeables, comme les fluid-layout pour un affichage sur mobile sans la nécessité de faire un site dédié !
 
 # Une mauvaise idée
-## Le syndrôme « je pense pour vous »
+## Le syndrôme «&nbsp;je pense pour vous&nbsp;»
 
 Utiliser une librairie n'est jamais quelque chose d'anodin : on remet entre les mains d'une personne tierce les fonctionnalités possibles de sa future application.<br/>
 Tant que le framework fait ce que vous avez envie, tout va bien dans le meilleur des mondes.<br/>
@@ -47,7 +47,7 @@ Conceptuellement parlant, j'ai même encore du mal à envisager qu'il puisse êt
 
 Les frameworks ont donc du commencer par inventer un espèce de formalisme pour site web.<br/>
 La plupart impose une structure des pages sous forme de grille, ou l'utilisation de marqueurs et de classes qui leurs sont propres, afin de pouvoir mutualiser le code CSS.<br/>
-On se retrouve alors avec une pseudo-généricité : plutôt que de gérer les cas « ronds » et « carrés », on va au mieux transformer tous les ronds en carré, au pire n'accepter que les carrés.
+On se retrouve alors avec une pseudo-généricité : plutôt que de gérer les cas «&nbsp;ronds&nbsp;» et «&nbsp;carrés&nbsp;», on va au mieux transformer tous les ronds en carré, au pire n'accepter que les carrés.
 
 Et le jour où vous voulez vous écarter de leurs choix imposés, vous allez au devant de gros problèmes…<br/>
 Il est par exemple impossible en Bootstrap de faire des en-têtes à menu déroulant en pur CSS. Ils imposent de le faire avec du JavaScript, ce qui est vraiment une hérésie. Ça a même existé à une époque et été supprimé depuis, et les développeurs refusent de l'intégrer à nouveau, malgré la colère des utilisateurs.
