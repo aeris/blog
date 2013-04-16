@@ -59,10 +59,10 @@ function shut_down(){
 function start_up(){
   echo "Starting up Pelican and SimpleHTTPServer"
   shift
-  $PELICAN --debug --autoreload -r $INPUTDIR -o $OUTPUTDIR -s $CONFFILE $PELICANOPTS &
+  $PELICAN --debug --autoreload -r $INPUTDIR -o $OUTPUTDIR -s $CONFFILE $PELICANOPTS  &> /dev/null &
   echo $! > $PELICAN_PID
   cd $OUTPUTDIR
-  python -m SimpleHTTPServer 3000 &
+  python -m SimpleHTTPServer 3000 &> /dev/null &
   echo $! > $SRV_PID
   cd $BASEDIR
   sleep 1 && echo 'Pelican and SimpleHTTPServer processes now running in background.'
