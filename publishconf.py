@@ -5,14 +5,13 @@ import sys
 sys.path.append('.')
 from pelicanconf import *
 
-SITEURL = 'http://blog.imirhil.fr'
+RELATIVE_URLS = False
 
-DELETE_OUTPUT_DIRECTORY = True
+PIWIK_URL='stats.imirhil.fr'
+PIWIK_SITE_ID=1
 
-# Following items are often useful when publishing
+GOOGLE_SHARE=True
+DISQUS_SITENAME = 'aeris22'
+TWITTER_USERNAME = 'aeris22'
+FLATTR_USERNAME = 'aeris'
 
-# Uncomment following line for absolute URLs in production:
-#RELATIVE_URLS = False
-
-#DISQUS_SITENAME = ""
-#GOOGLE_ANALYTICS = ""

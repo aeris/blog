@@ -8,7 +8,7 @@ Allez, cette semaine, un tour d'horizon de ce qu'est l'intégration continue et 
 # Qu'est-ce que c'est et pourquoi
 
 L'intégration continue… Vaste chantier en perspective.<br/>
-Pour ceux qui étaient sur Mars ce week-end, envisager aujourd'hui de mener un projet sans intégration continue, c'est un peu comme essayer de cuisiner sans casserole. Certes on peut le faire, mais le résultat risque d'être… très médiocre&nbsp;!
+Pour ceux qui étaient sur Mars ce week-end, envisager aujourd'hui de mener un projet sans intégration continue, c'est un peu comme essayer de cuisiner sans casserole. Certes on peut le faire, mais le résultat risque d'être… très médiocre !
 
 Grosso-modo, [l'intégration continue](http://fr.wikipedia.org/wiki/Int%C3%A9gration_continue) (ou continuous integration, ou CI de son petit nom) est un ensemble de méthodes et processus qui permettent de suivre en temps réel l'évolution de l'avancement et de la qualité d'un projet.
 
@@ -48,15 +48,15 @@ En tout cas, cela coûte beaucoup moins cher à moyen/long terme qu'un logiciel 
 Par contre, oui, cela demande **une bonne implication des équipes de développement**, et un niveau technique relativement correct et surtout homogène.
 
 Déjà, il faut s'astreindre à une certaine rigueur.
-Les 2 principales qui sont pour moi obligatoires pour une bonne CI : «&nbsp;no broken windows&nbsp;» et «&nbsp;continuous improvement&nbsp;».
+Les 2 principales qui sont pour moi obligatoires pour une bonne CI : « no broken windows » et « continuous improvement ».
 Et on finira par le point le plus primordial, mais qui est <s>très</s> trop souvent négligé : la qualité technique.
 
 ## No broken windows
 
-Ou «&nbsp;Pas de vitre cassée&nbsp;» en Français dans le texte, basé sur [une théorie](http://fr.wikipedia.org/wiki/Théorie_de_la_vitre_brisée) qu'une voiture avec une vitre cassée aura plus tendance à être encore plus dégradée que la même sans vitre cassée.
+Ou « Pas de vitre cassée » en Français dans le texte, basé sur [une théorie](http://fr.wikipedia.org/wiki/Théorie_de_la_vitre_brisée) qu'une voiture avec une vitre cassée aura plus tendance à être encore plus dégradée que la même sans vitre cassée.
 
 Le principe est extrèmement simple : **l'intégration continue casse, on arrête tout et on corrige !**.<br/>
-[On n'attend pas demain ou après demain](http://www.commitstrip.com/fr/2013/03/21/je-verrais-ca-plus-tard/), c'est plus synonyme de «&nbsp;Ça ne sera jamais fait&nbsp;» que d'autre chose sinon.
+[On n'attend pas demain ou après demain](http://www.commitstrip.com/fr/2013/03/21/je-verrais-ca-plus-tard/), c'est plus synonyme de « Ça ne sera jamais fait » que d'autre chose sinon.
 Et généralement, si on ne fixe pas un problème à l'instant T, on ne fixera pas non plus celui de l'instant T+N (qui réclamerait d'avoir corriger celui de l'instant T), etc.
 Le projet dérive et finit par pourrir sur pied.
 
@@ -69,7 +69,7 @@ Ce n'est pas parce que la machine va s'occuper de toutes les taches ingrates que
 Toute la partie purement mécanique (compilation, tests unitaires…) est analysable par un programme et peut rendre un résultat relativement fiable.
 La partie qualité de code l'est beaucoup moins et est très sensible aux conditions du projet.
 
-Les métriques données par la CI (par exemple grâce à [Sonar](http://www.sonarsource.org/)) ne peuvent pas être pris autant au pied de la lettre qu'un rapport de tests unitaires qui sortira bêtement «&nbsp;C'est OK&nbsp;» ou «&nbsp;C'est pas OK&nbsp;».
+Les métriques données par la CI (par exemple grâce à [Sonar](http://www.sonarsource.org/)) ne peuvent pas être pris autant au pied de la lettre qu'un rapport de tests unitaires qui sortira bêtement « C'est OK » ou « C'est pas OK ».
 Il faudra l'intervention d'un humain standard pour analyser les résultats, vérifier si les variations des métriques sont normales ou non, et prendre les mesures correctives nécessaires si besoin.
 
 **Penser à faire des revues hebdomadaires** de tout ce que donne l'intégration continue.
@@ -110,11 +110,11 @@ Tout le système a été bâti sur un chateau de cartes, et on vient d'en retire
 On veut bien sûr remettre tout ça sur les rails, mais c'est quasiment mission impossible :
 
  * L'absence de séparation de concepts et [d'inversion de contrôle](http://fr.wikipedia.org/wiki/Inversion_de_contrôle) empèchent de mettre en place rapidement des tests unitaires, tout le système étant un Bloubiboulga immonde de dépendances
- * Même si on y arrive, le système de log qui passe son temps à écrire dans «&nbsp;C:\Documents And Settings\M.Dupont\Temp\app.log&nbsp;» (en dur…) est non configurable pour être débrayé en prod ou en test, et échoue donc lamentablement sur un système UNIX (la majorité des système de CI sont sous GNU/Linux)
- * La mise-en-place d'un système de build automatique type [Maven](https://maven.apache.org/) ou [Gradle](http://www.gradle.org/) est difficile, les dépendances étant en dur dans les sources du développeur (et commiter en SCM…) voire même installées directement à gros coup d'exe dans «&nbsp;C:\Program Files\Ma Dependance&nbsp;». Et le process de compilation est souvent suffisamment aléatoire («&nbsp;Ben je fais «&nbsp;Export jar&nbsp;» dans Eclipse, pourquoi ?&nbsp;») pour ne pas être reproductible.
+ * Même si on y arrive, le système de log qui passe son temps à écrire dans « C:\Documents And Settings\M.Dupont\Temp\app.log » (en dur…) est non configurable pour être débrayé en prod ou en test, et échoue donc lamentablement sur un système UNIX (la majorité des système de CI sont sous GNU/Linux)
+ * La mise-en-place d'un système de build automatique type [Maven](https://maven.apache.org/) ou [Gradle](http://www.gradle.org/) est difficile, les dépendances étant en dur dans les sources du développeur (et commiter en SCM…) voire même installées directement à gros coup d'exe dans « C:\Program Files\Ma Dependance ». Et le process de compilation est souvent suffisamment aléatoire (« Ben je fais « Export jar » dans Eclipse, pourquoi ? ») pour ne pas être reproductible.
  
 La plupart du temps, un senior se rend compte que quasiment rien n'est reprenable en l'état et doit tout reprendre de 0.
-Généralement, la réponse à la question «&nbsp;Mais pourquoi tout refaire ?&nbsp;» sera «&nbsp;Pour mettre en place de la CI&nbsp;», ce qui donne l'impression aux non-techniques que la CI est un boulet sur un projet et qu'elle n'apporte strictement rien sinon devoir tout refaire.<br/>
+Généralement, la réponse à la question « Mais pourquoi tout refaire ? » sera « Pour mettre en place de la CI », ce qui donne l'impression aux non-techniques que la CI est un boulet sur un projet et qu'elle n'apporte strictement rien sinon devoir tout refaire.<br/>
 En fait, implicitement, la réponse indique que le niveau technique du projet est trop insuffisant, et que la CI n'est que le moyen de garantir que demain cette situation ne se reproduira plus.
 Ce n'est pas la CI qui a coûté cher, mais la dette technique accumulée auparavant, qu'il faut maintenant absorber.<br/>
 Et comme cette situation arrive la plupart du temps à 15 jours de la livraison théorique, les seniors sont toujours en mode pompier sur beaucoup de projets en parallèle, au final très peu productifs et surtout indisponibles pour encadrer correctement les projets en phase de lancement.

@@ -5,7 +5,7 @@ Tags: dev
 
 Récemment, une nouvelle école a été fondée par Xaviel Niel, [42](http://www.42.fr/).
 L'ambition annoncée de cette école est d'enfin en finir avec les problèmes de l'éducation actuelle en France et de former de vrais développeurs à même de survivre dans le monde actuel.<br/>
-Le programme de cette nouvelle école est assez clair&nbsp;: former des warrior développeurs, des bêtes entraînées à survivre dans les environnements de dev les plus arides, engloutissants chaque jour des millions de lignes de code et anéhantissant tout bug osant se dresser sur leur passage.
+Le programme de cette nouvelle école est assez clair : former des warrior développeurs, des bêtes entraînées à survivre dans les environnements de dev les plus arides, engloutissants chaque jour des millions de lignes de code et anéhantissant tout bug osant se dresser sur leur passage.
 
 Suite à cette annonce, pas mal de débats ont surgi un peu partout sur la Toile, remettant en cause le postulat de base de cette école qu'il faut des Dieux de la ligne de code pour assurer notre futur.
 
@@ -39,7 +39,7 @@ On se contente généralement de l'utiliser simplement, comme l'indique son manu
 La complexité provient que les librairies utilisées vont très vite se compter par dizaine voire centaines même sur un projet de taille modeste.<br/>
 Sur un projet JEE, on va vite se retrouver avec du [Spring](http://www.springsource.org/), de l'Hibernate, du [SLF4J](http://www.slf4j.org/), [Tomcat](http://tomcat.apache.org/), [PostgreSQL](http://www.postgresql.org/), sans oublier des outils autour de tout ça comme [Maven](https://maven.apache.org/), [Jenkins](http://jenkins-ci.org/) ou encore [Git](http://git-scm.com/) et [Gerrit](http://code.google.com/p/gerrit/).
 
-Alors que chaque librairies prise indépendamment trouve son petit tuto bien ficelé en 10 minutes sur Internet ou un bouquin de 500 pages qui la décrit en long en large et en travers, trouver une source d'information correcte qui mettra en œuvre en même temps toutes les technos d'un projet relève du miracle.
+Alors que chaque librairie prise indépendamment trouve son petit tuto bien ficelé en 10 minutes sur Internet ou un bouquin de 500 pages qui la décrit en long en large et en travers, trouver une source d'information correcte qui mettra en œuvre en même temps toutes les technos d'un projet relève du miracle.
 
 Un bon exemple est de mettre en place Spring et Hibernate ensembles, et de corser le tout en ajoutant un soupçon d'intégration et de déploiement continus, avec des confs qui s'adapteront automatiquement à l'environnement visé (H2 pour les tests, PostgreSQL pour la prod, l'embarquement de la conf de prod dans les exécutables et setups sans impacter les tests U, etc).<br/>
 Si le développeur qui va mettre ça en place n'a vu que chaque morceau indépendamment, il n'arrivera pas à mettre en place l'environnement complet rapidement.
@@ -58,8 +58,8 @@ Face à un problème, je rencontre généralement deux types de développeurs.
   * Les bouchers du code
   * Les chirurgiens de l'architecture
 
-Le boucher va passer en mode zombie jusqu'à trouver une solution ultra-pointue, en jouant sur toutes les subtilités les plus tordus du langage, empiler des cascades de «&nbsp;if&nbsp;» et autres jonglages de pointeurs.
-Comptez sur lui pour ne relever la tête que quand il aura trouver la solution.<br/>
+Le boucher va passer en mode zombie jusqu'à trouver une solution ultra-pointue, en jouant sur toutes les subtilités les plus tordus du langage, empiler des cascades de « if » et autres jonglages de pointeurs.
+Comptez sur lui pour ne relever la tête que quand il aura trouvé la solution.<br/>
 Le problème, c'est que sa solution a de très fortes probabilités d'être la plus inmaintenable, la plus incompréhensible et la plus spécifique possible au problème à résoudre…
 
 À l'opposé, le chirurgien va commencer par s'éloigner du problème, peut-être remettre en question certains choix techniques précédents.<br/>
@@ -80,8 +80,8 @@ On récapitule.
 
   * Les technos sont extrèmement mouvantes : impossible de dire qu'on les maîtrise quand on a appris sur des choses qui sont déjà obsolètes à la sortie de l'école, et qu'on maîtrisera les futurs innovations quand on n'a pas vu la généralité cachée derrière
   * Les projets sont complexes et mettent en jeu beaucoup de technos qu'il faudra intriquer correctement ensemble : impossible de dire qu'on est formé à tous les cas possibles et imaginables qui se présenteront à nous
-  * Jouer les guerriers sur des systèmes aussi sensibles que des systèmes informatiques, c'est comme tirer à l'arme atomique pour dégommer un moustique, le moustique est bien mort mais il y a peu de dommages collatéraux sur les bords
-
+  * Jouer les guerriers sur des systèmes aussi sensibles que des systèmes informatiques, c'est comme tirer à l'arme atomique pour dégommer un moustique, le moustique est bien mort mais il y a un peu de dommages collatéraux sur les bords
+ 
 Un bon développeur, c'est donc avant tout quelqu'un avec un bon bagage généraliste, axé code mais pas que, capable de monter une architecture regroupant plusieurs technos et pour finir qui va avant tout réfléchir avant d'agir, et sortir des solutions pérènes et viables.
 
 Et pour ça, je pense que les écoles publiques Françaises forment déjà de très bonnes graines de développeurs, avec de très bonnes formations généralistes.<br/>
