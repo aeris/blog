@@ -106,7 +106,7 @@ Et les tests unitaires qui vont bien :
 	}
 
 Tadam !!!
-<center>![Tests results](static/images/20130811/test-results.png)</center>
+<center>![Tests results](/static/images/20130811/test-results.png)</center>
 
 Pour les bonnes pratiques à avoir, on peut surtout citer :
 
@@ -145,7 +145,7 @@ Aussi en pratique on préfère se fixer des objectifs :
 Des outils de mesure de la couverture de code existent, comme [Cobertura](http://cobertura.github.io/cobertura/) ou [JaCoCo](http://www.eclemma.org/jacoco/).
 
 Dans le cas de la mini-application précédente, on est tout bon niveau couverture de code :
-<center>![Coverage results](static/images/20130811/coverage-results.png)</center>
+<center>![Coverage results](/static/images/20130811/coverage-results.png)</center>
 
 # Reporting et analyse
 
@@ -199,19 +199,19 @@ Tout se passe encore une fois dans le *pom.xml* :
 	</reporting>
 
 C'est un peu indigeste, surtout pour la partie JaCoCo (Cobertura est plus simple mais ne fonctionne plus avec Java 7), mais le résultat est là après un petit *mvn site* :
-<center>![Tests report](static/images/20130811/test-report.png)</center>
-<center>![Coverage report](static/images/20130811/coverage-report.png)</center>
+<center>![Tests report](/static/images/20130811/test-report.png)</center>
+<center>![Coverage report](/static/images/20130811/coverage-report.png)</center>
 
 ## Intégration continue
 
 On <strike>peut</strike> doit intégrer JUnit et JaCoCo dans le processus d'intégration continue.
 
 Pour JUnit, il existe un plugin intégré par défaut, qui suivra les résultats des tests et <strike>signalera</strike> spammera l'auteur du commit qui a tout cassé.
-<center>![Tests trend](static/images/20130811/test-trend.png)</center>
+<center>![Tests trend](/static/images/20130811/test-trend.png)</center>
 
 Idem pour Cobertura, on obtient facilement des graphiques de suivi de la couverture de code.
 À l'inverse du passage des tests où on peut crucifier en place publique le responsable d'une régression dans le code, la qualité de la couverture de code s'effectue sur le long terme. C'est la tendance générale à la hausse ou à la baisse et son écart par rapport à l'objectif fixé qui décidera si l'équipe travaille bien… ou pas.
-<center>![Coverage trend](static/images/20130811/coverage-trend.png)</center>
+<center>![Coverage trend](/static/images/20130811/coverage-trend.png)</center>
 
 Pour finir, [SonarQube](http://www.sonarqube.org/) permet aussi de suivre l'évolution de la qualité des tests (parmis tant d'autres choses) et s'intègre facilement à Jenkins.
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 ##
 # This section should match your Makefile
 ##
@@ -16,6 +16,7 @@ CONFFILE=$BASEDIR/pelicanconf.py
 
 SRV_PID=$BASEDIR/srv.pid
 PELICAN_PID=$BASEDIR/pelican.pid
+GUARD_PID=$BASEDIR/guard.pid
 
 function usage(){
   echo "usage: $0 (stop) (start) (restart)"
@@ -54,16 +55,32 @@ function shut_down(){
   else
     echo "Pelican PIDFile not found"
   fi
+  
+  if [[ -f $GUARD_PID ]]; then
+    PID=$(cat $GUARD_PID)
+    PROCESS=$(ps -p $PID | tail -n 1 | awk '{print $4}')
+    if [[ $PROCESS != "" ]]; then
+      echo "Killing Guard"
+      kill $PID
+    else
+      echo "Stale PID, deleting"
+    fi
+    rm $GUARD_PID
+  else
+    echo "Guard PIDFile not found"
+  fi
 }
 
 function start_up(){
   echo "Starting up Pelican and SimpleHTTPServer"
   shift
-  $PELICAN --debug --autoreload -r $INPUTDIR -o $OUTPUTDIR -s $CONFFILE $PELICANOPTS  &> /dev/null &
+  $PELICAN --debug --autoreload -r $INPUTDIR -o $OUTPUTDIR -s $CONFFILE $PELICANOPTS &> /dev/null &
   echo $! > $PELICAN_PID
   cd $OUTPUTDIR
   python -m SimpleHTTPServer 3000 &> /dev/null &
   echo $! > $SRV_PID
+  guard -i -w $BASEDIR -G $BASEDIR/Guardfile &> /dev/null &
+  echo $! > $GUARD_PID
   cd $BASEDIR
   sleep 1 && echo 'Pelican and SimpleHTTPServer processes now running in background.'
 }
