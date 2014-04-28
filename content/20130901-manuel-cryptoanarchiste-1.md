@@ -1,7 +1,7 @@
 Title: Manuel du parfait petit crypto-anarchiste (1/3)
 Date: 2013-09-01
 Category: crypto
-Tags: cryptographie, sécurité, anonymat, vie privée
+Tags: crypto, sécurité, anonymat, vie privée
 
 Sauf à avoir hiberné ces six derniers mois ou à être un Michu complètement  standard (mais je suis heureux que vous soyez arrivé ici alors !), vous n'avez  pas pu ne pas entendre parler du programme [PRISM](https://fr.wikipedia.org/wiki/PRISM_(programme_de_surveillance)), mis en place par la NSA pour surveiller la vie numérique de tous les citoyens de ce  bas-monde et révélé par [Edward Snowden](https://fr.wikipedia.org/wiki/Edward_Snowden), aujourd'hui réfugié en Russie.
 

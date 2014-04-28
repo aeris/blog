@@ -3,8 +3,8 @@
 
 AUTHOR = 'aeris'
 SITENAME = 'NullPointerException'
-SITEURL = 'http://blog.imirhil.fr'
-RELATIVE_URLS = True
+SITEURL = 'https://blog.imirhil.fr'
+RELATIVE_URLS = False
 TIMEZONE = 'Europe/Paris'
 
 THEME = 'theme'

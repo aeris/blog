@@ -5,8 +5,6 @@ import sys
 sys.path.append('.')
 from pelicanconf import *
 
-RELATIVE_URLS = False
-
 PIWIK_URL='stats.imirhil.fr'
 PIWIK_SITE_ID=1
 

@@ -2,7 +2,7 @@
 ##
 # This section should match your Makefile
 ##
-PELICAN=/home/nicolas/.virtualenvs/pelican/bin/pelican
+PELICAN=$HOME/.virtualenvs/pelican/bin/pelican
 PELICANOPTS=
 
 BASEDIR=$(pwd)

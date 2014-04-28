@@ -1,3 +1,7 @@
-output
+/.bundle/
+/output/
+.idea/
+*.iml
 *.pid
 *.pyc
+Gemfile.lock

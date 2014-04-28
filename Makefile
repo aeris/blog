@@ -18,7 +18,7 @@ SSH_TARGET_DIR=/srv/www/imirhil.fr/blog
 
 DROPBOX_DIR=~/Dropbox/Public/
 
-all: html rsync
+all: rsync
 
 help:
 	@echo 'Makefile for a pelican Web site                                        '
@@ -55,6 +55,9 @@ serve:
 
 devserver:
 	$(BASEDIR)/develop_server.sh restart
+
+stop:
+	$(BASEDIR)/develop_server.sh stop
 
 publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
