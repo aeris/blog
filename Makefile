@@ -66,7 +66,7 @@ ssh: publish
 	scp -P $(SSH_PORT) -r $(OUTPUTDIR)/* $(SSH_HOST):$(SSH_TARGET_DIR)
 
 rsync: clean publish
-	rsync -axv --progress --delete $(OUTPUTDIR)/ $(SSH_HOST):$(SSH_TARGET_DIR)
+	rsync -axPv --delete $(OUTPUTDIR)/ $(SSH_HOST):$(SSH_TARGET_DIR)
 
 dropbox: publish
 	cp -r $(OUTPUTDIR)/* $(DROPBOX_DIR)

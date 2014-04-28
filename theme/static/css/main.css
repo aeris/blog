@@ -275,15 +275,16 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	/* Blogroll */
 	#extras .blogroll {
 		float: left;
-		width: 615px;
+		width: 400px;
 	}
 
-	#extras .blogroll li {float: left; margin: 0 20px 0 0; width: 185px;}
+	#extras .blogroll li {float: left; margin: 0 20px 0 0; width: 180px;}
+	#extras .social li {float: left; margin: 0 20px 0 0; width: 180px;}
 
 	/* Social */
 	#extras .social {
 		float: right;
-		width: 175px;
+		width: 400px;
 	}
 
 	#extras div[class='social'] a {
@@ -295,7 +296,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 		/* Icons */
 		.social a[type$='atom+xml'], .social a[type$='rss+xml'] {background-image: url('../images/icons/rss.png');}
 
-		.social a[href*='identi.ca'] {background-image: url('../images/icons/statusnet.png');}
+		.social a[href*='status.imirhil.fr'] {background-image: url('../images/icons/statusnet.png');}
 		.social a[href*='twitter.com'] {background-image: url('../images/icons/twitter.png');}
 		.social a[href*='plus.google.com'] {background-image: url('../images/icons/google-plus.png');}
 
@@ -311,10 +312,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 		.social a[href*='linkedin.com'] {background-image: url('../images/icons/linkedin.png');}
 		.social a[href*='gittip.com'] {background-image: url('../images/icons/gittip.png');}
 
-		/*.blogroll a[href*='april.org'] {background-image: url('../images/icons/april.png');}*/
-		.blogroll a[href*='lqdn.fr'],
-		.blogroll a[href*='laquadrature.net'] y{background-image: url('../images/icons/lqdn.png');}
-		/*.blogroll a[href*='fdnt.fr'] {background-image: url('../images/icons/fdn.png');}*/
+		.blogroll img { vertical-align: middle; margin-right: 5px; }
 
 /*
 	About

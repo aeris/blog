@@ -50,8 +50,8 @@
                 <div class="blogroll">
                         <h2>blogroll</h2>
                         <ul>
-                        {% for name, link in LINKS %}
-                            <li><a href="{{ link }}">{{ name }}</a></li>
+                        {% for name, link, ico in LINKS %}
+                            <li><a href="{{ link }}"><img src="{{ ico }}"/>{{ name }}</a></li>
                         {% endfor %}
                         </ul>
                 </div><!-- /.blogroll -->
