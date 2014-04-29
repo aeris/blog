@@ -9,6 +9,7 @@ TIMEZONE = 'Europe/Paris'
 
 THEME = 'theme'
 DEFAULT_LANG = 'fr'
+LIVERELOAD = True
 
 LINKS =  (('APRIL', 'https://www.april.org/', 'http://www.april.org/sites/default/themes/zen_april/favicon.ico'),
 			('LQDN', 'https://www.laquadrature.net/', 'https://www.laquadrature.net/sites/all/themes/lqdn314/favicon.ico'),
