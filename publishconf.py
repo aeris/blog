@@ -9,7 +9,7 @@ PIWIK_URL='stats.imirhil.fr'
 PIWIK_SITE_ID=1
 
 GOOGLE_SHARE=True
-DISQUS_SITENAME = 'aeris22'
+ISSO_SITENAME = '/comments'
 TWITTER_USERNAME = 'aeris22'
 FLATTR_USERNAME = 'aeris'
 
