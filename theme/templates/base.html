@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>{% block title %}{{SITENAME}}{%endblock%}</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="/theme/css/{{CSS_FILE}}" type="text/css" />
-        {% if FEED_ALL_ATOM %}
-        <link href="/{{FEED_ALL_ATOM}}" type="application/atom+xml" rel="alternate" title="{{SITENAME}} Atom Feed" />
-        {% endif %}
-        {% if FEED_ALL_RSS %}
-        <link href="/{{FEED_ALL_RSS}}" type="application/rss+xml" rel="alternate" title="{{SITENAME}} RSS Feed" />
-        {% endif %}
-        {% block flattr %}
-        <link rel="payment" href="https://flattr.com/submit/auto?url={{SITEURL}}&amp;title={{SITENAME}}&amp;user_id={{FLATTR_USERNAME}}" type="text/html" />
-        {%endblock%}
+	<title>{% block title %}{{SITENAME}}{%endblock%}</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="/theme/css/{{CSS_FILE}}" type="text/css" />
+	{% if FEED_ALL_ATOM %}
+	<link href="/{{FEED_ALL_ATOM}}" type="application/atom+xml" rel="alternate" title="{{SITENAME}} Atom Feed" />
+	{% endif %}
+	{% if FEED_ALL_RSS %}
+	<link href="/{{FEED_ALL_RSS}}" type="application/rss+xml" rel="alternate" title="{{SITENAME}} RSS Feed" />
+	{% endif %}
+	{% block flattr %}
+	<link rel="payment" href="https://flattr.com/submit/auto?url={{SITEURL}}&amp;title={{SITENAME}}&amp;user_id={{FLATTR_USERNAME}}" type="text/html" />
+	{% endblock %}
 
-        <!--[if IE]>
-                <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-        <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
-                <script src="/js/IE8.js" type="text/javascript"></script><![endif]-->
-
-        <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="/css/ie6.css"/><![endif]-->
-		{% if LIVERELOAD %}
-		<script src="http://localhost:35729/livereload.js?snipver=1"></script>
-		{% endif %}
+	<script src="/theme/js/jquery.js"></script>
+	<script src="/theme/js/bootstrap.js"></script>
+	<link rel="stylesheet" href="/theme/css/bootstrap.css" type="text/css" />
+	<script type="text/javascript">
+		$(function() {
+			$('a[rel="popover"]').popover({
+				html: true,
+				trigger: 'hover'
+			});
+			{% block flattr_js %}{% endblock %}
+			{% block twitter_js %}{% endblock %}
+			{% block google_js %}{% endblock %}
+		});
+	</script>
+	{% if LIVERELOAD %}
+	<script src="http://localhost:35729/livereload.js?snipver=1"></script>
+	{% endif %}
 </head>
 
 <body id="index" class="home">
@@ -83,9 +88,5 @@
 
                 <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
         </footer><!-- /#contentinfo -->
-
-{% include 'analytics.html' %}
-{% include 'piwik.html' %}
-{% include 'disqus_script.html' %}
 </body>
 </html>

@@ -11,11 +11,15 @@ THEME = 'theme'
 DEFAULT_LANG = 'fr'
 LIVERELOAD = True
 
-LINKS =  (('APRIL', 'https://www.april.org/', 'http://www.april.org/sites/default/themes/zen_april/favicon.ico'),
-			('LQDN', 'https://www.laquadrature.net/', 'https://www.laquadrature.net/sites/all/themes/lqdn314/favicon.ico'),
-			('FDN', 'https://www.fdn.fr/', 'http://www.fdn.fr/fdn_skel/fdn_favicon.png'),
-			('Nos Oignons', 'https://nos-oignons.net/', 'https://nos-oignons.net/favicon.ico'),
-			(u'Café vie privée', u'https://café-vie-privée.fr/', 'https://xn--caf-vie-prive-dhbj.fr/images/favicon.png'),)
+FLATTR_USERNAME = 'aeris'
+TWITTER_USERNAME = 'aeris22'
+GOOGLE_SHARE = True
+
+LINKS =  (('APRIL', 'https://www.april.org/', '/theme/images/icons/april.png'),
+			('LQDN', 'https://www.laquadrature.net/', '/theme/images/icons/lqdn.png'),
+			('FDN', 'https://www.fdn.fr/', '/theme/images/icons/fdn.png'),
+			('Nos Oignons', 'https://nos-oignons.net/', '/theme/images/icons/oignons.png'),
+			(u'Café vie privée', u'https://café-vie-privée.fr/', '/theme/images/icons/chiffrofete.png'),)
 SOCIAL = (('GNU/Social', 'https://status.imirhil.fr/aeris'),
 			('Twitter', 'https://twitter.com/aeris22'),
 			('Google+', 'https://plus.google.com/104370901412675145439'),
