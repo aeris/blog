@@ -1,6 +1,6 @@
 Title: Installation d'une plate-forme de développement
 Date: 2013-06-09
-Category: man
+Category: dev
 Tags: jenkins, eclipse, sonar, nexus
 
 Aller, au programme cette semaine, comment installer un environnement de développement.
