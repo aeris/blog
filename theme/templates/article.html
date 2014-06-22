@@ -51,7 +51,7 @@
       <h1 class="entry-title">
         <a href="/{{article.url}}" rel="bookmark"
            title="Permalink to {{article.title|striptags}}">{{ article.title }}</a></h1>
-		<div>
+		<p>
 			{% if FLATTR_USERNAME %}
 			<a id="flattr" title="2 clics pour Flatter" href="#" data-container="body" data-toggle="popover" data-placement="left" rel="popover" data-content="Pour protéger vos données, le bouton Flattr ne sera actif qu'après un premier clic. Le deuxième clic vous permettra de flatter cet article."><img src="/theme/images/social/flattr.png" alt=""></a>
 			{% endif %}
@@ -61,7 +61,7 @@
 			{% if GOOGLE_SHARE %}
 			<a id="google" title="2 clics pour Googler" href="#" data-container="body" data-toggle="popover" data-placement="left" rel="popover" data-content="Pour protéger vos données, le bouton Google ne sera actif qu'après un premier clic. Le deuxième clic vous permettra de partager cet article."><img src="/theme/images/social/google.png" alt=""></a>
 			{% endif %}
-		</div>
+		</p>
     </header>
 
     <div class="entry-content">

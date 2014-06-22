@@ -37,19 +37,21 @@
 {% include 'github.html' %}
         <header id="banner" class="body">
                 <h1><a href="/">{{ SITENAME }} {% if SITESUBTITLE %} <strong>{{ SITESUBTITLE }}</strong>{% endif %}</a></h1>
-                <nav><ul>
-                {% for title, link in MENUITEMS %}
-                    <li><a href="{{ link }}">{{ title }}</a></li>
-                {% endfor %}
-                {% if DISPLAY_PAGES_ON_MENU %}
-                {% for page in PAGES %}
-                    <li><a href="/{{ page.url }}">{{ page.title }}</a></li>
-                {% endfor %}
-                {% endif %}
-                {% for cat, null in categories %}
-                    <li {% if cat == category %}class="active"{% endif %}><a href="/{{ cat.url }}">{{ cat }}</a></li>
-                {% endfor %}
-                </ul></nav>
+				<nav>
+					<ul>
+					{% for title, link in MENUITEMS %}
+						<li><a href="{{ link }}">{{ title }}</a></li>
+					{% endfor %}
+					{% if DISPLAY_PAGES_ON_MENU %}
+					{% for page in PAGES %}
+						<li><a href="/{{ page.url }}">{{ page.title }}</a></li>
+					{% endfor %}
+					{% endif %}
+					{% for cat, null in categories %}
+						<li {% if cat == category %}class="active"{% endif %}><a href="/{{ cat.url }}">{{ cat }}</a></li>
+					{% endfor %}
+					</ul>
+				</nav>
         </header><!-- /#banner -->
         {% block content %}
         {% endblock %}
@@ -83,7 +85,9 @@
 
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+					Le contenu de ce blog est publié sous licence <a href="https://creativecommons.org/licenses/by/4.0/"><img src="/theme/images/icons/cc-by.png" alt="CC-BY"></a> (sauf mention contraire).<br/>
+					Supportez ce blog : <img src="/theme/images/icons/bitcoin.png" alt="bitcoin"> <a href="bitcoin:1b1ogUCAnRG9KQYgatVZvECz8TWemp4FH">1b1ogUCAnRG9KQYgatVZvECz8TWemp4FH</a> ou
+					<a href="https://flattr.com/thing/e048787e1da997c085ffaf8d70c15a1e"><img src="/theme/images/icons/flattr.png" alt="Flattr"></a>
                 </address><!-- /#about -->
 
                 <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
