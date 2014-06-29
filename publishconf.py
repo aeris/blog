@@ -14,3 +14,5 @@ ISSO_SITENAME = '/comments'
 TWITTER_USERNAME = 'aeris22'
 FLATTR_USERNAME = 'aeris'
 
+PIWIK_URL = 'stats.imirhil.fr'
+PIWIK_SITE_ID = 3

@@ -4,7 +4,7 @@ Category: crypto
 Tags: sécurité, confiance, ergonomie, liberté, centralisation
 
 NSA, Snowden, Heartbleed, TrueCrypt… Ce début d'année est tellement riche en évènements cryptographiques que ça en devient presque difficile à suivre…
-C'est surtout tout ce qui en a découlé qui est devenu très intéressant, de « [Everything is broken](https://medium.com/@quinnnorton/everything-is-broken-81e5f33a24e1) » par Quinn Norton en passant par « [Lettre aux barbus](http://reflets.info/lettre-aux-barbus/) » par Laurant Chemla (ainsi que [la réponse](http://blog.chown.me/reponse-a-la-lettre-aux-barbus.html) de Vigdis), ou encore « [OpenSSL Valhalla Rampage](http://opensslrampage.org/) » sur la
+C'est surtout tout ce qui en a découlé qui est devenu très intéressant, de « [Everything is broken](https://medium.com/@quinnnorton/everything-is-broken-81e5f33a24e1) » par Quinn Norton en passant par « [Lettre aux barbus](http://reflets.info/lettre-aux-barbus/) » par Laurent Chemla (ainsi que [la réponse](http://blog.chown.me/reponse-a-la-lettre-aux-barbus.html) de Vigdis), ou encore « [OpenSSL Valhalla Rampage](http://opensslrampage.org/) » sur la
  vaste blague qu'est OpenSSL (je tiendrais d'ailleurs une conférence sur le sujet durant [PSES](http://www.passageenseine.org/Passage/PSES-2014))…
 
 Toutes ces problématiques ont foutu un gros coup de pied au cul de tout le monde, réveillant toute lafourmillière, avec une gueule de bois comme elle n'en avait jamais connue auparavant.
@@ -127,7 +127,7 @@ Le ministère de la Défense État-Unien, c'est 3.2 millions d'employés. Donc, 
 
 Mais voilà, encore une fois, entre la théorie et la pratique…<br/>
 Parce que les gens ont voulu une informatique simple et cosmétique (cf précédemment), personne n'est plus capable d'installer un serveur à la maison, sinon 3 ou 4 pelés qui font tourner la baraque. Et en tout cas clairement pas 1 personne sur 1.000.<br/>
-Parce que du coup tout le monde travaille pour Google, Facebook ou Microsoft, les outils alternatifs ont pris du retard, sans parler du fait qu'ils ont tous du s'axer sur la cosmétique plutôt que la sécurité pour espérer toucher quelques malheureux pourcentages de parts de marché.
+Parce que du coup tout le monde travaille pour Google, Facebook ou Microsoft, les outils alternatifs ont pris du retard, sans parler du fait qu'ils ont tous dû s'axer sur la cosmétique plutôt que la sécurité pour espérer toucher quelques malheureux pourcentages de parts de marché.
 Même [Firefox est aujourd'hui obligé d'intégrer une solution totalement moisie et fermée développée par Adobe](http://www.april.org/drm-dans-firefox-annonce-dune-defaite), sous prétexte de mourir sinon, pour que les gens puissent continuer à visionner Game Of Thrones sous Youtube ou Netflix, en espérant vaguement parvenir à l'isoler dans un coin de la machine, histoire qu'elle ne puisse pas venir lire les données de mon disque dur (déchiffrées, du coup…).<br/>
 Et encore une fois, je suis directement impacté par ce bordel ambiant…
 
