@@ -14,8 +14,8 @@ Je ne sais pour quelle raison, mais j'ai eu un déclic, un truc qui a fait tilt 
 
 # L'informatique « facile », ou comment on a remis les clefs de nos maisons à d'illustres inconnus
 
-Parce que ça doit être « simple à installer et à utiliser ». Parce qu'on vend l'informatique par pack de 12 au supermarché du coin. Parce que les beaux discours commerciaux et les plaquettes sur papier glacé recoivent plus d'attention de la part des futurs <strike>mougeons (le croisement d'un mouton
- et d'un pigeon)</strike> clients que les préconisations techniques minimales qu'on **devrait** maîtriser avant de mettre ses petits doigts potelés sur un clavier…<br/>
+Parce que ça doit être « simple à installer et à utiliser ». Parce qu'on vend l'informatique par pack de 12 au supermarché du coin. Parce que les beaux discours commerciaux et les plaquettes sur papier glacé recoivent plus d'attention de la part des futurs <strike>mougeons</strike> (le croisement d'un mouton
+ et d'un pigeon) clients que les préconisations techniques minimales qu'on **devrait** maîtriser avant de mettre ses petits doigts potelés sur un clavier…<br/>
 Pour beaucoup sinon l'extrême grosse majorité, l'informatique est vu comme un truc compliqué, mais qu'on se doit d'utiliser sans rien comprendre, à cliquer sur des boutons tout partout, mais sans rien réellement y piper au final.
 
 À cause de ça, on ne compte plus les machines zombies sur le réseau, qui spamme massivement Internet (90% du trafic réseau est du spam) parce que leur propriétaire n'a pas voulu passer quelques minutes par jour à mettre à jour sa machine (aussi parce que la plupart sont sous des systèmes d'exploit<strike>ation</strike> non sécurisable).<br/>

@@ -93,7 +93,7 @@ Vous contrôlez qui peut afficher des choses sur vos pages et vous évitez d'att
 
 Et on finit avec [Disconnect](https://disconnect.me/), un peu dans la même politique que Request Policy, avec du blocage de tout contenu dangereux pour la sécurité ou la confidentialité, comme la publicité, les réseaux sociaux malheureusement présents partout, ou les traceurs.
 
-Je dois quand même vous avouez qu'une fois tout ça installé et avec tout bloqué par défaut, le web se prend quand même une sacrée claque et que plus grand chose n'est accessible simplement.
+Je dois quand même vous avouer qu'une fois tout ça installé et avec tout bloqué par défaut, le web se prend quand même une sacrée claque et que plus grand chose n'est accessible simplement.
 On prend aussi une bien meilleure conscience du problème du web, et on est un peu catastrophé de voir autant de choses essayer de récupérer des données sur vous.<br/>
 Passée une semaine d'utilisation et quelques règles d'acceptation, le web redevient consultable, même si certains sites restent particulièrement inutilisables avec tout ça installé (mais dans ce cas, c'est direction la poubelle et un bon gros boycott).
 

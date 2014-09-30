@@ -23,7 +23,7 @@ Vous n'avez aucun contrôle sur où et comment sont stockées vos données, qui 
 Exit donc Google, LiveMail, Facebook, Twitter et tout le reste.
 
 [Hébergez](https://fr.wikipedia.org/wiki/Auto-hébergement_(Internet)) au maximum vos propres services sur vos propres machines. Ce n'est généralement pas aussi compliqué que ça en a l'air.<br/>
-(À ce sujet, je vous recommande l'incontournable vidéo de notre incontournable [Benjamin Bayard](https://fr.wikipedia.org/wiki/Benjamin_Bayart), [Internet Libre ou Minitel 2.0](http://www.fdn.fr/Internet-Libre-ou-Minitel-2,94.html).)
+(À ce sujet, je vous recommande l'incontournable vidéo de notre incontournable [Benjamin Bayart](https://fr.wikipedia.org/wiki/Benjamin_Bayart), [Internet Libre ou Minitel 2.0](http://www.fdn.fr/Internet-Libre-ou-Minitel-2,94.html).)
 
 ## Sécurité physique
 
