@@ -18,13 +18,13 @@ A minima, on va vite se retrouver avec les conteneurs suivants : un Bind9, un P
 
 ## Gestion des rôles
 
-Tout comme dans un vrai code informatique, on voudrait profiter de mécanisme d'héritage, de polymorphisme et d'aggrégation pour définir notre infrastructure, afin d'éviter la duplication et de conserver une base robuste à un changement future d'infrastructure.
+Tout comme dans un vrai code informatique, on voudrait profiter de mécanisme d'héritage, de polymorphisme et d'agrégation pour définir notre infrastructure, afin d'éviter la duplication et de conserver une base robuste à un changement future d'infrastructure.
 
 On doit pouvoir définir une description globale de tous les Apache (installation et configuration de Apache, ouverture des ports 80 et 443 du pare-feu, installation de RPaf…) et faire apparaître la notion de **rôle**.
 
 On veut quand même vouloir en redéfinir certains morceaux machine par machine (liste des virtualhosts servis, déploiement des certificats SSL…), un peu à la manière d'un **héritage**
 
-On doit pouvoir aggréger les rôles, et signaler qu'un serveur Apache est aussi un serveur de courriel, par **composition**.
+On doit pouvoir agréger les rôles, et signaler qu'un serveur Apache est aussi un serveur de courriel, par **composition**.
 
 ## Gestion des relations
 
@@ -52,7 +52,7 @@ Bref, un outil pour gérer tout ça s'est très vite imposé !
 
 # Puppet : ça ne marche pas
 
-Pour faire « comme tout le monde », j'ai commencé mon long périble <strike>au travers du Mordor</strike> par Puppet, à l'époque (2012) très utilisé un peu partout. 
+Pour faire « comme tout le monde », j'ai commencé mon long périple <strike>au travers du Mordor</strike> par Puppet, à l'époque (2012) très utilisé un peu partout. 
 Premier tour sur le site : « cool, c'est du Ruby ! » (mon petit langage de prédilection du moment). Première déception, c'est codé en Ruby mais la configuration s'effectue dans un [DSL](https://fr.wikipedia.org/wiki/Langage_dédié)…
 
 	:::ruby
@@ -133,7 +133,7 @@ En plus, on ne parle ici que d'une dépendance simple qui devrait en réalité s
 Imaginez maintenant devoir régler de cette manière une dépendance plus complexe de type « déploie des virtual-host nginx en reverse proxy pour chaque virtual-host de chaque Apache présent sur la même machine physique que toi, en utilisant comme IP de proxy l'IP du Apache ». Je vous tend déjà le tabouret et la corde…
 
 Le système a une dernière limite : il ne gère que ce que le concepteur d'une classe a bien voulu gérer (sic).<br/>
-Si vous utilisez des classes tierces comme c'est généralement le cas, et qu'aucune ressource exportée n'a été déclarée alors que vous en aviez besoin, vous êtes bon pour refaire une nième classe juste pour la ressource…<br/>
+Si vous utilisez des classes tierces comme c'est généralement le cas, et qu'aucune ressource exportée n'a été déclarée alors que vous en aviez besoin, vous êtes bon pour refaire une n-ième classe juste pour la ressource…<br/>
 Les classes « Apache oriented » deviennent « Nagios oriented » à l'introduction d'un Nagios et « Munin oriented » à celle d'un Munin. Les classes elles-mêmes introduisent des dépendances dans le système.
 
 Comme on dit, « mauvais outil, changer outil »…
@@ -143,7 +143,7 @@ Comme on dit, « mauvais outil, changer outil »…
 J'ai donc été voir à la concurrence et auprès de Chef en l'occurence.
 Chef est aussi en Ruby et fonctionne aussi en mode master/slave, donc rien de nouveau sous le soleil à ce niveau.
 
-Là où tout change c'est que Chef fournit de base une base de données [Solr](https://lucene.apache.org/solr/) qui va stocker l'intégralité de la description d'une machine. Cette base est bien entendue requétable depuis les descriptions, ce qui permet de faire des choses assez sympatiques pour régler les problèmes précédents.<br/>
+Là où tout change c'est que Chef fournit de base une base de données [Solr](https://lucene.apache.org/solr/) qui va stocker l'intégralité de la description d'une machine. Cette base est bien entendue requétable depuis les descriptions, ce qui permet de faire des choses assez sympathiques pour régler les problèmes précédents.<br/>
 Par exemple, on a une tache qui a créé les comptes des administrateurs de la machine :
 
 	:::json
@@ -248,11 +248,11 @@ En Chef, le problème se règle en quelques lignes et sans tricks :
 J'ai uniquement éditer les fichiers de données (databag), qui ne sont pas liés à une recette et peuvent donc contenir pas mal d'information, pour y ajouter les clefs SSH à déployer ainsi que les IP autorisées pour les accès SSH.<br/>
 Et la recette *ssh* va utiliser exactement le même jeu de données que la recette *users*, pour déployer tout ça proprement et remplir les fichiers de clefs et la config SSH. Impact sur la recette *users* : 0 ! Impact sur les anciennes classes des serveurs : 0 ! Ce qui n'aurait très clairement pas été le cas avec du Puppet (ajout d'une ressource exportée toute moche ou refacto lourde de l'infra pour introduire des classes fantômes) !
 On obtient donc des configurations bien plus claires d'un point de vue sémantique avec Chef qu'avec Puppet.<br/>
-Tout ça grâce à la primitive *search*, qui va interroger la base de données Solr pour récupérer l'état de la configuration. Ce truc est extrèmement utile et fait toute la différence avec Puppet, l'intégralité de la configuration est accessible depuis n'importe quelle recette, ce qui évite la duplication d'information et/ou la création de classes fantômes pour gérer les dépendances.
+Tout ça grâce à la primitive *search*, qui va interroger la base de données Solr pour récupérer l'état de la configuration. Ce truc est extrêmement utile et fait toute la différence avec Puppet, l'intégralité de la configuration est accessible depuis n'importe quelle recette, ce qui évite la duplication d'information et/ou la création de classes fantômes pour gérer les dépendances.
 La recette Nginx passera par *search* pour lister les Apache de sa machine hôte (`search(:node, "apache:* AND physical:#{node[:physical]}")`), ou encore la recette DNS l'utilisera de la même manière pour récupérer l'IP du DNS tournant sur le même réseau pour renseigner *resolv.conf*.<br/>
 Chef, vainqueur par KO…
 
-Bon, ben ça y est, on a résolu notre besoin de rationnalisation de déploiement de machines du coup, et Chef est notre outil magique, non ? Ben pas vraiment en fait…<br/>
+Bon, ben ça y est, on a résolu notre besoin de rationalisation de déploiement de machines du coup, et Chef est notre outil magique, non ? Ben pas vraiment en fait…<br/>
 Le problème avec *search*, c'est que les données sont publiées dans la base Solr non pas quand vous les publiez sur le serveur Chef mais **après** l'exécution de l'agent Chef… Et ça change tout…<br/>
 Chef utilisant un agent sur chaque machine, on n'a aucun moyen de garantir l'ordre d'exécution du déploiement. Si par malheur le Nginx passe avant les Apaches, la config vue par Nginx est l'ancienne config et ne tient pas compte des potentielles modifications introduites par l'admin !
 Pire, Chef a tendance à effacer toutes les configs existantes quand un admin publie ses modifications, le prochain passage sur le Nginx va donc virer tous les virtualhost de proxy et les Apaches vont se retrouver coupés du monde !<br/>
@@ -500,7 +500,7 @@ Grand naïf que je suis, je tente un petit
 	- name: Restart firewall
 	  action: service name=firewall state=restarted
 
-Bam… Ça passe très bien à l'exécution de la tache `firewall` mais ça plante violamment à celle de `fail2ban`, comme quoi le handler est manquant. Bon ok, j'ai peut-être été un peu vache avec toi Ansible, j'vais quand même te mettre le handler dans un truc un peu plus commun et pas directement dans le role `firewall`…
+Bam… Ça passe très bien à l'exécution de la tache `firewall` mais ça plante violemment à celle de `fail2ban`, comme quoi le handler est manquant. Bon ok, j'ai peut-être été un peu vache avec toi Ansible, j'vais quand même te mettre le handler dans un truc un peu plus commun et pas directement dans le role `firewall`…
 
 	# roles/common/handlers/main.yml
 	- name: Restart firewall
@@ -567,7 +567,7 @@ Bref… Pour conclure, alors que Ansible me semblait assez prometteur et intére
 J'ai à peine dépassé la dizaine de machines virtuelles sur deux virtualiseurs et sans dépendances ultra-complexes (je m'en suis arrêté aux couples NGinx/Apache, j'espérais aller jusqu'à la génération, à partir des certificats X.509 déployés dans les Apache et NGinx, des entrées DNS TLSA dans une zone signée avec OpenDNSSec !!!) que je me sens déjà très largement à l'étroit avec chacun des outils précédents.
 Puppet pour son manque de gestion des dépendances et de séparation des concepts, Chef pour plus ou moins les mêmes raisons même s'il va un peu plus loin, et Ansible pour environ tout le reste…
 
-D'où ma très grosse question : mais comment ils font tous ces DSI et assimilés qui gèrent des machines par brouettes de 1.000 et dans des environnements où les chaînes de dépendances doivent faire palir Lustucru ?
+D'où ma très grosse question : mais comment ils font tous ces DSI et assimilés qui gèrent des machines par brouettes de 1.000 et dans des environnements où les chaînes de dépendances doivent faire pâlir Lustucru ?
 Comment ça se fait que des outils comme Puppet ou Chef (et apparemment bientôt Ansible) soient aussi encensés par les admins alors que je m'y sens aussi à l'étroit qu'un paquet IP qui passe dans un routeur sous DDOS ?
 Est-ce qu'ils arrivent réellement à exporter dans ces outils tout ce qui était auparavant dans la tête des admins sys en chef ou dans une doc plus ou moins @Deprecated dans un coin, ou est-ce qu'au final, Puppet/Chef/Ansible a juste permis de massivement accélérer le déploiement sur whatmille machines, la configuration elle-même ayant été compilée dans la tête d'un admin et implémentée directement dans l'outil (avec les soucis de mise-à-jour que ça implique) ?
 
