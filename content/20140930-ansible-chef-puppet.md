@@ -11,7 +11,7 @@ Plus récemment, dans un soucis de simplifier et de rationaliser la gestion d'un
 Pour avoir utiliser les trois (Puppet, puis Chef, puis Ansible), j'ai été très vite déçu par ces outils, qui ne répondent à mon avis pas à <strike>la</strike> ma problématique initiale.<br/>
 Petit retour d'expérience sur ce domaine.
 
-# Ce qu'on a besoin
+# Ce dont on a besoin
 
 Imaginons avoir une infrastructure de notre parc informatique basée sur la virtualisation, ie. chaque service isolé dans son propre conteneur.<br/>
 A minima, on va vite se retrouver avec les conteneurs suivants : un Bind9, un Postfix, un Nginx, un Apache, un MySQL, un PostgreSQL…
