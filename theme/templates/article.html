@@ -3,7 +3,7 @@
 
 {% if FLATTR_USERNAME %}
 	{% block flattr %}
-		<link rel="payment" href="https://flattr.com/submit/auto?url=/{{article.url}}&amp;title={{article.title}}&amp;user_id={{FLATTR_USERNAME}}&amp;category=text" type="text/html" />
+		<link rel="payment" href="https://flattr.com/submit/auto?url={{SITEURL}}/{{article.url}}&amp;title={{article.title}}&amp;user_id={{FLATTR_USERNAME}}&amp;category=text" type="text/html" />
 	{% endblock %}
 
 	{% block flattr_js %}
