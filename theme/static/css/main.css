@@ -126,6 +126,11 @@ ol {
 	margin: .5em 0 .5em 1.5em;
 }
 
+sup {
+	font-size: .83em;
+	vertical-align: super;
+}
+
 .post-info {
 	float: right;
 	margin: 10px;
@@ -229,7 +234,7 @@ aside, nav, article, figure {
 }
 
 img {
-	vertical-align: middle;
+	/*vertical-align: middle;*/
 }
 
 img.right, figure.right {
