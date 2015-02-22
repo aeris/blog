@@ -79,7 +79,7 @@ function start_up(){
   cd $OUTPUTDIR
   python -m SimpleHTTPServer 3000 &> /dev/null &
   echo $! > $SRV_PID
-  guard -i -w $BASEDIR -G $BASEDIR/Guardfile &> /dev/null &
+  bundle exec guard -i -w $BASEDIR -G $BASEDIR/Guardfile &> /dev/null &
   echo $! > $GUARD_PID
   cd $BASEDIR
   sleep 1 && echo 'Pelican and SimpleHTTPServer processes now running in background.'

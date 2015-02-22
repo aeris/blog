@@ -6,6 +6,7 @@ SITENAME = 'NullPointerException'
 SITEURL = 'https://blog.imirhil.fr'
 RELATIVE_URLS = False
 TIMEZONE = 'Europe/Paris'
+STATIC_PATHS = ['images', 'doc']
 
 THEME = 'theme'
 DEFAULT_LANG = 'fr'
@@ -22,7 +23,7 @@ LINKS =  (('APRIL', 'https://www.april.org/', '/theme/images/icons/april.png'),
 			(u'Café vie privée', u'https://café-vie-privée.fr/', '/theme/images/icons/chiffrofete.png'),)
 SOCIAL = (('GNU/Social', 'https://status.imirhil.fr/aeris'),
 			('Twitter', 'https://twitter.com/aeris22'),
-			('Google+', 'https://plus.google.com/104370901412675145439'),
 			('GitHub', 'https://github.com/aeris'),
+            ('Gitorious', 'https://gitorious.org/~aeris'),
 			('BitBucket', 'https://bitbucket.org/aeris'),)
 DEFAULT_PAGINATION = 10

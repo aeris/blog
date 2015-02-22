@@ -717,6 +717,10 @@ li:last-child .hentry, #content > .hentry {
 	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
 }
 
+article {
+	font-size: 14px;
+}
+
 article h1 {
 	color: #C74451;
 	margin-bottom: 0.25em;

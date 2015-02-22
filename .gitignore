@@ -1,5 +1,6 @@
 /.bundle/
 /output/
+/content/pending/
 .idea/
 *.iml
 *.pid
