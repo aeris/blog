@@ -53,12 +53,6 @@ regenerate: clean
 serve:
 	cd $(OUTPUTDIR) && python -m SimpleHTTPServer
 
-devserver:
-	$(BASEDIR)/develop_server.sh restart
-
-stop:
-	$(BASEDIR)/develop_server.sh stop
-
 publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 

@@ -1,25 +1,21 @@
-#!/
-##
-# This section should match your Makefile
-##
-PELICAN=$HOME/.virtualenvs/pelican/bin/pelican
-PELICANOPTS=
+#!/usr/bin/env ruby
+require 'open3'
 
-BASEDIR=$(pwd)
-INPUTDIR=$BASEDIR/content
-OUTPUTDIR=$BASEDIR/output
-CONFFILE=$BASEDIR/pelicanconf.py
-PIDS=
+PELICAN = File.expand_path File.join %w(~ .virtualenvs pelican bin/pelican)
 
-trap "do_stop" SIGINT SIGQUIT
-do_stop() {
-	kill ${PIDS}
+BASEDIR = Dir.pwd
+INPUTDIR = File.join BASEDIR, 'content'
+OUTPUTDIR = File.join BASEDIR, 'output'
+CONFFILE = File.join BASEDIR, 'pelicanconf.py'
+PIDS = []
+
+trap('INT', 'TERM') do
+	PIDS.each { |_, _, _, e| Process.kill 'INT', e.pid }
 	exit
-}
+end
 
-$PELICAN --debug --autoreload -r $INPUTDIR -o $OUTPUTDIR -s $CONFFILE $PELICANOPTS &
-PIDS = "$PIDS $!"
-rshare $OUTPUTDIR &
-PIDS = "$PIDS $!"
-PIDS = "$PIDS $!"
-bundle exec guard -i -w $BASEDIR -G $BASEDIR/Guardfile &
+PIDS << Open3.popen2(PELICAN, '--debug', '--autoreload', '-r', INPUTDIR, '-o', OUTPUTDIR, '-s', CONFFILE) #{ |_, o, _| loop { print o.gets } }
+PIDS << Open3.popen2('rshare', OUTPUTDIR) #{ |_, o, _| loop { print o.gets } }
+PIDS << Open3.popen2('bundle', 'exec', 'guard', '-i', '-w', BASEDIR, '-G', "#{BASEDIR}/Guardfile") #{ |_, o, _| loop { print o.gets } }
+
+sleep
