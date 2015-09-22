@@ -7,7 +7,7 @@ NSA, Snowden, Heartbleed, TrueCrypt… Ce début d'année est tellement riche en
 C'est surtout tout ce qui en a découlé qui est devenu très intéressant, de « [Everything is broken](https://medium.com/@quinnnorton/everything-is-broken-81e5f33a24e1) » par Quinn Norton en passant par « [Lettre aux barbus](http://reflets.info/lettre-aux-barbus/) » par Laurent Chemla (ainsi que [la réponse](http://blog.chown.me/reponse-a-la-lettre-aux-barbus.html) de Vigdis), ou encore « [OpenSSL Valhalla Rampage](http://opensslrampage.org/) » sur la
  vaste blague qu'est OpenSSL (je tiendrais d'ailleurs une conférence sur le sujet durant [PSES](http://www.passageenseine.org/Passage/PSES-2014))…
 
-Toutes ces problématiques ont foutu un gros coup de pied au cul de tout le monde, réveillant toute lafourmillière, avec une gueule de bois comme elle n'en avait jamais connue auparavant.
+Toutes ces problématiques ont foutu un gros coup de pied au cul de tout le monde, réveillant toute la fourmillière, avec une gueule de bois comme elle n'en avait jamais connue auparavant.
 On cumulait connerie sur connerie et personne n'avait rien vu. On exposait notre vie privée en 4 par 3 et ça n'avait choqué personne.
 
 Je ne sais pour quelle raison, mais j'ai eu un déclic, un truc qui a fait tilt entre deux neurones : et si j'avais perdu ma sécurité parce que la majorité des gens se foutaient juste de la leur ? Et si tout ça, c'était uniquement du au fait que les gens n'en ont rien à faire de l'informatique ?
@@ -33,7 +33,7 @@ Dans celui de point-à-point, c'est uniquement l'échange entre serveurs qui ser
 
 <center>![point-to-point](/static/images/20140615/point-to-point.png)</center>
 
-Idem, l'effet d'annonce toujours de GMail avec l'introduction de GPG en natif. Y'a quelqu'un qui s'est posé la question d'où et comment était stockée la clef privée ? On aura bien du chiffrement point-à-point cette fois, mais si la clef vous est fournie ou est stockée par Google, vous n'êtes plus le seul à pouvoir les déchiffrer, vos données ! Une clef privée se doit d'être générée et stockée uniquement par des moyens que vous contrôlez.
+Idem, l'effet d'annonce toujours de GMail avec l'introduction de GPG en natif. Y'a quelqu'un qui s'est posé la question d'où et comment était stockée la clef privée ? On aura bien du chiffrement bout-en-bout cette fois, mais si la clef vous est fournie ou est stockée par Google, vous n'êtes plus le seul à pouvoir les déchiffrer, vos données ! Une clef privée se doit d'être générée et stockée uniquement par des moyens que vous contrôlez.
 
 Je ne parle même pas d'être capable de comprendre qu'un AES 256bits est robuste alors qu'un RSA 1024bits est tout moisi alors qu'il fait 4× la taille du premier. Ou encore de savoir vérifier si on envoie bien ses courriels chiffrés par PGP/mime et non PGP/inline, avec les pièces-jointes incluses dans le corps du courriel et non à côté (et donc que vous fuitez leur nom…). Ou de vérifier qu'un chiffrement point-à-point n'utilise pas d'algorithme tout pourri ou NSA-troué comme RC4 ou DES… (Non, ça, même les banques ne semblent pas parvenir à le comprendre…)
 
@@ -44,7 +44,7 @@ Comment voulez-vous espérer être en sécurité si vous ne comprenez rien à ce
 Si vous faites confiance « à l'ami qui s'y connaît » pour gérer vos affaire, alors la NSA n'a qu'à cibler votre ami, pour faire d'une pierre deux coups. Et aussi bien, il a lui-même fait appel à « un ami qui s'y connaît » parce qu'il n'y connaît en réalité pas beaucoup plus que vous et a juste (très mal) réappliqué ce qu'on lui avait déjà (mal) appliqué…
 
 **L'informatique, ce n'est pas compliqué, mais ce n'est pas non plus simple.**<br/>
-Il faut juste accepter que ça ne vous tombera pas tout cru dans la gueule, qu'il va vous falloir mouiller la chemise, accorder quelques minutes pas jour à cette machine qui vous attend patiemment sur un coin de bureau, et qui est aujourd'hui des millions de fois plus puissante que l'ordinateur qui a emmené l'Homme sur la Lune.
+Il faut juste accepter que ça ne vous tombera pas tout cru dans la gueule, qu'il va vous falloir mouiller la chemise, accorder quelques minutes par jour à cette machine qui vous attend patiemment sur un coin de bureau, et qui est aujourd'hui des millions de fois plus puissante que l'ordinateur qui a emmené l'Homme sur la Lune.
 Alors que la NASA avait des équipes complètes 24h/24 7j/7 pour chouchouter leurs machines, comment pouvez-vous osez espérer n'avoir qu'à la sortir du carton pour la poser sur un coin de meuble et de n'avoir plus qu'à lui chatouiller le mulot de 5 à 7 ?
 
 Au final, les gens se sont fait dépouiller de leur informatique et donc de leur sécurité, et la confient à des trucs étranges et étrangers, que ça soit une simple connaissance ou une entreprise commerciale (« cloud », quand tu nous tiens…), parce qu'ils ne veulent pas s'impliquer plus que la signature du chèque à la caisse du supermarché au coin de la rue lorsqu'ils veulent « faire de l'informatique » (et encore, c'est même plutôt juste « avoir un ordinateur »).<br/>

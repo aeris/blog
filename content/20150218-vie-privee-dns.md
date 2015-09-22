@@ -1,5 +1,7 @@
 Title: Vie privée : et le DNS alors ?
 Date: 2015-02-18
+Category: privacy
+Tags: dns, gafam
 
 # Le DNS, annuaire de l’Internet
 
