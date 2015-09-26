@@ -51,6 +51,7 @@ Mes sites à vocation « grand public » (par exemple [mes expérimentations T
 
 Bref, j’applique par défaut la méthode la plus extrême, quitte à ensuite descendre un peu le curseur si ça couine trop, plutôt que de commencer tout en bas et espérer remonter le curseur par la suite : vu que ça ne couinera pas pour demander à remonter, ça ne remontera pas.
 
+<a name="GreatPower"></a>
 # « De grands pouvoirs impliquent de grandes responsabilités » ™
 
 Dernier point, et sûrement le plus important. Les Cafés Vie Privée peuvent être dangereux pour ses participants.<br/>
