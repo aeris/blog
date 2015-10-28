@@ -285,3 +285,6 @@ En espérant qu’ils tiendront compte de l’énorme historique qu’on a déj�
  [lanceurs d’alerte](extremiste-oui-et-meme-fier-de-letre.html#GreatPower)…
 
 En bref, Own-Mailbox auto-hébergement peut-être, Own-Mailbox sécurité & vie privée, définitivement non.
+
+*[La réponse à la réponse de Own-Mailbox](|filename|/20150927-ownmailbox-2.md)* |
+*[La conclusion](|filename|/20150927-ownmailbox-3.md)*
