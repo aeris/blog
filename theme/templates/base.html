@@ -14,24 +14,6 @@
 	{% block flattr %}
 	<link rel="payment" href="https://flattr.com/submit/auto?url={{SITEURL}}&amp;title={{SITENAME}}&amp;user_id={{FLATTR_USERNAME}}" type="text/html" />
 	{% endblock %}
-
-	<script src="/theme/js/jquery.js"></script>
-	<script src="/theme/js/bootstrap.js"></script>
-	<link rel="stylesheet" href="/theme/css/bootstrap.css" type="text/css" />
-	<script type="text/javascript">
-		$(function() {
-			$('a[rel="popover"]').popover({
-				html: true,
-				trigger: 'hover'
-			});
-			{% block flattr_js %}{% endblock %}
-			{% block twitter_js %}{% endblock %}
-			{% block google_js %}{% endblock %}
-		});
-	</script>
-	{% if LIVERELOAD %}
-	<script src="http://localhost:35729/livereload.js?snipver=1"></script>
-	{% endif %}
 </head>
 
 <body id="index" class="home">
@@ -95,4 +77,21 @@
         </footer><!-- /#contentinfo -->
 {% include 'piwik.html' %}
 </body>
+<script src="/theme/js/jquery.js"></script>
+<script src="/theme/js/bootstrap.js"></script>
+<link rel="stylesheet" href="/theme/css/bootstrap.css" type="text/css" />
+<script type="text/javascript">
+	$(function() {
+		$('a[rel="popover"]').popover({
+			html: true,
+			trigger: 'hover'
+		});
+		{% block flattr_js %}{% endblock %}
+		{% block twitter_js %}{% endblock %}
+		{% block google_js %}{% endblock %}
+	});
+</script>
+{% if LIVERELOAD %}
+<script src="http://localhost:35729/livereload.js?snipver=1"></script>
+{% endif %}
 </html>

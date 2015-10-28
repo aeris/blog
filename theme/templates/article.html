@@ -71,11 +71,10 @@
     {% if ISSO_SITENAME %}
     <div class="comments">
       <h2>Comments !</h2>
-      <script data-isso="{{ISSO_SITENAME}}/" src="{{ISSO_SITENAME}}/js/embed.min.js"></script>
+      <script data-isso="{{ISSO_SITENAME}}/" data-isso-max-comments-top="inf" data-isso-max-comments-nested="inf" src="{{ISSO_SITENAME}}/js/embed.min.js"></script>
       <section id="isso-thread"></section>
     </div>
     {% endif %}
-
   </article>
 </section>
 {% endblock %}

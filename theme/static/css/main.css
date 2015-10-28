@@ -11,19 +11,11 @@
 @import url("pygment.css");
 @import url("typogrify.css");
 
-@font-face {
-	font-family: 'Yanone Kaffeesatz';
-	font-style: normal;
-	font-weight: 400;
-	src: local('Yanone Kaffeesatz Regular'), local('YanoneKaffeesatz-Regular'), url("yanone-kaffeesatz.woff") format('woff');
-}
-
 /***** Global *****/
 /* Body */
 body {
 	background: #F5F4EF;
 	color: #000305;
-	font-size: 87.5%; /* Base font size: 14px */
 	font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	line-height: 1.429;
 	margin: 0;
@@ -66,7 +58,6 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 400;
 	line-height: 1.1;
 	/*margin-bottom: .8em;*/
-	font-family: 'Yanone Kaffeesatz', arial, serif;
 }
 
 h3, h4, h5, h6 {
@@ -136,6 +127,7 @@ sup {
 	margin: 10px;
 	padding: 5px;
 	max-width: 25%;
+	font-size: 0.60em;
 }
 
 .post-info p {
@@ -159,10 +151,18 @@ dd {
 }
 
 pre {
-	background-color: rgb(238, 238, 238);
 	padding: 10px;
 	margin: 10px;
 	overflow: auto;
+}
+code {
+	padding: 2px 10px;
+}
+pre, code {
+	font-family: "Lucida Console", Monaco, monospace;
+	background-color: rgb(238, 238, 238);
+	border-radius: 10px;
+	font-size: 0.80em;
 }
 
 /* Quotes */
@@ -573,7 +573,6 @@ li:last-child .hentry, #content > .hentry {
 }
 
 .entry-title {
-	font-size: 3em;
 	margin-bottom: 10px;
 	margin-top: 0;
 }
@@ -649,76 +648,19 @@ li:last-child .hentry, #content > .hentry {
 	margin: 5px 1em 0 0;
 }
 
-/* Comments */
-#comments-list {
-	list-style: none;
-	margin: 0 1em;
-}
-
-#comments-list blockquote {
-	background: #f8f8f8;
-	clear: both;
-	font-style: normal;
-	margin: 0;
-	padding: 15px 20px;
-
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-}
-
-#comments-list footer {
-	color: #888;
-	padding: .5em 1em 0 0;
-	text-align: right;
-}
-
-#comments-list li:nth-child(2n) blockquote {
-	background: #F5f5f5;
-}
-
-/* Add a Comment */
-#add-comment label {
-	clear: left;
-	float: left;
-	text-align: left;
-	width: 150px;
-}
-
-#add-comment input[type='text'],
-#add-comment input[type='email'],
-#add-comment input[type='url'] {
-	float: left;
-	width: 200px;
-}
-
-#add-comment textarea {
-	float: left;
-	height: 150px;
-	width: 495px;
-}
-
-#add-comment p.req {
-	clear: both;
-	margin: 0 .5em 1em 0;
-	text-align: right;
-}
-
-#add-comment input[type='submit'] {
-	float: right;
-	margin: 0 .5em;
-}
-
-#add-comment * {
-	margin-bottom: .5em;
-}
-
 #content, #featured {
 	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
 }
 
 article {
+	line-height: 1.6;
+	font-size: 16px;
+}
+aside article {
 	font-size: 14px;
+}
+#posts-list article {
+	font-size: 12px;
 }
 
 article h1 {
@@ -736,6 +678,10 @@ article h3 {
 	color: #51C744;
 	margin-bottom: 0.25em;
 	padding-left: 2em;
+}
+
+article > .comments {
+	font-size: 12px;
 }
 
 .entry-content p, article p {
