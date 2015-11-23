@@ -1,8 +1,9 @@
-/.bundle/
-/output/
-/content/pending/
+.bundle/
 .idea/
+_site/
+_drafts/*
+.sass-cache
+.jekyll-metadata
 *.iml
 *.pid
-*.pyc
 Gemfile.lock

@@ -1,0 +1,37 @@
+# Site settings
+title: NullPointerException
+email: aeris+blog@imirhil.fr
+description: >
+    Blog d’un groupe crypto-terroriste individuel auto-radicalisé sur l’Internet digital
+url: https://blog.imirhil.fr
+isso: /comments
+
+# Build settings
+layout: post
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+sass:
+  style: compressed
+
+gems:
+  - jekyll-coffeescript
+
+# Serving
+port: 3000
+
+# Site
+defaults:
+  -
+    scope:
+      path: ''
+      type: posts
+    values:
+      layout: post
+  -
+    scope:
+      path: ''
+      type: drafts
+    values:
+      layout: post

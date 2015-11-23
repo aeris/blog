@@ -1,3 +1,8 @@
-guard :livereload, apply_css_live: false, override_url: false  do
-	watch %r{output/(.*\.html)}
+guard 'jekyll-plus', serve: true, drafts: true do
+	watch /.*/
+	ignore /^_site/
+end
+
+guard 'livereload' do
+	watch /.*/
 end

@@ -1,0 +1,27 @@
+@font-face {
+	font-family: 'PT Sans Narrow';
+	font-style: normal;
+	font-weight: 400;
+	src: local('PT Sans Narrow'), local('PTSans-Narrow'), url(/assets/fonts/pt-sans-narrow.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'PT Sans Narrow';
+	font-style: normal;
+	font-weight: 700;
+	src: local('PT Sans Narrow Bold'), local('PTSans-NarrowBold'), url(/assets/fonts/pt-sans-narrow-bold.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'PT Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: local('PT Mono'), local('PTMono'), url(/assets/fonts/pt-mono.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'PT Mono';
+	font-style: normal;
+	font-weight: 700;
+	src: local('PT Mono Bold'), local('PTMonoBold'), url(/assets/fonts/pt-mono-bold.woff) format('woff');
+}

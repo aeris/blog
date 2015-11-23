@@ -1,8 +1,0 @@
-#!/bin/sh
-VIRTUAL_ENV_NAME=pelican
-VIRTUAL_ENV_DIR="$WORKON_HOME/$VIRTUAL_ENV_NAME"
-if [ "$VIRTUAL_ENV" != "$VIRTUAL_ENV_DIR" ]; then
-	. "$VIRTUAL_ENV_DIR/bin/activate"
-fi
-
-make $*

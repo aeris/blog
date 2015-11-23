@@ -1,0 +1,207 @@
+/* Oui je sais, je suis nul en design... :) */
+
+$font-family: 'PT Sans Narrow', sans-serif;
+$font-family-monospace: 'PT Mono', monospace;
+
+$primary-bg: #eee;
+
+$text-color: #444;
+$link-color: #000;
+$link-color-hover: darken($link-color, 25%);
+
+$color-red: #C74451;
+$color-blue: #4451C7;
+$color-green: #51C744;
+
+$font-size-base: 20px;
+
+$body-width: 960px;
+$article-width: 650px;
+//$article-width: $body-width;
+
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+body {
+	font-family: $font-family;
+	font-size: $font-size-base;
+	color: $text-color;
+	background-color: $primary-bg;
+	margin: 0;
+}
+
+body > header {
+	background-color: darken($primary-bg, 10%);
+
+	div {
+		max-width: $body-width;
+		margin: 0 auto;
+		padding: 10px 50px;
+
+		a {
+			font-size: $font-size-base * 1.25;
+			text-decoration: none;
+			color: $link-color;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		p {
+			margin: 0;
+		}
+	}
+}
+
+#content {
+	margin: 40px auto;
+	line-height: 1.6;
+	padding: 0 10px;
+	max-width: $article-width;
+}
+
+a {
+	color: $link-color;
+}
+
+img {
+	vertical-align: middle;
+}
+
+pre, code {
+	background-color: darken($primary-bg, 5%);
+	border-radius: 5px;
+
+	font-family: $font-family-monospace;
+	white-space: pre-wrap;
+}
+
+pre {
+	margin: 10px;
+	padding: 10px;
+	font-size: 0.60em;
+}
+
+:not(pre) > code {
+	padding: 2px 5px;
+	font-size: 0.75em;
+}
+
+section#posts {
+	h1, h2 {
+		margin: 0;
+	}
+
+	h2 {
+		color: $color-blue;
+	}
+
+	.date {
+		padding-left: 10px;
+		font-size: 0.75em;
+	}
+
+	article {
+		h3 {
+			margin-bottom: 0;
+
+			a {
+				color: $color-red;
+			}
+		}
+
+		p {
+			margin-top: 0;
+			text-align: justify;
+		}
+	}
+}
+
+section#post {
+	header {
+		margin-bottom: 20px;
+
+		h1 {
+			font-size: 1.5em;
+			margin: 0;
+
+			span {
+				padding-left: 10px;
+				font-size: 0.50em;
+			}
+		}
+	}
+
+	article {
+		text-align: justify;
+
+		h1, h2, h3 {
+			margin: 0;
+		}
+
+		h1 {
+			font-size: 1.3em;
+			color: $color-red;
+		}
+
+		h2 {
+			font-size: 1.2em;
+			padding-left: 20px;
+			color: $color-blue;
+		}
+
+		h3 {
+			font-size: 1.1em;
+			padding-left: 40px;
+			color: $color-green;
+		}
+	}
+
+	> .comments {
+		font-size: 0.75em;
+	}
+}
+
+footer {
+	width: 100%;
+	text-align: right;
+	margin-bottom: 20px;
+	padding-right: 20px;
+	font-size: 0.75em;
+
+	section#social img,
+	img.margin {
+		margin-right: 5px;
+	}
+}
+
+img.center {
+	margin: 0 auto;
+	display: block;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+
+	th, td {
+		border: 1px solid darken($primary-bg, 25%);
+		padding: 2px 5px;
+	}
+}
+
+figure {
+	img {
+		margin: 0 auto;
+		display: block;
+	}
+
+	figcaption {
+		text-align: center;
+		font-size: 0.75em;
+	}
+}
