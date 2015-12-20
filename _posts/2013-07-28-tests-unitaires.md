@@ -18,8 +18,8 @@ class Calculator {
 }
 {% endhighlight %}
 
-Un développeur débutant se ruerait sur son IDE pour coder directement l'application. Mauvaise idée !<br/>
-Il vaut mieux appliquer une méthodologie TDD ([Test Driven Development](http://fr.wikipedia.org/wiki/Test_Driven_Development)) et développer les tests unitaires avant le code.<br/>
+Un développeur débutant se ruerait sur son IDE pour coder directement l'application. Mauvaise idée !
+Il vaut mieux appliquer une méthodologie TDD ([Test Driven Development](http://fr.wikipedia.org/wiki/Test_Driven_Development)) et développer les tests unitaires avant le code.
 Ceci permet d'éviter des erreurs très courantes :
 
   * [être tenté d'écrire des tests qui valident le code](http://geek-and-poke.com/geekandpoke/2013/7/28/tdd), alors qu'on doit faire l'inverse
@@ -44,8 +44,8 @@ Ici, on a donc 2 tests à réaliser : que le résultat est bien la division de *
 
 Un jeune développeur naïf, qui n'a jamais fait de test, il risque très probablement ceci :
 
-« Comment tu as testé ton code ? »<br/>
-« Ben j'ai lancé l'exe, pourquoi ? »<br/>
+« Comment tu as testé ton code ? »
+« Ben j'ai lancé l'exe, pourquoi ? »
 « Quel exe ‽‽‽ »
 
 {% highlight java %}
@@ -67,7 +67,7 @@ Pour ça, on doit pouvoir exécuter chaque test unitaire indépendamment, ce qui
 En plus de ça, l'exécution des tests doit être entièrement automatisée et permettre de faire du reporting.
 
 Pour faciliter la mise-en-place des tests-u, plusieurs librairies existent.
-Parmis les plus connues, [JUnit](http://junit.org/) ou [TestNG](http://testng.org/).<br/>
+Parmis les plus connues, [JUnit](http://junit.org/) ou [TestNG](http://testng.org/).
 JUnit tout seul ne fournit pas d'[assertion](http://fr.wikipedia.org/wiki/Assertion) suffisamment complexes (en réalité seule *assertTrue* est fournie), aussi il vaut mieux utiliser [Hamcrest](http://hamcrest.org/) qui fournit *assertThat* et toute sa clique de matchers (*is*, *hasItem*, *contains*…).
 On peut aussi privilégier [Fest-Assert](https://github.com/alexruiz/fest-assert-2.x), qui propose une interface *fluent* à la place de méthodes statiques.
 
@@ -118,9 +118,9 @@ Pour les bonnes pratiques à avoir, on peut surtout citer :
 
 Ceci afin de permettre de détecter finement les régressions (et non pas se retrouver avec un *testAllTheApp* KO…) et d'avoir des tests reproductibles (« pourtant, il passait hier… » ou encore « ah tient, ça passe plus si je lance *testQuiNARienAvoir* avant *testQuiMInteresse* »…).
 
-Les tests unitaires sont au final extrèmement importants pour la bonne marche d'un projet.<br/>
-Sans eux, il est impossible de faire de la refactorisation de code sans avoir de garantie de n'avoir rien cassé au passage, surtout quand les modifications sont lourdes.<br/>
-Ou encore ils permettent de savoir très exactement où en est un projet par rapport à la spécification. En méthode Agile, c'est ainsi un bon indicateur du travail terminé, et peut être utilisé pour le calcul de la vélocité par exemple.<br/>
+Les tests unitaires sont au final extrèmement importants pour la bonne marche d'un projet.
+Sans eux, il est impossible de faire de la refactorisation de code sans avoir de garantie de n'avoir rien cassé au passage, surtout quand les modifications sont lourdes.
+Ou encore ils permettent de savoir très exactement où en est un projet par rapport à la spécification. En méthode Agile, c'est ainsi un bon indicateur du travail terminé, et peut être utilisé pour le calcul de la vélocité par exemple.
 Enfin, c'est aussi un moyen de faciliter le travail en équipe, chaque développeur ayant un moyen de vérifier que son travail n'a pas impacté d'autres personnes, mais aussi de permettre d'intervenir sur le code de quelqu'un d'autre en sûreté.
 
 ## Couverture de code
@@ -135,10 +135,10 @@ Les tests unitaires doivent garantir trois choses :
 
 Ces trois règles permettent de garantir que toutes les fonctionnalités seront bien là, que le code écrit sera le code minimal possible et que les tests seront les tests minimums possibles, et donc qu'on a été le plus efficace possible.
 
-Bien entendu, il est souvent difficile voire impossible d'atteindre ces trois points.<br/>
+Bien entendu, il est souvent difficile voire impossible d'atteindre ces trois points.
 Le premier point généralement sur les cas qui dépendent de conditions difficiles à reproduire (disque plein, panne réseau…).
 Le second aussi à cause des cas d'erreur, comme la gestion des exceptions ou des cas aux limites.
-Le dernier parce qu'il est particulièrement difficile à quantifier et donc à vérifier.<br/>
+Le dernier parce qu'il est particulièrement difficile à quantifier et donc à vérifier.
 Aussi en pratique on préfère se fixer des objectifs :
 
   * une spec couverte à 95% (le reste sera couvert par les tests d'intégration ou de validation)
@@ -154,7 +154,7 @@ Dans le cas de la mini-application précédente, on est tout bon niveau couvertu
 
 ## Génération de rapports de test et de couverture de code
 
-Maven permet de générer facilement des rapports de passage des tests unitaires et de sa couverture de code associée.<br/>
+Maven permet de générer facilement des rapports de passage des tests unitaires et de sa couverture de code associée.
 Tout se passe encore une fois dans le *pom.xml* :
 
 {% highlight xml %}

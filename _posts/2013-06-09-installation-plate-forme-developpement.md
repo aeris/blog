@@ -16,7 +16,7 @@ Les outils présentés par la suite existent en deux versions.
  * une version standalone, qui fonctionne en autonomie
  * une version webapp, qui nécessite un conteneur de servlet
 
-Pour éviter d'avoir 42 JVM à tourner sur la machine d'accueil et l'utilisation d'autant de ports différents, je préfère tout monter dans un [Tomcat](https://tomcat.apache.org/) en mode webapp.<br/>
+Pour éviter d'avoir 42 JVM à tourner sur la machine d'accueil et l'utilisation d'autant de ports différents, je préfère tout monter dans un [Tomcat](https://tomcat.apache.org/) en mode webapp.
 Et comme je n'aime pas exposer directement mes Tomcat en plus de préférer de jolies URL sans port, je monte un serveur [Apache](http://httpd.apache.org/) en proxy devant, via les possibilités de communication [AJP](http://tomcat.apache.org/connectors-doc/ajp/ajpv13a.html) de Apache et Tomcat.
 
 L'installation de Tomcat est enfantine sous Debian :
@@ -67,7 +67,7 @@ Le concept derrière ce nom est très simple : recompiler fréquemment (à chaq
 
 Un outil extrêmement bien fait de CI est [Jenkins](http://jenkins-ci.org/).
 
-L'installation n'est pas très complexe.<br/>
+L'installation n'est pas très complexe.
 Il faut d'abord créer le futur répertoire d'accueil de Jenkins et lui donner les bons droits
 
 	mkdir -p /srv/jenkins
@@ -99,7 +99,7 @@ Et voilà, c'est fini pour Jenkins !
 La qualité d'un logiciel est quelque chose d'extrêmement important.
 Un code-source avec des fichiers de milliers de lignes, des classes avec des centaines de méthodes ou des méthodes de centaines de lignes, c'est le meilleur moyen d'arriver à obtenir un logiciel totalement buggé, inmaintenable, non évolutif au possible, bref un truc infâme qui va coûter une blinde sur le long terme.
 
-Pour s'assurer que notre code reste dans des métriques acceptables, il existe des outils d'analyse de code.<br/>
+Pour s'assurer que notre code reste dans des métriques acceptables, il existe des outils d'analyse de code.
 [Sonar](http://www.sonarsource.org/) en est un très bon exemplaire.
 Il sort énormément de données, comme les couvertures de code, les métriques de code (nombre de lignes, nombre de classes, nombre de lignes par classe, nombre de méthodes par classe, nombre de lignes par méthode, complexité cyclomatique…) ainsi que des analyses de mauvaises pratiques (*equals* sans *hashCode*, « magic numbers », *instanceof*, ressources non fermées…).
 
@@ -165,18 +165,18 @@ Côté client, on peut indiquer à Maven comment accéder au Sonar, via *~/.m2/s
 # Nexus
 
 [Maven](https://maven.apache.org/) est un véritable couteau-suisse, qui gère tout le cycle de vie de développement d'un logiciel.
-Je ferai sans doute un article complet sur Maven, ici ce qui m'intéresse, c'est la gestion des dépendances.<br/>
+Je ferai sans doute un article complet sur Maven, ici ce qui m'intéresse, c'est la gestion des dépendances.
 Maven gère ça très proprement, via son fichier *pom.xml*, qui se contente de lister les bibliothèques nécessaires au projet (compilation, test, exécution…).
 Les dépendances en elles-mêmes sont stockées dans des dépôts, celui par défaut étant [Maven Central](http://search.maven.org/).
 
 Le téléchargement des dépendances avec Maven peut vite devenir (très) long, un projet de taille standard pouvant atteindre quelques centaines de bibliothèques.
-Sur un réseau de mauvaise qualité ou à vitesse limitée, comme c'est généralement le cas en entreprise sur le trafic extérieur, cela devient vite pénible.<br/>
+Sur un réseau de mauvaise qualité ou à vitesse limitée, comme c'est généralement le cas en entreprise sur le trafic extérieur, cela devient vite pénible.
 En plus, certaines dépendances ne sont pas publiées dans le dépôt central, mais sur d'autres dépôts, comme [Codehaus](http://repository.codehaus.org/) ou [Atlassian](https://maven.atlassian.com/content/groups/public/).
-On peut préciser la liste des dépôts à utiliser dans chaque projet via le *pom*, mais pose quelques soucis (maintenance, performances dégradées, …).<br/>
-Et pour finir, on rencontre aussi des contraintes techniques (présence de proxy dans les entreprises) qui rendent la configuration par défaut de Maven problématique.<br/>
+On peut préciser la liste des dépôts à utiliser dans chaque projet via le *pom*, mais pose quelques soucis (maintenance, performances dégradées, …).
+Et pour finir, on rencontre aussi des contraintes techniques (présence de proxy dans les entreprises) qui rendent la configuration par défaut de Maven problématique.
 Nexus permet aussi de publier en interne ses propres artifacts, ce qui facilite leur distribution entre équipes et éviter d'avoir tout à recompiler depuis les sources.
 
-Pour résoudre tous ces problèmes, il est possible d'installer un proxy Maven, qui se chargera de récupérer les dépendances à l'extérieur et les stockera en local : le premier accès sera lent (téléchargement depuis l'extérieur), tout les suivants ultra-rapides (cache sur le disque + réseau local).<br/>
+Pour résoudre tous ces problèmes, il est possible d'installer un proxy Maven, qui se chargera de récupérer les dépendances à l'extérieur et les stockera en local : le premier accès sera lent (téléchargement depuis l'extérieur), tout les suivants ultra-rapides (cache sur le disque + réseau local).
 Il existe plusieurs solutions de proxy, comme par exemple [Archiva](http://archiva.apache.org/) ou [Artifactory](http://www.jfrog.com/home/v_artifactory_opensource_overview).
 Le plus connu est [Nexus](http://www.sonatype.com/nexus/), par Sonatype, l'entreprise à l'origine de Maven.
 
@@ -201,7 +201,7 @@ Pour publier Nexus via Apache, on ajoute à nouveau quelques lignes dans */etc/a
 </VirtualHost>
 {% endhighlight %}
 
-Zou, affaire classée côté serveur.<br/>
+Zou, affaire classée côté serveur.
 Attention tout de même, étant donné que Nexus va sauvegarder sur disque tout ce qui sera téléchargé, on peut vite utiliser beaucoup d'espace disque.
 Dans mon cas, j'atteins déjà 2Go sur mon Nexus personnel, 15Go sur mon pro, sachant que tout Maven Central pèse près de 700Go.
 
@@ -228,5 +228,5 @@ Ceci se fait via le fichier *~/.m2/settings.xml* :
 {% endhighlight %}
 
 Et voilà, tous nos outils nécessaires sont maintenant installés.
-Pensez à redémarrer Tomcat (*service tomcat7 start*) et tout le nécessaire sera accessible.<br/>
+Pensez à redémarrer Tomcat (*service tomcat7 start*) et tout le nécessaire sera accessible.
 Ne reste plus qu'à coder !

@@ -27,10 +27,10 @@ En pratique, le gros câble rouge entre les deux correspondants est très comple
   * un morceau entre votre FAI et le FAI de votre correspondant
   * un morceau entre le FAI de votre correspondant et son PC
 
-Le premier et le dernier segment sont assez simples, basiquement quelques centaines de mètres de câble de cuivre.<br/>
-Le segment du milieu, par contre, c'est une autre paire de manches… Votre message va subir une partie de billard numérique, passant d'un prestataire à un autre à la recherche d'une route vers votre correspondant via ce qu'on appelle des [routeurs](https://fr.wikipedia.org/wiki/Routeur).<br/>
-Comme vous êtes sûrement Français, votre FAI connaît probablement une route assez courte vers OVH (qui héberge mon blog et est aussi Français), il y a donc de grandes chances de n'avoir que deux prestataires dans la boucle, votre FAI et OVH.<br/>
-Le cas est encore plus compliqué si vous êtes à l'étranger, où il est plus qu'improbable que votre FAI connaisse une route directe vers OVH, et vos données vont alors passer par plusieurs fournisseurs, en passant par des points d'échanges dit de *[peering](https://fr.wikipedia.org/wiki/Peering)* ou des [câbles sous-marins](http://www.telegeography.com/assets/website/images/maps/submarine-cable-map-2012/submarine-cable-map-2012-x.jpg).<br/>
+Le premier et le dernier segment sont assez simples, basiquement quelques centaines de mètres de câble de cuivre.
+Le segment du milieu, par contre, c'est une autre paire de manches… Votre message va subir une partie de billard numérique, passant d'un prestataire à un autre à la recherche d'une route vers votre correspondant via ce qu'on appelle des [routeurs](https://fr.wikipedia.org/wiki/Routeur).
+Comme vous êtes sûrement Français, votre FAI connaît probablement une route assez courte vers OVH (qui héberge mon blog et est aussi Français), il y a donc de grandes chances de n'avoir que deux prestataires dans la boucle, votre FAI et OVH.
+Le cas est encore plus compliqué si vous êtes à l'étranger, où il est plus qu'improbable que votre FAI connaisse une route directe vers OVH, et vos données vont alors passer par plusieurs fournisseurs, en passant par des points d'échanges dit de *[peering](https://fr.wikipedia.org/wiki/Peering)* ou des [câbles sous-marins](http://www.telegeography.com/assets/website/images/maps/submarine-cable-map-2012/submarine-cable-map-2012-x.jpg).
 Tout ça pour en arriver à dire qu'Internet, ce n'est qu'un jeu de ping-pong géant avec des données numériques, que vous n'avez absolument aucun moyen de savoir par où passeront vos données, et surtout que du coup vos données peuvent subir différentes attaques.
 
 ## Accès physique
@@ -64,21 +64,21 @@ Quelqu'un qui aurait la capacité d'usurper le DNS serait donc en mesure de fair
 
 L'usurpation DNS est relativement difficile à réaliser, mais reste totalement possible, que ça soit par une attaque directe des serveurs DNS, [un empoisonnement des caches](https://fr.wikipedia.org/wiki/Empoisonnement_du_cache_DNS) ou plus simplement par décision judiciaire.
 
-La Chine [a sûrement usage de ce genre de pratique](http://www.bortzmeyer.org/detournement-racine-pekin.html) pour censurer leur Internet national.<br/>
+La Chine [a sûrement usage de ce genre de pratique](http://www.bortzmeyer.org/detournement-racine-pekin.html) pour censurer leur Internet national.
 Certains FAI, y compris Français, [trafiquent aussi leurs serveurs DNS](http://www.numerama.com/magazine/13793-sfr-violerait-la-neutralite-du-net-avec-un-dns-menteur.html), pas forcément pour de mauvaises raisons mais en tout cas avec de bien mauvaises pratiques.
 
 
 ### Usurpation d'adresse IP
 
-Un peu dans le même genre que l'usurpation DNS, l'usurpation d'adresse IP consiste à faire en sorte de prendre la place de la machine visée sur le réseau.<br/>
+Un peu dans le même genre que l'usurpation DNS, l'usurpation d'adresse IP consiste à faire en sorte de prendre la place de la machine visée sur le réseau.
 Si quelqu'un arrivait à vous faire croire que sa machine est *5.135.187.37*, tout courriel que vous m'enverriez passerait par lui.
 
-Sur un réseau local, c'est possible par [empoisonnement du cache ARP](5.135.187.37). À plus grosse échelle, on peut s'attaquer au routeur pour leurs faire croire que la meilleure route pour aller vers telle adresse est une machine que vous controllez.<br/>
+Sur un réseau local, c'est possible par [empoisonnement du cache ARP](5.135.187.37). À plus grosse échelle, on peut s'attaquer au routeur pour leurs faire croire que la meilleure route pour aller vers telle adresse est une machine que vous controllez.
 Ne rigolez pas, [le Pakistan a ainsi détourné Youtube](http://www.renesys.com/2008/02/pakistan-hijacks-youtube-1/) et [la Turquie carrément tout Internet](http://www.renesys.com/2005/12/internetwide-nearcatastrophela/).
 
 ### Divers
 
-D'autres méthodes existent pour faire du MITM, par exemple avec des liens piégés et du social engineering et où vous ne ferez pas attention que l'adresse sur laquelle vous êtes réellement n'est pas celle où vous pensiez être.<br/>
+D'autres méthodes existent pour faire du MITM, par exemple avec des liens piégés et du social engineering et où vous ne ferez pas attention que l'adresse sur laquelle vous êtes réellement n'est pas celle où vous pensiez être.
 C'est un peu une amélioration d'une [attaque par phishing](https://fr.wikipedia.org/wiki/Hameçonnage), mais où plutôt que d'avoir une fausse page sans rien derrière, la page affichée communique réellement avec le vrai site (votre banque par exemple) et filtre les données intéressantes au passage.
 
 ## Inspection de paquets
@@ -86,19 +86,19 @@ C'est un peu une amélioration d'une [attaque par phishing](https://fr.wikipedia
 La technique qui devient à la mode en ce moment, c'est de juste regarder ce qui passe dans les tuyaux qui sont devant vous.
 ![DPI](/assets/images/20130901/dpi.png){:.center}
 
-Internet étant Internet, les données qui passent dans un câble sont morcelées en plein de petits paquets. Pire, les paquets peuvent être dans le désordre voire ne même pas passer par les mêmes routes. Et toutes les données de tout le monde passent par plus ou moins les mêmes câbles.<br/>
-Bref, si on se contente de regarder passer les données, on va surtout pouvoir se faire un bon générateur de nombres pseudo-aléatoires.<br/>
+Internet étant Internet, les données qui passent dans un câble sont morcelées en plein de petits paquets. Pire, les paquets peuvent être dans le désordre voire ne même pas passer par les mêmes routes. Et toutes les données de tout le monde passent par plus ou moins les mêmes câbles.
+Bref, si on se contente de regarder passer les données, on va surtout pouvoir se faire un bon générateur de nombres pseudo-aléatoires.
 Il faut avoir du matériel intelligent et capable de comprendre ce qui passe dans le câble pour arriver à reconstituer les données échangées : c'est le rôle des équipements d'*[inspection des paquets en profondeur](https://fr.wikipedia.org/wiki/Deep_packet_inspection)* ou *Deep Packet Inspection* (DPI).
 
 C'est le cas de ce qui se fait [en Iran](http://www.zdnet.fr/actualites/nokia-siemens-networks-accuse-de-contribuer-a-la-censure-en-iran-39700501.htm), [en Libye](http://surveillance.rsf.org/amesys/) ou encore [en Syrie](http://surveillance.rsf.org/blue-coat/) pour surveiller et censurer la population.
 
 ## Espionnage des hébergeurs
 
-Le cas présenté initialement de communication entre deux personnes est en général plus complexe que ça car il fait intervenir un prestataire de service. C'est la centralisation <strike>d'Internet</strike> du Web (et c'est le mal…).<br/>
+Le cas présenté initialement de communication entre deux personnes est en général plus complexe que ça car il fait intervenir un prestataire de service. C'est la centralisation <strike>d'Internet</strike> du Web (et c'est le mal…).
 ![SaaS](/assets/images/20130901/provider.png){:.center}
 
-Quand vous envoyez un courriel à quelqu'un de « normal », je suppose que l'adresse du destinataire est plus en *jean.martin@gmail.com* ou *marie.bernard@orange.fr* que *moi@chez-moi.fr*.<br/>
-Et donc que quelqu'un qui voudrait avoir accès à vos données, plutôt que de s'embêter avec toutes les techniques compliquées et coûteuses précédentes, il n'a qu'à toquer gentiment à la porte de Google en lui demandant toutes vos conversations.<br/>
+Quand vous envoyez un courriel à quelqu'un de « normal », je suppose que l'adresse du destinataire est plus en *jean.martin@gmail.com* ou *marie.bernard@orange.fr* que *moi@chez-moi.fr*.
+Et donc que quelqu'un qui voudrait avoir accès à vos données, plutôt que de s'embêter avec toutes les techniques compliquées et coûteuses précédentes, il n'a qu'à toquer gentiment à la porte de Google en lui demandant toutes vos conversations.
 Mieux, avec un peu de chance, il n'y a qu'à attendre [qu'ils vous]((http://www.ladepeche.fr/article/2013/06/24/1657105-facebook-panne-provoque-fuite-6-millions-donnees-personnelles.html)) [les donnent](http://reflets.info/sony-takedown-nouvelle-fuite-de-donnees-un-million-de-comptes-utilisateurs-dans-la-nature/) [tout seul](http://www.01net.com/editorial/514002/fuite-de-donnees-personnelles-sur-le-site-voyages-sncf-fr/).
 
 Et le programme PRISM a montré que les plus gros prestataires existants (Google, Facebook, Microsoft, Youtube, Skype, AOL, Yahoo, Apple…) ont passé un marché avec la NSA et lui laissent mettre les mains dans les données de leurs utilisateurs.
@@ -106,20 +106,20 @@ Et le programme PRISM a montré que les plus gros prestataires existants (Google
 # Crypto-anarchie à la rescousse !
 
 Le chapitre précédent est assez explicite s'il y avait réellement besoin de l'être : sur Internet, vous n'êtes pas à l'abris et tous les liens entre vous et vos correspondants sont surveillés ou en tout cas ne peuvent pas être considérés comme fiable.
-Si vous voulez donc protéger vos données, il va falloir prendre des mesures pour mettre de la sécurité et de la confiance au-dessus de quelque chose qui en est totalement dépourvu.<br/>
+Si vous voulez donc protéger vos données, il va falloir prendre des mesures pour mettre de la sécurité et de la confiance au-dessus de quelque chose qui en est totalement dépourvu.
 La crypto-anarchie va plus loin, en essayant de chiffrer au maximum ses communications, y compris les plus anodines.
 
 ## Pourquoi la crypto-anarchie, c'est bien
 
-« Oui mais moi je n'ai rien à cacher ! » C'est généralement la réplique qui vient juste à ce moment…<br/>
-Désolé, mais si, vous ne le savez peut-être pas encore, mais vous avez des choses à cacher ! Peut-être pas là, maintenant, tout de suite, mais dans les semaines, mois ou années qui suivent.<br/>
+« Oui mais moi je n'ai rien à cacher ! » C'est généralement la réplique qui vient juste à ce moment…
+Désolé, mais si, vous ne le savez peut-être pas encore, mais vous avez des choses à cacher ! Peut-être pas là, maintenant, tout de suite, mais dans les semaines, mois ou années qui suivent.
 Peut-être même que vous avez déjà publié des choses qui vous semblent totalement banales et légales hier, mais qui peuvent devenir totalement illégales et répréhensibles demain. Au Mali par exemple, après l'arrivée des Talibans au pouvoir, vous pouviez être condamné à mort pour avoir suivi une marque d'alcool sur Twitter ou si vous aviez déclaré être athé sur votre profil Facebook…
-Nous avons la chance de vivre aujourd'hui dans un pays (plus ou moins) démocratique, mais personne ne peut garantir qu'il en sera toujours ainsi demain.<br/>
+Nous avons la chance de vivre aujourd'hui dans un pays (plus ou moins) démocratique, mais personne ne peut garantir qu'il en sera toujours ainsi demain.
 Et si vous n'avez réellement rien à cacher, vous ne verrez donc aucun inconvénient à ce que je vous suive 7j/7, que je vous filme 24h/24 et que je diffuse tout ça à vous ne savez trop qui ? Comment ça « non » ? Auriez-vous quelque chose à cacher ?
 
 La crypto-anarchie a aussi ça de bien qu'elle permet d'encore mieux protéger votre futur.
 Si vous ne chiffrez jamais rien, et que d'un coup vous chiffrez juste un courriel, ça risque de faire un peu louche et la NSA pourra faire tourner ses centaines de milliers de machines pour casser votre gentil courriel chiffré et tenter de décoder les secrets qu'il contient très certainement.
-Au contraire, si après avoir passé des semaines et dépensé des milliers d'euro à casser trois ou quatre de vos mails chiffrés, ils tombent sur des « Salut Maman, comment ça va ? » ou autre « N'oublie pas d'acheter une baguette en rentrant », à mon avis, ils vont vite lâcher le morceau.<br/>
+Au contraire, si après avoir passé des semaines et dépensé des milliers d'euro à casser trois ou quatre de vos mails chiffrés, ils tombent sur des « Salut Maman, comment ça va ? » ou autre « N'oublie pas d'acheter une baguette en rentrant », à mon avis, ils vont vite lâcher le morceau.
 Chiffrer tout dès maintenant, c'est camoufler le moment où vous aurez réellement besoin de sécurité.
 
 Le big bonus, c'est que la crypto-anarchie permet aussi de mieux protéger tous ceux qui ont réellement besoin de sécurité, par exemple les résistants Syriens ou les lanceurs d'alerte ([Chelsea Manning](https://fr.wikipedia.org/wiki/Bradley_Manning), [Edouard Snowden](https://fr.wikipedia.org/wiki/Edward_Snowden)…).
@@ -139,11 +139,11 @@ Si on regarde les attaques exposées un peu avant, on distingue trois choses à 
 Une chose très importante à bien avoir en tête, c'est que personne ne pourra jamais vous garantir aucun de ces points de manière absolument certaine.
 Si vous transferez des documents classifiés mettant en jeu la sûreté nationale, aucun système de sécurité ne vous mettra à l'abris des [moyens de l'État soumis au secret de la Défense Nationale](http://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9667020452754D4847B7667DB722BA54.tpdjo12v_1?idArticle=LEGIARTI000006576029&cidTexte=LEGITEXT000006071154&dateTexte=20110202). S'ils veulent accéder à vos données, ils s'en donneront les moyens. Certains pays y mettent même [tout leur cœur](https://fr.wikipedia.org/wiki/Camp_de_Guantánamo).
 
-La confidentialité est sûrement la chose la plus difficile à garantir, mais pourtant peut être quelque chose d'extrèmement important à garantir.<br/>
+La confidentialité est sûrement la chose la plus difficile à garantir, mais pourtant peut être quelque chose d'extrèmement important à garantir.
 Sans cette confidentialité, on peut tracer votre réseau proche, savoir à qui vous parlez, quand et parfois même le sujet de votre conversation.
 On n'a pas accès au contenu même de la communication, mais ça peut donner suffisamment d'informations pour mettre en place un ciblage précis des moyens technologiques nécessaires à tout déchiffrer.
-C'est plus intéressant de cibler toutes les communications chiffrées entre deux résistants Syriens plus ou moins connus que tout le trafic chiffré de toute la Syrie.<br/>
-Comme dit l'adage, pour vivre heureux, vivons <strike>caché</strike> chiffré.
+C'est plus intéressant de cibler toutes les communications chiffrées entre deux résistants Syriens plus ou moins connus que tout le trafic chiffré de toute la Syrie.
+Comme dit l'adage, pour vivre heureux, vivons <del>caché</del> chiffré.
 
 La suite au prochain épisode, avec les différents moyens à notre disposition pour devenir un parfait petit crypto-anarchiste !
 

@@ -2,10 +2,10 @@
 title: L’inversion de contrôle, c'est bon, mangez-en !
 ---
 
-Aujourd'hui, un article un peu plus technique, avec de vrais morceaux de code dedans !<br/>
+Aujourd'hui, un article un peu plus technique, avec de vrais morceaux de code dedans !
 Au programme, l'inversion de contrôle ou IoC, qui est la clef-de-voûte d'une application bien construite.
 
-Imaginons qu'on ait à réaliser une application très simple qui consiste à lire un nombre saisie par l'utilisateur et à afficher à l'écran son inverse.<br/>
+Imaginons qu'on ait à réaliser une application très simple qui consiste à lire un nombre saisie par l'utilisateur et à afficher à l'écran son inverse.
 « So simple » me direz-vous ? Et bien pas tant que ça en réalité !
 
 # À l'origine était le code ad-hoc…
@@ -21,7 +21,7 @@ public class Program {
 }
 {% endhighlight %}
 
-Ok, ça répond au problème initial… Mais après ? Est-ce que ça démontre la moindre connaissance ou maîtrise d'un langage objet ?<br/>
+Ok, ça répond au problème initial… Mais après ? Est-ce que ça démontre la moindre connaissance ou maîtrise d'un langage objet ?
 Allez, seconde tentative !
 
 {% highlight java %}
@@ -53,11 +53,11 @@ public class Program {
 }
 {% endhighlight %}
 
-Bon, y'a déjà du mieux. On sépare les concepts (lecture, écriture, traitement), on utilise des objets et des méthodes.<br/>
+Bon, y'a déjà du mieux. On sépare les concepts (lecture, écriture, traitement), on utilise des objets et des méthodes.
 On se retrouve aussi rapidement avec un gros problème sur des applications un peu plus conséquentes.
 
-En effet, on a ici de la chance d'avoir les classes *KeyboardReader*, *ScreenWriter* et *Program* qui ne dépendent d'aucun paramètre pour être instanciées et d'avoir un arbre de dépendence entre tout ça relativement linéaire.<br/>
-Dans une application plus complexe, il n'est pas rare d'avoir plusieurs centaines de dépendances, avec des dizaines de paramètres de configuration.<br/>
+En effet, on a ici de la chance d'avoir les classes *KeyboardReader*, *ScreenWriter* et *Program* qui ne dépendent d'aucun paramètre pour être instanciées et d'avoir un arbre de dépendence entre tout ça relativement linéaire.
+Dans une application plus complexe, il n'est pas rare d'avoir plusieurs centaines de dépendances, avec des dizaines de paramètres de configuration.
 L'architecture vu au-dessus n'est pas scalable dans ce cas. Passer des paramètres au *reader* imposerait de les passer aussi au *program*. Dit autrement, chaque composant de niveau N doit exposer la configuration de toutes ses dépendances de niveau N-1 :
 
 {% highlight java %}
@@ -84,7 +84,7 @@ class Level2 {
 Ceci casse la notion de séparation de concepts, le niveau N ne devant pas avoir besoin de savoir comment fonctionne le niveau N-1, et encore moins la nécessité de gérer ce niveau inférieur.
 
 Se pose aussi rapidement la problématique de réutilisation des composants.
-Actuellement, on a de la chance que les *reader*, *writer* et *program* ne soient utilisés qu'à un seul et unique endroit.<br/>
+Actuellement, on a de la chance que les *reader*, *writer* et *program* ne soient utilisés qu'à un seul et unique endroit.
 Il est par exemple impossible d'obtenir un *program1* et *program2* qui utilisent le même *reader* ou *writer*, chacun allant initialiser ses propres instances.
 
 # … Puis vint le singleton…
@@ -130,17 +130,17 @@ Cette solution n'est vraiment pas idéale, et à plusieurs titres.
 ## Gestion des dépendences
 
 On le voit bien, la gestion des dépendances reste à la charge du développeur.
-Lorsque l'application grossit, il devient alors de plus en plus compliqué de maîtriser l'ensemble des composants.<br/>
-En théorie, N composants peuvent nécessiter jusqu'à N-1 dépendances. Avec N=10, on a déjà 45 liens possibles, avec N=20 190 liens, N=100 4950 liens… Sur une application standard avec 200 composants, on frôle les 20.000 !<br/>
+Lorsque l'application grossit, il devient alors de plus en plus compliqué de maîtriser l'ensemble des composants.
+En théorie, N composants peuvent nécessiter jusqu'à N-1 dépendances. Avec N=10, on a déjà 45 liens possibles, avec N=20 190 liens, N=100 4950 liens… Sur une application standard avec 200 composants, on frôle les 20.000 !
 Il devient impossible de gérer nos composants de cette manière sur une application de taille standard.
 
-De plus, il faut non seulement garantir que tout sera initialisé correctement, mais aussi dans le bon sens.<br/>
-Par exemple, le bon vieux singleton *Config* qui surgit généralement le premier dans une application doit être initialisé avant tous les autres sous peine de gros problèmes.<br/>
+De plus, il faut non seulement garantir que tout sera initialisé correctement, mais aussi dans le bon sens.
+Par exemple, le bon vieux singleton *Config* qui surgit généralement le premier dans une application doit être initialisé avant tous les autres sous peine de gros problèmes.
 Et lorsqu'il y a un problème à l'initialisation, le développeur se sent souvent bien seul devant une stacktrace de 2km de long (si possible sur le maillon le plus profond de l'application, Murphy aidant) ou avec une erreur qui survient 40min après le démarrage de l'application (typiquement un *NullPointerException* d'un truc pas (encore) initialisé).
 
 ## Généricité de l'application
 
-Si on reprend notre problème de départ, la solution trouvée va poser un autre problème : les classes utilisées sont figées dans le marbre.<br/>
+Si on reprend notre problème de départ, la solution trouvée va poser un autre problème : les classes utilisées sont figées dans le marbre.
 Je peux par exemple jouer mon client standard, et changer la spécification en cours de route, demandant que cette fois la lecture de l'entrée soit faite sur un socket TCP au lieu du clavier.
 
 Solution 1 : rechercher *KeyboardReader*, remplacer par *TCPReader*.
@@ -211,7 +211,7 @@ Apparaît en plus un nouveau problème : seuls les cas prévus par le code init
 Si par exemple je souhaite ajouter la possibilité de lire une page web ou consommer un web-service, je dois modifier l'application pour rajouter des cas dans les conditions ou utiliser de l'instrospection (en perdant au passage le type-safe).
 Un tel code est donc inutilisable en tant que librairie, où l'utilisation réelle qui en est faite ne dépend pas du développeur initial mais d'un développeur tiers qui en sera un simple utilisateur.
 
-Ce problème est d'autant plus grave qu'il interdit de mettre en place des tests unitaires.<br/>
+Ce problème est d'autant plus grave qu'il interdit de mettre en place des tests unitaires.
 Par exemple, j'aimerais bien valider le comportement de l'application, en particulier sur la valeur « 0 » en entrée.
 
 {% highlight java %}
@@ -225,8 +225,8 @@ public ProgramTest {
 
 Et mais ? Comment je peux faire pour automatiser mon test ?
 En effet, j'aimerais bien pouvoir faire en sorte que mon *reader* me retourne « 0 » comme un grand, afin que mon test soit complètement autonome et ne dépende ni de l'utilisateur (saisie clavier), ni d'un service externe (appel TCP).
-Histoire de pouvoir mettre en place une intégration continue par exemple.<br/>
-Sauf que comme mon code est totalement hard-codé, soit je le modifie pour intégrer un nouveau composant *TestReader*, mais du coup j'impacte mon code de production pour mes tests unitaires (et accessoirement je le livre ainsi à mon client), soit je m'interdis définitivement de faire du test unitaire.<br/>
+Histoire de pouvoir mettre en place une intégration continue par exemple.
+Sauf que comme mon code est totalement hard-codé, soit je le modifie pour intégrer un nouveau composant *TestReader*, mais du coup j'impacte mon code de production pour mes tests unitaires (et accessoirement je le livre ainsi à mon client), soit je m'interdis définitivement de faire du test unitaire.
 Peu réjouissant comme programme…
 
 # … Et naquit l'inversion de contrôle
@@ -243,8 +243,8 @@ Pour le second, c'est ici que vont nous être utiles les divers frameworks d'IoC
 
 ## Dis-moi ce que tu fais, pas comment tu le fais
 
-Notre *KeyboardReader* ou autre *TCPReader*, au final, on s'en fiche de comment qu'ils vont nous retourner un nombre, ce qu'on veut, c'est qu'ils nous en retourne un.<br/>
-Idem pour la sortie, la destination nous importe peu, on veut juste afficher quelque chose.<br/>
+Notre *KeyboardReader* ou autre *TCPReader*, au final, on s'en fiche de comment qu'ils vont nous retourner un nombre, ce qu'on veut, c'est qu'ils nous en retourne un.
+Idem pour la sortie, la destination nous importe peu, on veut juste afficher quelque chose.
 On voit émerger des interfaces :
 
 {% highlight java %}
@@ -273,7 +273,7 @@ class Program {
 }
 {% endhighlight %}
 
-Tous nos composants seront de simples [beans Java](http://www.oracle.com/technetwork/java/javase/documentation/spec-136004.html), en gros des classes avec le constructeur vide par défaut et des getters/setters pour chaque attribut de classe.<br/>
+Tous nos composants seront de simples [beans Java](http://www.oracle.com/technetwork/java/javase/documentation/spec-136004.html), en gros des classes avec le constructeur vide par défaut et des getters/setters pour chaque attribut de classe.
 Fini les singletons, les tests dans tous les sens et les dépendances en dur dans le code, tout le comportement de l'application va profiter au maximum des fonctionnalités de la programmation objet, via de l'héritage, du polymorphisme ou de la surcharge d'opérateur.
 
 Niveau modularité, le client peut dorénavant me demander n'importe quoi comme lecture ou comme écriture, je n'ai qu'à définir une nouvelle implémentation des interfaces.
@@ -303,16 +303,16 @@ Challenge accepted !
 
 ## Framework d'IoC
 
-Reste le dernier problème de la complexité d'une application et de la gestion des dépendances.<br/>
+Reste le dernier problème de la complexité d'une application et de la gestion des dépendances.
 Malgré que nos composants soient devenus très simples, l'application globale nécessite toujours de mettre une glue complexe entre chaque.
 
-C'est là qu'entre en action les frameworks d'inversion de contrôle, dont le plus connu est sans conteste [Spring](http://www.springsource.org/) dans le monde Java.<br/>
+C'est là qu'entre en action les frameworks d'inversion de contrôle, dont le plus connu est sans conteste [Spring](http://www.springsource.org/) dans le monde Java.
 Le nom d'inversion de contrôle vient d'ailleurs de l'architecture mise en place : ce n'est plus notre code qui se contrôle lui-même, mais le framework au-dessus.
 
-On voit bien dans l'exemple précédent de test unitaire qu'en théorie, on pourrait faire tout le travail à la main, l'inversion de contrôle n'étant au final qu'une simple instantiation de tous les composants de l'application via le constructeur par défaut, puis de les assembler entre-eux via les setters.<br/>
+On voit bien dans l'exemple précédent de test unitaire qu'en théorie, on pourrait faire tout le travail à la main, l'inversion de contrôle n'étant au final qu'une simple instantiation de tous les composants de l'application via le constructeur par défaut, puis de les assembler entre-eux via les setters.
 Avec quelques composants, ce n'est pas forcément un problème, avec 100 ou 200, ça en est déjà un plus gros.
 
-Spring va nous simplifier la vie avec 2 outils.<br/>
+Spring va nous simplifier la vie avec 2 outils.
 Le premier, un [DSL](http://fr.wikipedia.org/wiki/Domain-specific_programming_language) XML qui va nous permettre de décrire chaque composant applicatif. Dans notre cas :
 
 {% highlight xml %}
@@ -366,7 +366,7 @@ class Main {
 }
 {% endhighlight %}
 
-Un avantage à tout ça, c'est que simplement en changeant de fichier de configuration et sans toucher à une seule ligne de code supplémentaire, je change totalement le comportement de l'application.<br/>
+Un avantage à tout ça, c'est que simplement en changeant de fichier de configuration et sans toucher à une seule ligne de code supplémentaire, je change totalement le comportement de l'application.
 Ceci est particulièrement utile dans deux situations :
 
  * Pour les tests unitaires, où on peut changer par exemple le moteur de base de données pour utiliser une base en mémoire plutôt qu'une base sur disque, ou pour bouchonner tous les composants tierces de l'application (web services…),
@@ -376,7 +376,7 @@ Ceci est particulièrement utile dans deux situations :
 
 L'IoC est vraiment quelque chose de très important pour mettre en place une architecture modulable, fiable et simple, même sur des applications complexes.
 
-Cette méthode de pensée permet d'éviter de brider le comportement de l'application, tout en simplifiant son extensibilité sans code supplémentaire, et en facilitant sa testabilité.<br/>
+Cette méthode de pensée permet d'éviter de brider le comportement de l'application, tout en simplifiant son extensibilité sans code supplémentaire, et en facilitant sa testabilité.
 Et on le voit bien avec l'exemple a priori très simple choisi pour cet article, son utilité est loin d'être négligeable même pour un très petit projet.
 
 Un projet sans un minimum d'IoC, c'est une future application qui connaîtra de très gros problème de maintenance et d'évolutivité, surtout que le surcoût de sa mise-en-place est proche de 0 et en tout cas bien inférieur au surcoût de dette technique si on n'en utilise pas.

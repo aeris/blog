@@ -2,23 +2,19 @@
 title: Online - Installation from scratch
 ---
 
-[Online](http://www.online.net/fr/serveur-dedie) propose des serveurs assez sympas avec des prix raisonnables pour faire
-du self-hosting comme un grand.<br/>
+[Online](http://www.online.net/fr/serveur-dedie) propose des serveurs assez sympas avec des prix raisonnables pour faire du self-hosting comme un grand.
 Problème, la procédure d’installation automatique de Debian n’est franchement pas top, surtout au niveau du partitionnement.
-On ne peut pas profiter d’un partitionnement full [LVM](https://fr.wikipedia.org/wiki/Gestion_par_volumes_logiques),
-d’un `/var` séparé, etc.<br/>
+On ne peut pas profiter d’un partitionnement full [LVM](https://fr.wikipedia.org/wiki/Gestion_par_volumes_logiques), d’un `/var` séparé, etc.
 Debian et Online étant tous les deux très bien fait, on peut quand même s’en sortir en faisant tout à la main !
 
-On est malheureusement obligé de commencer par l’installation automatique via Online, le serveur ne pouvant pas être
-passé en mode secours avant. On laisse donc toutes les options par défaut, et une fois fini, on passe la bestiole en mode
-rescue et on reboot. Après s’être connecté via SSH, on est parti pour faire une installation complète de Debian via
-[Debootstrap](https://wiki.debian.org/fr/Debootstrap).
+On est malheureusement obligé de commencer par l’installation automatique via Online, le serveur ne pouvant pas être passé en mode secours avant.
+On laisse donc toutes les options par défaut, et une fois fini, on passe la bestiole en mode rescue et on reboot.
+Après s’être connecté via SSH, on est parti pour faire une installation complète de Debian via [Debootstrap](https://wiki.debian.org/fr/Debootstrap).
 
 # Partitionnement
 
-On commence par le partitionnement des disques proprement dit.<br/>
-La mode étant à la virtualisation, on va réserver une (grosse) partie de l’espace disponible pour de futurs conteneurs
-[LXC](https://linuxcontainers.org/fr/lxc/introduction/).
+On commence par le partitionnement des disques proprement dit.
+La mode étant à la virtualisation, on va réserver une (grosse) partie de l’espace disponible pour de futurs conteneurs [LXC](https://linuxcontainers.org/fr/lxc/introduction/).
 
 Au cas où des volumes LVM existeraient déjà sur le système, on va désactiver tous les volumes logiques existants :
 
@@ -30,9 +26,9 @@ Ensuite, on s’occupe de désactiver tous les volumes RAID potentiels, puis de 
 	ls /dev/md[0-9]* | xargs -n 1 mdadm -S
 	ls /dev/sd*[0-9]* | xargs -n 1 mdadm --zero-superblock
 
-On s’occupe ensuite des partitions proprement dites. Personnellement, je prévois une partition de 100Go pour la Debian,
-le reste ira aux conteneurs LXC. Comme on va avoir tout ça en RAID-1, on recopie la table des partitions du disque `sda`
-vers le disque `sdb` :
+On s’occupe ensuite des partitions proprement dites.
+Personnellement, je prévois une partition de 100Go pour la Debian, le reste ira aux conteneurs LXC.
+Comme on va avoir tout ça en RAID-1, on recopie la table des partitions du disque `sda` vers le disque `sdb` :
 
 	/sbin/parted -a optimal --script /dev/sda \
 		mklabel msdos \
@@ -46,7 +42,7 @@ On met ensuite du RAID-1 en place autour de tout ça :
 	mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 --assume-clean /dev/sda1 /dev/sdb1
 	mdadm --create --verbose /dev/md1 --level=1 --raid-devices=2 --assume-clean /dev/sda2 /dev/sdb2
 
-(Généralement à ce moment-là, il faut rebooter pour faire prendre en compte les modifications…)<br/>
+(Généralement à ce moment-là, il faut rebooter pour faire prendre en compte les modifications…)
 On finit par créer les conteneurs LVM :
 
 	pvcreate /dev/md0
@@ -70,7 +66,7 @@ Et enfin, les systèmes de fichiers :
 
 # Debootstrap
 
-Maintenant qu’on a toutes les partitions nécessaires, on peut s’attaquer à l’installation de Debian avec Debootstrap.<br/>
+Maintenant qu’on a toutes les partitions nécessaires, on peut s’attaquer à l’installation de Debian avec Debootstrap.
 On commence par recréer toute l’arborescence standard du futur GNU/Linux et par y monter les bonnes partitions :
 
 	mount /dev/mapper/debian-root /mnt
@@ -91,8 +87,7 @@ Et ensuite, en avant Debootstrap !
 # Configuration de Debian
 
 Pour une raison qui m’échappe, il arrive parfois que `/proc` et `/sys` se démontent à l’issu du `debootstrap`.
-On prend donc le temps de vérifier via un `mount` que tout est bien présent et on fait le nécessaire si besoin
-(`for i in proc sys dev; do mount -o bind /$i /mnt/$i`).<br/>
+On prend donc le temps de vérifier via un `mount` que tout est bien présent et on fait le nécessaire si besoin (`for i in proc sys dev; do mount -o bind /$i /mnt/$i`).
 On rentre dans notre nouveau système Debian pour finir l’installation de tout ce qui est nécessaire :
 
 	chroot /mnt
@@ -217,8 +212,8 @@ On nettoie dernière nous, on démonte tous les disques et on reboot :
 
 Et normalement votre nouvelle machine devrait prendre vie et connaître son premier paquet IP !
 
-Il est conseillé de rebooter en étant connecté à l’[iDrac](http://documentation.online.net/fr/serveur-dedie/materiel/controleur-dell-idrac)
-fourni par Online. Ainsi, en cas de problème de boot, on sera capable de trouver rapidement ce qui plante.<br/>
+Il est conseillé de rebooter en étant connecté à l’[iDrac](http://documentation.online.net/fr/serveur-dedie/materiel/controleur-dell-idrac) fourni par Online.
+Ainsi, en cas de problème de boot, on sera capable de trouver rapidement ce qui plante.
 Si le boot se passe mal, vous pouvez reprendre la main en rescue, remonter les disques et corriger :
 
 	mdadm --assemble --scan

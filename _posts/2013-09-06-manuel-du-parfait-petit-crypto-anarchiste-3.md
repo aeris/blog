@@ -11,7 +11,7 @@ Mais l'échange de courriel est relativement asynchrone, c'est-à-dire qu'on ne 
 GPG n'est pas efficace pour du vrai dialogue intéractif.
 
 Si vous voulez sécuriser vos discussions via messagerie instantanée, déjà comme d'habitude, fuyez les messageries type Skype, Windows Live ou Facebook.
-La confiance en ces systèmes est nulle voire négative passé un [temps de Planck](https://fr.wikipedia.org/wiki/Temps_de_Planck).<br/>
+La confiance en ces systèmes est nulle voire négative passé un [temps de Planck](https://fr.wikipedia.org/wiki/Temps_de_Planck).
 Vous pouvez à la place utiliser [IRC](https://fr.wikipedia.org/wiki/Internet_Relay_Chat) ou [XMPP](https://fr.wikipedia.org/wiki/Extensible_Messaging_and_Presence_Protocol) (plus connu sous le nom Jabber), qui sont des messageries ouvertes et libres.
 
 Encore une fois, tout ça circule bien en clair dans les tuyaux si vous n'utilisez pas SSL pour chiffrer les flux.
@@ -28,9 +28,9 @@ Chaque utilisateur est identifié par une clef. La confiance en votre correspond
 
 Lors de la première discussion avec votre correspondant, votre logiciel de messagerie vous demandera de confirmer l'identité de la personne en face. Et tout le reste de votre communication sera totalement chiffrée et illisible, même par le propriétaire du serveur.
 
-La beauté de la chose avec OTR, c'est qu'il permet la [confidentialité persistante](https://fr.wikipedia.org/wiki/Confidentialité_persistante) ou *perfect forward secrecy* : même si votre clef privée venait à être compromise dans le futur, on ne pourra jamais accéder au contenu de votre conversation.<br/>
+La beauté de la chose avec OTR, c'est qu'il permet la [confidentialité persistante](https://fr.wikipedia.org/wiki/Confidentialité_persistante) ou *perfect forward secrecy* : même si votre clef privée venait à être compromise dans le futur, on ne pourra jamais accéder au contenu de votre conversation.
 Cette caractéristique très intéressante est obtenue en chiffrant la communication non pas directement avec votre clef, mais avec une autre clef qui est générée à partir de cette dernière.
-Cette clef intermédiaire est générée au début d'une session, ne peut pas être recalculée à partir de la clef principale, et est détruite à la fin de la session, enterrant à jamais la possibilité de déchiffrer la conversation plus tard.<br/>
+Cette clef intermédiaire est générée au début d'une session, ne peut pas être recalculée à partir de la clef principale, et est détruite à la fin de la session, enterrant à jamais la possibilité de déchiffrer la conversation plus tard.
 La PFS n'est bien sûr plus possible si vous stockez un historique de vos conversations sur votre machine, où OTR n'aurait plus aucun effet.
 Si vous êtes capables de lire vos messages *a posteriori*, alors un attaquant en sera capable aussi en compromettant tout votre nécessaire pour y arriver.
 
@@ -58,16 +58,16 @@ Sur un site tout ce qu'il y a de plus franco-français, on retrouve pourtant des
 Donc nous n'y sommes pas à l'abris de la NSA, qui pourraient une fois de plus <strike>demander</strike> imposer à ces sociétés d'inclure du contenu pour vous traquer. Voire carrément [y injecter des malwares](http://www.01net.com/editorial/600967/les-hackers-du-fbi-infiltrent-tor-pour-pieger-un-reseau-de-pedopornographie/) pour surveiller tout ça.
 
 En prime, la minitélisation massive du web a conduit à devoir trouver des parades pour être capable d'absorber des milliards de visites par jour.
-On trouve ainsi de plus en plus de [CDN](https://fr.wikipedia.org/wiki/Content_delivery_network) comme [CloudFlare](https://fr.cloudflare.com/), [Akamai](http://www.akamai.fr/) ou [CloudFront](https://aws.amazon.com/fr/cloudfront/), qui permettent de servir de point de distribution au contenu totalement centralisé, sans pour autant avoir toutes les requètes qui arrivent sur le même serveur.<br/>
+On trouve ainsi de plus en plus de [CDN](https://fr.wikipedia.org/wiki/Content_delivery_network) comme [CloudFlare](https://fr.cloudflare.com/), [Akamai](http://www.akamai.fr/) ou [CloudFront](https://aws.amazon.com/fr/cloudfront/), qui permettent de servir de point de distribution au contenu totalement centralisé, sans pour autant avoir toutes les requètes qui arrivent sur le même serveur.
 Les soucis engendrés par ces caches et autres CDN sont multiples.
-Déjà, ils sont présents sur beaucoup de sites, et peuvent donc s'amuser à recouper les visites pour savoir qui vient d'où et ira où. Difficile de parler de confidentialité dans ce cas là.<br/>
+Déjà, ils sont présents sur beaucoup de sites, et peuvent donc s'amuser à recouper les visites pour savoir qui vient d'où et ira où. Difficile de parler de confidentialité dans ce cas là.
 Ensuite, ils sont peu ou pas compatibles avec certaines technologies, comme SSL par exemple.
 À chaque visite, on peut tomber sur une machine différente, qui va nous annoncer un certificat SSL différent. Exit donc la confiance…
 
 Pour finir, agence de pub et autre système de suivi des visiteurs pullulent de partout, attendant la moindre parcelle de données de votre part pour lancer des calculs géants sur votre personnalité pour cibler au mieux les réclames publicitaires à vous afficher.
 Ou encore pour tout revendre au plus offrant qui en fera de même.
 
-Bref, **un gros bordel**…<br/>
+Bref, **un gros bordel**…
 Pour se protéger, on a à notre disposition pas mal de possibilités de bloquer tout ça avec nos navigateurs web.
 
 On peut commencer par activer l'option [Do Not Track](https://fr.wikipedia.org/wiki/Do_Not_Track).
@@ -83,7 +83,7 @@ Ensuite, installez [HTTPS Everywhere](https://www.eff.org/https-everywhere).
 Cette extension active SSL par défaut sur la plupart des sites connus, au lieu de tout balancer en clair sur le réseau.
 
 Extension suivante, [No Script](http://noscript.net/). Cette extension bloque par défaut tout le contenu dynamique des sites visités.
-On est donc à l'abris de pas mal de saloperies qui pourraient traîner.<br/>
+On est donc à l'abris de pas mal de saloperies qui pourraient traîner.
 C'est là aussi qu'on se rend le plus compte de la saleté du web.
 Par exemple avec NoScript activé, [cette page](http://instagram.com/p/dxChd0kWnz/#) apparaît juste totalement blanche, alors qu'il n'y a aucune raison qu'on ne puisse pas arriver à la même chose avec du HTML tout ce qu'il y a de plus statique, sans le moindre JavaScript.
 Ou en tout cas par pitié, mettez en place un mode dégradé pour ceux qui n'activent pas les scripts…
@@ -95,10 +95,10 @@ Vous contrôlez qui peut afficher des choses sur vos pages et vous évitez d'att
 Et on finit avec [Disconnect](https://disconnect.me/), un peu dans la même politique que Request Policy, avec du blocage de tout contenu dangereux pour la sécurité ou la confidentialité, comme la publicité, les réseaux sociaux malheureusement présents partout, ou les traceurs.
 
 Je dois quand même vous avouer qu'une fois tout ça installé et avec tout bloqué par défaut, le web se prend quand même une sacrée claque et que plus grand chose n'est accessible simplement.
-On prend aussi une bien meilleure conscience du problème du web, et on est un peu catastrophé de voir autant de choses essayer de récupérer des données sur vous.<br/>
+On prend aussi une bien meilleure conscience du problème du web, et on est un peu catastrophé de voir autant de choses essayer de récupérer des données sur vous.
 Passée une semaine d'utilisation et quelques règles d'acceptation, le web redevient consultable, même si certains sites restent particulièrement inutilisables avec tout ça installé (mais dans ce cas, c'est direction la poubelle et un bon gros boycott).
 
-*Pensez aussi à modifier vos habitudes*.<br/>
+*Pensez aussi à modifier vos habitudes*.
 Par exemple le bon gros méchant Google (qui contrôle plus ou moins tout ce web moisi et est présent quasiment partout) raffole de vos données, possède en prime plusieurs régies publicitaires et donc est très enclin à vous traquer dans votre navigation.
 Préférez-lui [DuckDuckGo](https://duckduckgo.com/) qui respecte votre vie privée (même si la pertinence des résultats de recherche n'est pas encore à la hauteur de celle de Google).
 
@@ -111,8 +111,8 @@ Donc petit chapitre « misc ».
 
 Dans tout ce qui s'est dit auparavant, on a cherché à protéger aussi bien les données d'une communication que la communication en elle-même.
 Mais il reste toujours quelque chose qu'on a pas encore protégé, c'est l'existence même de cette communication, et surtout son émetteur et son destinataire (au sens machine du terme).
-En effet, vous avez beau avoir installé toutes les choses précédentes, un individu malveillant a toujours moyen de savoir que la machine Tartampion a ouvert une communication avec l'autre machine Duchmol (la version technique étant que *109.190.87.53* a communiqué avec *176.34.131.233*).<br/>
-À force de recoupement, par exemple si des non crypto-anarchistes avaient la mauvaise idée d'accéder à ces machines en clair, les individus peu scrupuleux pourraient remonter à la source, et découvrir que *109.190.87.53* est un abonné à OVH (moi en l'occurence) et que *176.34.131.233* a la bonne idée d'héberger *duckduckgo.com*.<br/>
+En effet, vous avez beau avoir installé toutes les choses précédentes, un individu malveillant a toujours moyen de savoir que la machine Tartampion a ouvert une communication avec l'autre machine Duchmol (la version technique étant que *109.190.87.53* a communiqué avec *176.34.131.233*).
+À force de recoupement, par exemple si des non crypto-anarchistes avaient la mauvaise idée d'accéder à ces machines en clair, les individus peu scrupuleux pourraient remonter à la source, et découvrir que *109.190.87.53* est un abonné à OVH (moi en l'occurence) et que *176.34.131.233* a la bonne idée d'héberger *duckduckgo.com*.
 Malgré que cette personne soit dans l'incapacité la plus totale de savoir ce qui a bien pu être dit, elle peut encore parvenir à recouper les sources d'information.
 Là avec DuckDuckGo, c'est pas forcément méchant de le savoir. Ça le serait presque plus avec [*194.71.107.27*](http://thepiratebay.sx/torrent/8552370/Debian_7.0_CD1_64-bit) (Coucou Hadopi ! Et au passage ce cas montre qu'on pourrait se méprendre sur mes intentions si on s'arrête juste aux machines que je fréquente, alors que je télécharge du contenu parfaitement légal et libre via BitTorrent) et encore plus avec [*141.101.112.19*](http://wikileaks.org/) ou [*5.150.255.100*](http://telecomix.org/).
 
@@ -125,7 +125,7 @@ En version courte, Tor est un gros réseau de machines, qui vont faire en sorte 
 	</figcaption>
 </figure>
 
-Quelqu'un qui serait au cœur du réseau Tor serait incapable de trouver l'origine d'une connexion, chaque paquet étant chiffré il n'y a aucun moyen simple de relier un paquet qui sort d'une machine à un paquet qui y entre, et donc de retrouver la machine d'origine d'un paquet.<br/>
+Quelqu'un qui serait au cœur du réseau Tor serait incapable de trouver l'origine d'une connexion, chaque paquet étant chiffré il n'y a aucun moyen simple de relier un paquet qui sort d'une machine à un paquet qui y entre, et donc de retrouver la machine d'origine d'un paquet.
 Et quelqu'un qui serait en périphérie du réseau verrait une machine qui n'est pas le vrai initiateur de la communication.
 
 Tor propose aussi la notion de services cachés, ou *.onion*, par exemple *[https://3g2upl4pq6kufc4m.onion](https://3g2upl4pq6kufc4m.onion)* pour DuckDuckGo.
@@ -149,7 +149,7 @@ Vous téléchargez toutes les transactions depuis le début du monde si vous ins
 Ensuite, il n'y a pas de notion de banque et tout est décentralisé.
 Comme toutes les transactions sont publiques, c'est l'ensemble du réseau qui doit donner son accord pour dire si une nouvelle transaction est valide ou pas (vous devez bien être propriétaire des fonds que vous dépensez et vous ne devez pas déjà les avoir dépensez).
 
-Enfin, et sûrement le plus étrange… vous pouvez fabriquer vous-même votre monnaie !<br/>
+Enfin, et sûrement le plus étrange… vous pouvez fabriquer vous-même votre monnaie !
 Pour fonctionner, le réseau BitCoin nécessite que les participants mettent à disposition leur puissance de calcul.
 Pour les remercier de laisser tourner leurs machines, le réseau leurs accorde des BitCoin en échange.
 N'espérez cependant pas faire fortune dès demain, il vous faudra 1200 ans pour toucher les 25฿ de récompense (soit ~2500€ aujourd'hui) avec le meilleur des processeurs actuels, et [le matériel](https://products.butterflylabs.com/homepage-new-products/600-gh-bitcoin-mining-card.html) qui vous permettrait de les toucher en 7 jours coûte rien de moins que 5000€.
@@ -159,9 +159,9 @@ Chaque utilisateur de BitCoin peut générer autant d'adresses qu'il souhaite (u
 Et il est impossible de remonter au possesseur d'une adresse, assurant ainsi l'anonymat des transactions malgré qu'elles soient toutes publiques.
 
 Le système cryptographique sur lequel repose BitCoin a trouvé beaucoup d'autres utilisations.
-Déjà dans d'autres crypto-monnaies ([Litecoin](https://litecoin.org/fr), [PPCoin](http://www.ppcoin.org/), [PrimeCoin](http://ppcoin.org/primecoin) ou encore [NovaCoin](http://novacoin.org/)).<br/>
+Déjà dans d'autres crypto-monnaies ([Litecoin](https://litecoin.org/fr), [PPCoin](http://www.ppcoin.org/), [PrimeCoin](http://ppcoin.org/primecoin) ou encore [NovaCoin](http://novacoin.org/)).
 Mais aussi dans un système DNS alternatif, [NameCoin](http://dot-bit.org/).
-Ce dernier est très intéressant car il remet en question la centralisation du système DNS qui est dangereux à l'heure actuelle car très centralisé (malgré ce qu'en disent certains) et très états-unien (9 organisations sur les 11 qui gèrent DNS sont aux USA, avec tout ce que cela implique vis-à-vis de la NSA et autre).<br/>
+Ce dernier est très intéressant car il remet en question la centralisation du système DNS qui est dangereux à l'heure actuelle car très centralisé (malgré ce qu'en disent certains) et très états-unien (9 organisations sur les 11 qui gèrent DNS sont aux USA, avec tout ce que cela implique vis-à-vis de la NSA et autre).
 Enfin, il a aussi donné naissance à un système de messagerie totalement anonyme et sécurisé, [BitMessage](https://bitmessage.org/).
 On y retrouve les mêmes concepts que BitCoin, avec tous les messages complètement publics (mais chiffrés), autant d'adresses qu'on souhaite et l'anonymat garanti.
 Attention quand même à bien sauvegarder vos messages reçus et envoyés, tout y est effacé au bout de deux jours (par soucis de place vu que tout le monde conserve une copie de tout) !
@@ -177,9 +177,9 @@ Mais ce réseau souffre des mêmes problèmes que le web classique, à savoir pa
 
 Il existe aussi des réseaux beaucoup plus ésotériques, qu'on appelle les darknets.
 Ces réseaux sont véritablement cachés et misent tout sur la sécurité et l'anonymat.
-On peut citer [I2P](http://www.i2p2.de/) ou [FreeNet](https://freenetproject.org/).<br/>
+On peut citer [I2P](http://www.i2p2.de/) ou [FreeNet](https://freenetproject.org/).
 Tout y est fait pour anonymiser les connexions et chiffrer toutes les communications.
-Le fonctionnement en mode pair-à-pair garantit aussi une absence de censure et une robustesse à la fermeture de nœuds.<br/>
+Le fonctionnement en mode pair-à-pair garantit aussi une absence de censure et une robustesse à la fermeture de nœuds.
 On y retrouve tout le nécessaire qu'on a à disposition d'habitude, avec des sites, des blogs, des forums, de la messagerie instantanée, la possibilité d'héberger ses propres pages (en garantissant son anonymat bien sûr, voire même la liste des personnes qui peuvent y avoir accès !)…
 Autant vous dire que c'est le paradis pour les crypto-anarchistes, mais malheureusement aussi pour pas mal de monde peu recommandable, il vous faudra donc parfois avoir le cœur bien accroché si vous partez à l'aventure dans les méandres de ces darknets (en particulier sur FreeNet).
 
