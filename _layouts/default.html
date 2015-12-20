@@ -7,5 +7,30 @@
 			{{ content }}
 		</div>
 		{% include footer.html %}
+		{% if site.piwik %}
+		<script type="text/javascript">
+			var _paq = _paq || [];
+			_paq.push(["trackPageView"]);
+			_paq.push(["enableLinkTracking"]);
+			(function () {
+				var u = (("https:" == document.location.protocol) ? "https" : "http") + "://{{ site.piwik.url }}/";
+				_paq.push(["setTrackerUrl", u + "js/"]);
+				_paq.push(["setSiteId", "{{ site.piwik.id }}"]);
+				var d = document, g = d.createElement("script"), s = d.getElementsByTagName("script")[0];
+				g.type = "text/javascript";
+				g.defer = true;
+				g.async = true;
+				g.src = u + "js/";
+				s.parentNode.insertBefore(g, s);
+			})();
+		</script>
+		<noscript>
+			<p><img src="//{{ site.piwik.url }}/js/?idsite={{ site.piwik.id }}&amp;rec=1"
+					style="border:0" alt=""/></p>
+		</noscript>
+		{% endif %}
+		<script src="/assets/js/jquery.js"></script>
+		<script src="/assets/js/bootstrap.js"></script>
+		<script src="/assets/js/share.js"></script>
 	</body>
 </html>

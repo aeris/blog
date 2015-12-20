@@ -5,13 +5,16 @@ description: >
     Blog d’un groupe crypto-terroriste individuel auto-radicalisé sur l’Internet digital
 url: https://blog.imirhil.fr
 isso: /comments
+piwik:
+  url: stats.imirhil.fr
+  id: 3
 
 # Build settings
 layout: post
 markdown: kramdown
-kramdown:
-  input: GFM
-  hard_wrap: false
+#kramdown:
+#  input: GFM
+#  hard_wrap: false
 sass:
   style: compressed
 

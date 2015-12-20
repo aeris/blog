@@ -100,7 +100,7 @@ section#posts {
 		color: $color-blue;
 	}
 
-	.date {
+	time {
 		padding-left: 10px;
 		font-size: 0.75em;
 	}
@@ -129,7 +129,7 @@ section#post {
 			font-size: 1.5em;
 			margin: 0;
 
-			span {
+			time {
 				padding-left: 10px;
 				font-size: 0.50em;
 			}
