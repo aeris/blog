@@ -63,7 +63,7 @@ public class CalculatorTest {
 ## JUnit & Fest-Assert
 
 Faire un bon test unitaire, c'est être capable de savoir exactement quelle portion de code fonctionne ou non.
-Pour ça, on doit pouvoir exécuter chaque test unitaire indépendamment, ce qui n'est pas le cas <strike>du code</strike> de l'hérésie précédente.
+Pour ça, on doit pouvoir exécuter chaque test unitaire indépendamment, ce qui n'est pas le cas <s>du code</s> de l'hérésie précédente.
 En plus de ça, l'exécution des tests doit être entièrement automatisée et permettre de faire du reporting.
 
 Pour faciliter la mise-en-place des tests-u, plusieurs librairies existent.
@@ -208,9 +208,9 @@ C'est un peu indigeste, surtout pour la partie JaCoCo (Cobertura est plus simple
 
 ## Intégration continue
 
-On <strike>peut</strike> doit intégrer JUnit et JaCoCo dans le processus d'intégration continue.
+On <s>peut</s> doit intégrer JUnit et JaCoCo dans le processus d'intégration continue.
 
-Pour JUnit, il existe un plugin intégré par défaut, qui suivra les résultats des tests et <strike>signalera</strike> spammera l'auteur du commit qui a tout cassé.
+Pour JUnit, il existe un plugin intégré par défaut, qui suivra les résultats des tests et <s>signalera</s> spammera l'auteur du commit qui a tout cassé.
 ![Tests trend](/assets/images/20130811/test-trend.png){:.center}
 
 Idem pour Cobertura, on obtient facilement des graphiques de suivi de la couverture de code.

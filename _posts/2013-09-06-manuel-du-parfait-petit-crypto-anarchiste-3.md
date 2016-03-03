@@ -35,7 +35,7 @@ La PFS n'est bien sûr plus possible si vous stockez un historique de vos conver
 Si vous êtes capables de lire vos messages *a posteriori*, alors un attaquant en sera capable aussi en compromettant tout votre nécessaire pour y arriver.
 
 OTR est disponible sous forme d'extension pour la plupart des logiciels de messagerie instantanée ([Pidgin](http://www.pidgin.im/), [HexChat](http://hexchat.github.io/)…).
-Il a par contre été supprimé de [Kopete](http://kopete.kde.org/) :(, et fait toujours l'objet d'<strike>un troll</strike> [une discussion](http://community.kde.org/KTp/RepeatedDiscussions/OTR).
+Il a par contre été supprimé de [Kopete](http://kopete.kde.org/) :(, et fait toujours l'objet d'<s>un troll</s> [une discussion](http://community.kde.org/KTp/RepeatedDiscussions/OTR).
 
 Si on veut une conversation sécurisée et de confiance sur le pouce, on peut aussi installer et utiliser [CryptoCat](https://crypto.cat/), une extension Firefox qui utilise OTR.
 
@@ -55,7 +55,7 @@ Publicités, cookies, tracking, services tiers… Quand vous visitez un site «�
 
 Outre que votre vie privée peut se retrouver exposée aux quatres vents, c'est aussi un danger pour votre sécurité.
 Sur un site tout ce qu'il y a de plus franco-français, on retrouve pourtant des entreprises américaines (Google, Facebook…).
-Donc nous n'y sommes pas à l'abris de la NSA, qui pourraient une fois de plus <strike>demander</strike> imposer à ces sociétés d'inclure du contenu pour vous traquer. Voire carrément [y injecter des malwares](http://www.01net.com/editorial/600967/les-hackers-du-fbi-infiltrent-tor-pour-pieger-un-reseau-de-pedopornographie/) pour surveiller tout ça.
+Donc nous n'y sommes pas à l'abris de la NSA, qui pourraient une fois de plus <s>demander</s> imposer à ces sociétés d'inclure du contenu pour vous traquer. Voire carrément [y injecter des malwares](http://www.01net.com/editorial/600967/les-hackers-du-fbi-infiltrent-tor-pour-pieger-un-reseau-de-pedopornographie/) pour surveiller tout ça.
 
 En prime, la minitélisation massive du web a conduit à devoir trouver des parades pour être capable d'absorber des milliards de visites par jour.
 On trouve ainsi de plus en plus de [CDN](https://fr.wikipedia.org/wiki/Content_delivery_network) comme [CloudFlare](https://fr.cloudflare.com/), [Akamai](http://www.akamai.fr/) ou [CloudFront](https://aws.amazon.com/fr/cloudfront/), qui permettent de servir de point de distribution au contenu totalement centralisé, sans pour autant avoir toutes les requètes qui arrivent sur le même serveur.

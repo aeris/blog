@@ -16,10 +16,10 @@ Et si tout ça, c'était uniquement du au fait que les gens n'en ont rien à fai
 
 Parce que ça doit être « simple à installer et à utiliser ».
 Parce qu'on vend l'informatique par pack de 12 au supermarché du coin.
-Parce que les beaux discours commerciaux et les plaquettes sur papier glacé recoivent plus d'attention de la part des futurs <strike>mougeons</strike> (le croisement d'un mouton et d'un pigeon) clients que les préconisations techniques minimales qu'on **devrait** maîtriser avant de mettre ses petits doigts potelés sur un clavier…
+Parce que les beaux discours commerciaux et les plaquettes sur papier glacé recoivent plus d'attention de la part des futurs <s>mougeons</s> (le croisement d'un mouton et d'un pigeon) clients que les préconisations techniques minimales qu'on **devrait** maîtriser avant de mettre ses petits doigts potelés sur un clavier…
 Pour beaucoup sinon l'extrême grosse majorité, l'informatique est vu comme un truc compliqué, mais qu'on se doit d'utiliser sans rien comprendre, à cliquer sur des boutons tout partout, mais sans rien réellement y piper au final.
 
-À cause de ça, on ne compte plus les machines zombies sur le réseau, qui spamme massivement Internet (90% du trafic réseau est du spam) parce que leur propriétaire n'a pas voulu passer quelques minutes par jour à mettre à jour sa machine (aussi parce que la plupart sont sous des systèmes d'exploit<strike>ation</strike> non sécurisable).
+À cause de ça, on ne compte plus les machines zombies sur le réseau, qui spamme massivement Internet (90% du trafic réseau est du spam) parce que leur propriétaire n'a pas voulu passer quelques minutes par jour à mettre à jour sa machine (aussi parce que la plupart sont sous des systèmes d'exploit<s>ation</s> non sécurisable).
 La majorité des PC sont sans pare-feu correctement configuré (c'est-à-dire rien qui ne rentre par défaut) parce qu'expliquer le concept de port est incompatible avec le besoin pressant de l'utilisateur final et qu'il n'y pas envie d'avoir à reconfigurer son pare-feu à chaque nouvelle application (débile) qu'il va installer.
 Les gens refusent de comprendre ce qu'est un executable ou pourquoi il ne faut pas juste ouvrir un fichier reçu par courriel, et se feront une joie de s'empresser de double-cliquer dessus pour en vérifier le contenu.
 Alors forcément, commencer à parler aux gens de monter un serveur à la maison, de gérer leur propre serveur de courriel… C'est peine perdue.

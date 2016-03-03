@@ -153,11 +153,11 @@ Si c’est vraiment le cas, je pense que ce n’est pas Own-Mailbox que vous dev
 Voire même vous devriez immédiatement contacter le Ministère de l’Intérieur, je crois qu’ils ont du travail pour vous…
 
 **« Si tous le monde utilisait son serveur smtpS (chiffré en TLS) chez soit et envoyait ses mail via tor il n’y aurait pas de fuite de meta-données »**  
-Sur le principe, je suis d’accord. Mais ça demande de revoir **tous** les protocoles mail existants. 
+Sur le principe, je suis d’accord. Mais ça demande de revoir **tous** les protocoles mail existants.
 SMTPS a été [déprécié](https://en.wikipedia.org/wiki/SMTPS) au profit de STARTTLS (ce qui est possiblement une erreur vis-à-vis de la sécurité et de la vie privée, mais c’est un fait) et comme mentionné ci-dessus, SMTP n’est actuellement pas compatible avec Tor à cause du DNS inexistant.
-Tous les cryptologues et chercheurs en sécurité du moment sont unanimes sur un seul point : SMTP est mort et enterré si on se place d’un point de vue sécurite & vie privée, mais il n’existe actuellement aucun protocole pour remplacer réellement le mail et encore moins de manière compatible.
+Tous les cryptologues et chercheurs en sécurité du moment sont unanimes sur un seul point : SMTP est mort et enterré si on se place d’un point de vue sécurite & vie privée, mais il n’existe actuellement aucun protocole pour remplacer réellement le mail et encore moins de manière compatible.
 Il existe bien des solutions émergentes, type [Tox](https://tox.im/) ou [Bitmessage](https://bitmessage.org/), mais ni utilisés ni utilisables à grande échelle, ou encore [Caliopen](https://caliopen.org/), mais ces projets sont de très grosses envergures et mettront encore des années avant d’être accessible au grand public.  
-En prime, en prenant la déclaration de Own-Mailbox au pied de la lettre, on ne peut que leur donner raison : leur projet est mort-né, ni sécurisé ni confidentiel et il faut commencer à monter quelque chose de neuf qui ne soit pas du mail. 
+En prime, en prenant la déclaration de Own-Mailbox au pied de la lettre, on ne peut que leur donner raison : leur projet est mort-né, ni sécurisé ni confidentiel et il faut commencer à monter quelque chose de neuf qui ne soit pas du mail.
 
 **« Oui les méta données permettent à la NSA de savoir qui sont tes amis, mais le contenu leur permet de savoir ce que tu penses et ce que tu fais, ce qui est bien plus grave »**  
 C’est faux aussi.
@@ -179,7 +179,7 @@ Mais elle se retrouve alors en compétition directe avec [La brique Internet](ht
 
 Les auteurs cherchent-ils à profiter de la vague Snowden pour glisser un peu de bullshit bingo et attirer la ménagère de moins de 50 ans dans leurs filets ?
 En tout cas sur la partie sécurité et confidentialité, pourtant mise en avant partout et reprise massivement pas la presse, ils sont autant à poil qu’un mail sur le réseau.
- 
+
 En espérant qu’ils tiendront compte de l’énorme historique qu’on a déjà sur la (non-)sécurisation du mail et reverront
  leur campagne de communication, avant de fonder au mieux un énorme botnet et au pire un [futur cimetière](https://about.okhin.fr/posts/Crypto_parties/) de [lanceurs d’alerte]({% post_url 2015-06-02-extremiste-fier-de-letre %}#de-grands-pouvoirs-impliquent-de-grandes-responsabilits-)…
 

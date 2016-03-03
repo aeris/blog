@@ -94,7 +94,7 @@ C'est le cas de ce qui se fait [en Iran](http://www.zdnet.fr/actualites/nokia-si
 
 ## Espionnage des hébergeurs
 
-Le cas présenté initialement de communication entre deux personnes est en général plus complexe que ça car il fait intervenir un prestataire de service. C'est la centralisation <strike>d'Internet</strike> du Web (et c'est le mal…).
+Le cas présenté initialement de communication entre deux personnes est en général plus complexe que ça car il fait intervenir un prestataire de service. C'est la centralisation <s>d'Internet</s> du Web (et c'est le mal…).
 ![SaaS](/assets/images/20130901/provider.png){:.center}
 
 Quand vous envoyez un courriel à quelqu'un de « normal », je suppose que l'adresse du destinataire est plus en *jean.martin@gmail.com* ou *marie.bernard@orange.fr* que *moi@chez-moi.fr*.

@@ -7,7 +7,7 @@ Avec elles, on s'est très vite retrouvé avec moultes et moultes machines virtu
 
 Plus récemment, dans un soucis de simplifier et de rationaliser la gestion d'un parc informatique, sont apparus des outils comme [Chef](https://www.getchef.com/), [Puppet](http://puppetlabs.com/) ou [Ansible](http://www.ansible.com/) afin de considérer notre parc et nos machines comme un simple programme informatique standard, avec l'équivalent de classes, méthodes et autres variables.
 
-Pour avoir utiliser les trois (Puppet, puis Chef, puis Ansible), j'ai été très vite déçu par ces outils, qui ne répondent à mon avis pas à <strike>la</strike> ma problématique initiale.
+Pour avoir utiliser les trois (Puppet, puis Chef, puis Ansible), j'ai été très vite déçu par ces outils, qui ne répondent à mon avis pas à <s>la</s> ma problématique initiale.
 Petit retour d'expérience sur ce domaine.
 
 # Ce dont on a besoin
@@ -53,7 +53,7 @@ Bref, un outil pour gérer tout ça s'est très vite imposé !
 
 # Puppet : ça ne marche pas
 
-Pour faire « comme tout le monde », j'ai commencé mon long périple <strike>au travers du Mordor</strike> par Puppet, à l'époque (2012) très utilisé un peu partout. 
+Pour faire « comme tout le monde », j'ai commencé mon long périple <s>au travers du Mordor</s> par Puppet, à l'époque (2012) très utilisé un peu partout. 
 Premier tour sur le site : « cool, c'est du Ruby ! » (mon petit langage de prédilection du moment). Première déception, c'est codé en Ruby mais la configuration s'effectue dans un [DSL](https://fr.wikipedia.org/wiki/Langage_dédié)…
 
 {% highlight ruby %}

@@ -96,7 +96,7 @@ Pour commencer, il faut éviter d’utiliser la version Tor fournie par Debian, 
 	uid                [ inconnue] deb.torproject.org archive signing key
 	sub   2048R/0x74A941BA219EC810 2009-09-04 [expire : 2018-08-30]
 	gpg2 --export -a 0xEE8CBC9E886DDD89 | apt-key add -
-	echo "deb http://deb.torproject.org/torproject.org jessie main" > deb http://deb.torproject.org/torproject.org jessie main
+	echo "deb http://deb.torproject.org/torproject.org jessie main" > /etc/apt/sources.list.d/tor.list
 	apt update && apt install tor deb.torproject.org-keyring
 
 Prenez bien soin de vérifier l’empreinte de la clef GPG du projet Tor !

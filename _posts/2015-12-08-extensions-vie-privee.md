@@ -31,7 +31,7 @@ Attention cependant, ce n’est pas parce qu’un site est bien noté qu’il es
 SSleuth ne note en effet que le niveau de sécurité des paramètres que vous avez réussi à négocier avec le serveur, il est tout à fait possible que celui-ci en supporte plein d’autres, dont peut-être des totalement non fiables.
 À titre d’exemple, un passage sur [https://galaxie.enseignementsup-recherche.gouv.fr/](https://galaxie.enseignementsup-recherche.gouv.fr/) vous donnera une note de 6.3/10, alors que le serveur est [un des pires que j’ai pu rencontré](https://tls.imirhil.fr/https/galaxie.enseignementsup-recherche.gouv.fr), allant jusqu’à supporter NULL-MD5, ie. pas de chiffrement du tout…
 
-![uBlock](/assets/images/20151208/u-block.png) **[uBlock](https://addons.mozilla.org/firefox/addon/ublock/)**, qu’on ne présente plus, un super bloqueur de publicité et de trackeurs. Très léger et n’intégrant pas (encore) les publicités « acceptables », juste un must-have.
+![uBlock Origin](/assets/images/20151208/u-block.png) **[uBlock Origin](https://addons.mozilla.org/firefox/addon/ublock-origin/)**, qu’on ne présente plus, un super bloqueur de publicité et de trackeurs. Très léger et n’intégrant pas (encore) les publicités « acceptables », juste un must-have.
 
 # Celles qui peuvent parfois vous jouer des tours
 

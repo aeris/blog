@@ -56,22 +56,22 @@ Pour faire ça, on va utiliser [initrd](https://fr.wikipedia.org/wiki/Initrd), q
 
 [Un petit hooks initrd](https://gist.github.com/aeris/4245691#file-lukskey-sh) qui permet de copier la clef dans l'initramfs :
 
- 	wget https://gist.githubusercontent.com/aeris/4245691/raw/0ae19000d4ac901d81c01c10822ef693a0c70cf8/lukskey.sh -O /etc/initramfs-tools/hooks/lukskey
- 	chmod +x /etc/initramfs-tools/hooks/lukskey
+	wget https://gist.githubusercontent.com/aeris/4245691/raw/0ae19000d4ac901d81c01c10822ef693a0c70cf8/lukskey.sh -O /etc/initramfs-tools/hooks/lukskey
+	chmod +x /etc/initramfs-tools/hooks/lukskey
 
 [Un script de boot](https://gist.github.com/aeris/4245691#file-cryptroot-prepare-sh) qui s'occupe de tout le nécessaire pour ouvrir les conteneurs LUKS au boot, à partir de la clef embarquée précédemment :
 
- 	wget https://gist.githubusercontent.com/aeris/4245691/raw/2661b1ee4119c14b156fc341ed0523d18ef78e13/cryptroot-prepare.sh -O /etc/initramfs-tools/scripts/local-top/cryptroot-prepare
- 	chmod +x /etc/initramfs-tools/scripts/local-top/cryptroot-prepare
+	wget https://gist.githubusercontent.com/aeris/4245691/raw/2661b1ee4119c14b156fc341ed0523d18ef78e13/cryptroot-prepare.sh -O /etc/initramfs-tools/scripts/local-top/cryptroot-prepare
+	chmod +x /etc/initramfs-tools/scripts/local-top/cryptroot-prepare
 
 Bien sûr, on ne fait confiance à rien, surtout quand ça touche à de la crypto et de la sécurité.
 Donc on vérifie [les empreintes SHA1](https://gist.github.com/aeris/4245691#file-sha1sums) des fichiers et que [c'est bien moi](https://gist.github.com/aeris/4245691#file-sha1sums-asc) qui ait écrit tout ça :
 
- 	wget https://gist.githubusercontent.com/aeris/4245691/raw/92e5af4408b5fc6f468d7af10c129d0b1fdd6c2b/sha1sums -O /tmp/sha1sums
- 	wget https://gist.githubusercontent.com/aeris/4245691/raw/0cd5655eb38e898d9697024fe49231cdd29fad71/sha1sums.asc -O /tmp/sha1sums.asc
- 	gpg --recv-key ECE4E222
- 	gpg --verify /tmp/sha1sums.asc # C'est bien moi
- 	sha1sum -c /tmp/sha1sums # Ce sont les bons fichiers
+	wget https://gist.githubusercontent.com/aeris/4245691/raw/92e5af4408b5fc6f468d7af10c129d0b1fdd6c2b/sha1sums -O /tmp/sha1sums
+	wget https://gist.githubusercontent.com/aeris/4245691/raw/0cd5655eb38e898d9697024fe49231cdd29fad71/sha1sums.asc -O /tmp/sha1sums.asc
+	gpg --recv-key ECE4E222
+	gpg --verify /tmp/sha1sums.asc # C'est bien moi
+	sha1sum -c /tmp/sha1sums # Ce sont les bons fichiers
 
 Vous devez ensuite éditer `/etc/initramfs-tools/scripts/local-top/cryptroot-prepare` pour y mettre tous les conteneurs LUKS que vous voulez ouvrir à partir de votre clef :
 
@@ -100,11 +100,11 @@ Pour la petite explication de comment que ça fait pour fonctionner :
 
 Il n'y a plus qu'à reconstruire l'image initramfs du système pour prendre en compte tout ce petit monde :
 
- 	update-initramfs -uk all
+	update-initramfs -uk all
 
 Pour vérifier si tout s'est bien passé, vous pouvez dumper le contenu du initramfs et voir la clef et le script de déverrouillage :
 
- 	cpio -t < /boot/initrd.img-$(uname -r) | egrep "(^key$|/cryptroot-prepare$)"
+	cpio -t < /boot/initrd.img-$(uname -r) | egrep "(^key$|/cryptroot-prepare$)"
 
 (Sauf si comme moi vous utilisez les mises-à-jour de votre CPU via le paquet `intel-microcode`, et là vous devrez patauger à gros coups de `hexdump`, de la spécification de `cpio` et de celle des `magic numbers` (ici pour `gzip`) pour trouvez le bon offset, chez moi de 12945 octets :D
 

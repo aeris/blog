@@ -39,7 +39,7 @@ Ces produits remplacent les mots de passe classiques par des mots de passe à us
 Malheureusement trop peu de logiciels sont compatibles avec ces systèmes d'authentification.
 
 Ensuite, *c.f.* aparté 1, non, un Windows (même mis à jour tous les matins au réveil), ce n'est pas sécurisé.
-Merci donc d'**installer une distribution GNU/Linux** digne de ce nom, au pif une [Debian](http://www.debian.org/index.fr.html). Là on est déjà sur du <strike>plus</strike> sécurisé.
+Merci donc d'**installer une distribution GNU/Linux** digne de ce nom, au pif une [Debian](http://www.debian.org/index.fr.html). Là on est déjà sur du <s>plus</s> sécurisé.
 
 Ensuite, il faut **chiffrer les disques durs** de la machine, de sorte que quelqu'un qui y aurait accès (au pif saisie de la justice, cambrioleur du coin, portable égaré, gamin du voisin, chat qui passe par là…) ne puisse y lire qu'un gros tas de bits tout bien aléatoires comme il faut, au lieu des vraies données.
 <figure>
