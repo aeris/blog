@@ -1,5 +1,5 @@
 ---
-title: ! 'Framework CSS : bénédiction ou hérésie ?'
+title: ! 'Framework CSS : bénédiction ou hérésie ?'
 ---
 
 # Introduction
@@ -31,7 +31,7 @@ Entre les soucis de non compatibilité avec les navigateurs, le support partiel 
 Avec un framework CSS, plus besoin de se prendre la tête, tous les cas particuliers sont gérés nativement, et le rendu est quasi-identique quelque soit la configuration du client.
 Plus de soucis de mise-à-jour à chaque version d'un navigateur, pour peu qu'on utilise des versions récentes du framework (par exemple via un CDN), notre site est automatiquement fonctionnel partout.
 
-Et souvent, des bonus loin d'être négligeables, comme les fluid-layout pour un affichage sur mobile sans la nécessité de faire un site dédié !
+Et souvent, des bonus loin d'être négligeables, comme les fluid-layout pour un affichage sur mobile sans la nécessité de faire un site dédié !
 
 # Une mauvaise idée
 
@@ -54,7 +54,7 @@ Et le jour où vous voulez vous écarter de leurs choix imposés, vous allez au 
 Il est par exemple impossible en Bootstrap de faire des en-têtes à menu déroulant en pur CSS. Ils imposent de le faire avec du JavaScript, ce qui est vraiment une hérésie. Ça a même existé à une époque et été supprimé depuis, et les développeurs refusent de l'intégrer à nouveau, malgré la colère des utilisateurs.
 Idem, impossible de jouer avec certaines largeurs, par exemple pour agrandir une colonne de table avec un contenu un peu long.
 
-Bref, faites comme les concepteurs de la librairie souhaitent que vous le fassiez… ou ne le faites pas !
+Bref, faites comme les concepteurs de la librairie souhaitent que vous le fassiez… ou ne le faites pas !
 
 ## Des frameworks trop intrusifs
 
@@ -89,7 +89,7 @@ Idem, vous avez envie de changer un tout petit coin de votre page (au pif une co
 
 ## Une homogéinisation des sites web
 
-Un autre corollaire de la pseudo-généricité : **tous les sites se mettent à se ressembler !**
+Un autre corollaire de la pseudo-généricité : **tous les sites se mettent à se ressembler !**
 
 Comme tout le monde se met à faire la même chose, il n'y a plus de réflexion, de créativité, d'innovation…
 On se retrouve avec un web fade et sans saveur.
@@ -100,7 +100,7 @@ Mais malheureusement, il me semble que notre société actuelle aime bien les mo
 
 # Conclusion
 
-Pour des petits sites rapides, pas de soucis, foncez sur les frameworks CSS !!!
+Pour des petits sites rapides, pas de soucis, foncez sur les frameworks CSS !!!
 Vous gagnerez du temps et serez capables de sortir un site agréable sans trop de problème.
 
 Pour des sites plus costauds, ces librairies peuvent être un véritable piège.
