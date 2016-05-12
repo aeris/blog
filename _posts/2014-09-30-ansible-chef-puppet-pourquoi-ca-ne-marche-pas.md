@@ -311,7 +311,7 @@ Déjà, on repart sur du DSL qui masque le langage derrière, ici en l'occurence
 {% highlight yaml %}
 # roles/apache/main.yml
 - name: Install related Apache stuff
-  apt: name={{item}}
+  apt: name={{"{{ item "}}}}
   with_items:
     - apache2
     - libapache2-mod-php5
@@ -327,10 +327,10 @@ Déjà, on repart sur du DSL qui masque le langage derrière, ici en l'occurence
   lineinfile: |
     dest=/etc/apache2/mods-available/rpaf.conf
     regexp='RPAFproxy_ips .*'
-    line='RPAFproxy_ips 127.0.0.1 ::1 {{ apache.proxy }}'
+    line='RPAFproxy_ips 127.0.0.1 ::1 {{"{{ apache.proxy "}}}}'
   notify: Restart apache
 - name: Activate modules
-  command: a2enmod {{ item }} creates=/etc/apache2/mods-enabled/{{ item }}.load
+  command: a2enmod {{"{{ item "}}}} creates=/etc/apache2/mods-enabled/{{"{{ item "}}}}.load
   with_items:
     - headers
     - rewrite
@@ -387,26 +387,26 @@ users:
 # roles/users/main.yml
 - name: Create generic user
   - name: Create UNIX user
-    user: name={{item.name}} uid={{item.uid}} password={{item.password}} groups={{item.groups}} shell=/bin/zsh
+    user: name={{"{{ item.name "}}}} uid={{"{{ item.uid "}}}} password={{"{{ item.password "}}}} groups={{"{{ item.groups "}}}} shell=/bin/zsh
   - name: Deploy SSH key for user
-    authorized_key: user={{item.name}} key={{item.key}}
+    authorized_key: user={{"{{ item.name "}}}} key={{"{{ item.key "}}}}
 
 - name: Create user
   - call: Create generic user
-    item.groups={{item.name}}
+    item.groups={{"{{ item.name "}}}}
 
 - name: Create admin
   - call: Create generic user
-    item.groups={{item.name}},adm,sudo
-  - authorized_key: user=root key={{item.key}}
+    item.groups={{"{{ item.name "}}}},adm,sudo
+  - authorized_key: user=root key={{"{{ item.key "}}}}
 
 - name: Create admins
   call: Create admin
-  with_items: {{users.admins}}
+  with_items: {{"{{ users.admins "}}}}
 
 - name: Create users
   call: Create user
-  with_items: {{users.simples}}
+  with_items: {{"{{ users.simples "}}}}
 {% endhighlight %}
 
 Et bien non !
@@ -417,16 +417,16 @@ Du coup j'en suis réduit à faire
 
 {% highlight yaml %}
 # roles/users/main.yml
-- user: name={{item.name}} uid={{item.uid}} password={{item.password}} groups={{item.name}},adm,sudo shell=/bin/zsh
+- user: name={{"{{ item.name "}}}} uid={{"{{ item.uid "}}}} password={{"{{ item.password "}}}} groups={{"{{ item.name "}}}},adm,sudo shell=/bin/zsh
   with_items: users.admins
-- authorized_key: user={{item.name}} key={{item.key}}
+- authorized_key: user={{"{{ item.name "}}}} key={{"{{ item.key "}}}}
   with_items: users.admins
-- authorized_key: user=root key={{item.key}}
+- authorized_key: user=root key={{"{{ item.key "}}}}
   with_items: users.admins
 
-- user: name={{item.name}} uid={{item.uid}} password={{item.password}} groups={{item.name}} shell=/bin/zsh
+- user: name={{"{{ item.name "}}}} uid={{"{{ item.uid "}}}} password={{"{{ item.password "}}}} groups={{"{{ item.name "}}}} shell=/bin/zsh
   with_items: users.simples
-- authorized_key: user={{item.name}} key={{item.key}}
+- authorized_key: user={{"{{ item.name "}}}} key={{"{{ item.key "}}}}
   with_items: users.simples
 {% endhighlight %}
 

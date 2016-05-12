@@ -137,7 +137,7 @@ section#post {
 	}
 
 	article {
-		text-align: justify;
+		//text-align: justify;
 
 		h1, h2, h3 {
 			margin: 0;
@@ -158,6 +158,10 @@ section#post {
 			font-size: 1.1em;
 			padding-left: 40px;
 			color: $color-green;
+		}
+
+		p {
+			text-indent: 1em;
 		}
 	}
 

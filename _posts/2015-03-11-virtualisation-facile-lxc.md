@@ -10,7 +10,7 @@ Personnellement, j’ai touché à un peu tous les types de virtualisation, mais
 J’utilise [VirtualBox](https://www.virtualbox.org/) pour monter des machines rapidement pour développer.
 [OpenStack](https://www.openstack.org/) est une véritable usine-à-gaz et sauf à avoir 10.000 machines à provisionner, ce n’est clairement pas fait pour une utilisation personnelle.
 [KVM](http://www.linux-kvm.org) est trop complexe et pour réussir à faire tourner quelque chose, il faut vraiment le vouloir, sauf à utiliser [des outils encore plus usine-à-gaz](http://libvirt.org/).
-La virtualisation lourde (KVM, VirtualBox, OpenStack…) nécessite en plus de bien dimensionner à l’avance ses machines, les modifications a posteriori (modification de l’espace disque ou de la quantité de mémoire) nécessitant un reboot de la machine et pouvant s’afférer compliquées.
+La virtualisation lourde (KVM, VirtualBox, OpenStack…) nécessite en plus de bien dimensionner à l’avance ses machines, les modifications a posteriori (modification de l’espace disque ou de la quantité de mémoire) nécessitant un reboot de la machine et pouvant s’avérer compliquées.
 
 Au final, pour mes serveurs personnels, je suis passé à de la virtualisation légère, via [LXC](https://linuxcontainers.org/).
 Le **gros** avantage que je trouve à LXC par rapport à tout le reste est que son utilisation ne nécessite que très peu de connaissances supplémentaires : mis-à-part la création de la machine proprement dite, le reste de la gestion se fait uniquement via les outils standard GNU/Linux, y compris pour la gestion du réseau.
@@ -43,24 +43,24 @@ Pour créer un nouvel invité, il suffit d’utiliser `lxc-create`, en lui préc
 
 	lxc-create -B lvm -n test -t debian --fssize=10G
 
-Niveau réseau, je branche toutes mes VM sur un [pont](https://fr.wikipedia.org/wiki/Pont_(informatique)) `lxc-br`, qu’il faut donc créer auparavant :
+Niveau réseau, je branche toutes mes VM sur un [pont](https://fr.wikipedia.org/wiki/Pont_(informatique)) `lxc-private`, qu’il faut donc créer auparavant :
 
 {% highlight bash %}
-cat > /etc/network/interfaces.d/lxc-br <<EOF
-auto lxc-br
-iface lxc-br inet static
+cat > /etc/network/interfaces.d/lxc-private <<EOF
+auto lxc-private
+iface lxc-private inet static
 	address 10.0.0.1/24
 	bridge_ports none
 	bridge_fd 0
 	bridge_maxwait 0
-iface lxc-br inet6 static
+iface lxc-private inet6 static
 	address 2001:bc8:XXXX:XXXX:101::1/64
 EOF
 {% endhighlight %}
 
 et qu’on démarre ensuite :
 
-	ifup lxc-br
+	ifup lxc-private
 
 On configure ensuite l’invité pour utiliser ce pont et y connecter sa future carte réseau virtuelle :
 
@@ -68,7 +68,7 @@ On configure ensuite l’invité pour utiliser ce pont et y connecter sa future 
 # cat > /var/lib/lxc/test/config <<EOF
 lxc.network.type = veth
 lxc.network.flags = up
-lxc.network.link = lxc-br
+lxc.network.link = lxc-private
 lxc.network.name = eth0
 lxc.network.veth.pair = test
 lxc.network.hwaddr = 02:00:00:XX:XX:XX
@@ -96,7 +96,7 @@ iface eth0 inet static
 	address 10.0.0.2/24
 	gateway 10.0.0.1
 iface eth0 inet6 static
-	address 2001:bc8:XXXX:XXXX:101::1/64
+	address 2001:bc8:XXXX:XXXX:101::2/64
 	gateway 2001:bc8:XXXX:XXXX:101::1
 EOF
 {% endhighlight %}
@@ -116,18 +116,18 @@ Pour donner accès à Internet aux invités, il suffit simplement d’activer l�
 	#/etc/sysctl.conf
 	…
 	net.ipv4.ip_forward = 1
-	
+
 	net.ipv6.conf.default.forwarding = 0
 	net.ipv6.conf.all.forwarding = 0
 	net.ipv6.conf.eth0.forwarding = 1
-	net.ipv6.conf.lxc-br.forwarding = 1
-	
+	net.ipv6.conf.lxc-private.forwarding = 1
+
 	net.ipv6.conf.all.accept_ra = 0
 	net.ipv6.conf.eth0.accept_ra = 2
 	net.ipv6.conf.eth0.autoconf = 0
 	net.ipv6.conf.eth0.proxy_ndp = 1
 	…
-	
+
 	#/etc/init.d/firewall
 	…
 	iptables -A FORWARD -i lxc-private -o eth0 -j ACCEPT

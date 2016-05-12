@@ -54,7 +54,7 @@ L’exploitation reste cependant beaucoup plus difficile à réaliser que sur SS
 Sur le choix des protocoles, la réponse est donc assez simple :
 
   * SSLv2 ou SSLv3, plus jamais. Vraiment.
-    Il n’y a de toute façon que Internet Explorer 6 sous Windows XP qui ne supporte pas TLS… 
+    Il n’y a de toute façon que Internet Explorer 6 sous Windows XP qui ne supporte pas TLS…
   * TLSv1 et TLSv1.1, si on peut s’en passer, c’est mieux.
     Malheureusement, quelques navigateurs ne supportent toujours pas mieux (Internet Explorer < 11, Java < 8, Android < 4.4…).
   * TLSv1.2 devrait être disponible partout voire même le seul protocole actif.
@@ -69,7 +69,7 @@ Les algorithmes disponibles pour se faire sont les suivants :
 Si *p* et *q* sont de très grands nombres premiers, on sait très facilement calculer *n=p×q*, mais on est incapable de rapidement retrouver *p* et *q* uniquement à partir de *n*.
 *n* est donc notre clef publique et le couple *(p, q)* la clef privée.
 L’ANSSI [recommande](http://www.ssi.gouv.fr/uploads/2015/01/RGS_v-2-0_B1.pdf) aujourd’hui d’utiliser des tailles de clef d’au moins 3072 bits.
-En pratique on utilisera donc des clefs d’au moins 4096 bits. 
+En pratique on utilisera donc des clefs d’au moins 4096 bits.
 
 **ECDSA** est lui basé sur de la géométrie sur des [courbes elliptiques](https://fr.wikipedia.org/wiki/Courbe_elliptique).
 À partir d’une courbe *C*, on sait très facilement calculer la somme de 2 points *R=P+Q* de la courbe, mais on ne sait pas facilement retrouver *P* et *Q* à partir de *R*.
@@ -123,7 +123,7 @@ Malheureusement, il reste avec 3DES un des plus déployés, parfois même exclus
 Le bilan est ici très simple aussi :
 
   * AES, Camellia, ARIA et SEED, pas de soucis.
-    Préférez si possible les modes non CBC (GCM ou CCM), qui ne sont pas faillibles à POODLE (mais qui réclament TLSv1.2). 
+    Préférez si possible les modes non CBC (GCM ou CCM), qui ne sont pas faillibles à POODLE (mais qui réclament TLSv1.2).
   * 3DES, à éviter le plus possible, il ne tiendra plus très longtemps.
   * RC4, DES, IDEA, RC2 et NULL, plus jamais.
 
@@ -132,7 +132,7 @@ La cryptographie a été longtemps interdite de par le monde, y compris en Franc
 Avant cette date, les tailles de clefs utilisées devaient être cassables facilement par l’État et celles non cassables n’avaient pas le droit d’être exportées.
 SSL/TLS a du coup implémenté un mode EXPORT, qui réduit volontairement la taille des clefs à 40 et 56 bits, et qui permettaient ainsi d’utiliser et d’exporter en toute légalité un logiciel embarquant du SSL/TLS.
 Ce mode est malheureusement toujours existant par défaut, et certaines failles
-([FREAK](https://fr.wikipedia.org/wiki/FREAK_(faille_informatique)))tbt cherchent à tromper le visiteur pour le faire tomber sur ce mode, qui est bien évidemment beaucoup plus facile à casser que le mode standard à 128 ou 256 bits…
+([FREAK](https://fr.wikipedia.org/wiki/FREAK_(faille_informatique))) cherchent à tromper le visiteur pour le faire tomber sur ce mode, qui est bien évidemment beaucoup plus facile à casser que le mode standard à 128 ou 256 bits…
 Ce mode EXPORT doit donc bien évidemment être désactivé.
 
 ## Intégrité des données
@@ -143,7 +143,7 @@ Dans le cas de HMAC, il faut choisir une
 [fonction de hachage](https://fr.wikipedia.org/wiki/Fonction_de_hachage_cryptographique) parmi : 
 
 **[MD5](https://fr.wikipedia.org/wiki/MD5)**, sur 128 bits, dont on connaît aujourd’hui des moyens plus ou moins efficaces de le casser.
- 
+
 **[SHA-1](https://fr.wikipedia.org/wiki/SHA-1)**, sur 160 bits, qui commence à montrer ses premiers signes de faiblesse.
 Microsoft et Google ont d’ailleurs annoncé en 2013 sa dépréciation prochaine (utilisable jusqu’à fin 2016).
 
@@ -152,7 +152,7 @@ Malheureusement SHA-2 nécessite le support de TLSv1.2, qui n’est pas encore d
 
 Le choix à faire est donc simple :
 
-  * AEAD et SHA-2 sans soucis. 
+  * AEAD et SHA-2 sans soucis.
   * SHA-1 en attendant un meilleur support de TLSv1.2.
   * MD5 non merci.
 
@@ -176,7 +176,7 @@ Si une des clefs privées est compromise dans le futur, un attaquant n’a plus 
 C’est la confidentialité persistante (ou Perfect Forward Secrecy en anglais).
 
 Il existe 2 algorithmes permettant un échange de Diffie-Hellman et donc la PFS :
- 
+
 **EDH** (Ephemeral Diffie-Hellman), basé sur RSA (factorisation en nombres premiers).
 
 **ECDHE** (Elliptic Curve Diffie-Hellman Exchange), basé sur ECDSA (géométrie sur des courbes elliptiques).
@@ -216,7 +216,7 @@ Pour limiter les suites de chiffrement de OpenSSL, 2 possibilités existent :
   * Partir d’une liste étendue (généralement DEFAULT ou ALL) et en exclure les suites faibles
 
 Les 2 méthodes ont leurs avantages et inconvénients :
- 
+
   * Par la méthode explicite, la mise-à-jour de OpenSSL ne pourra pas introduire de nouvelles suites vulnérables, mais ne pourra pas non plus faire automatiquement profiter des nouvelles suites plus sécurisées.
   * Par la méthode d’exclusion, c’est l’inverse, on profitera automatiquement des nouvelles suites fiables mais potentiellement une suite cassée pourrait refaire son entrée (faux négatif à l’exclusion).
 
@@ -241,7 +241,7 @@ Pour ceux souhaitant lister de manière explicite ces suites de manière plus co
     openssl ciphers 'EECDH+AES:EDH+aRSA+AES:EDH+aRSA+CAMELLIA:EDH+aRSA+SEED'
 
 CAMELLIA et SEED n’étant que très peu supportées par les navigateurs (ni Firefox ni Internet Explorer ni Safari ne les supportent), on peut se limiter à uniquement du AES, ce qui donne 18 suites survivantes :
- 
+
     openssl ciphers 'EECDH+AES:EDH+AES+aRSA'
 
     DHE-RSA-AES128-GCM-SHA256 DHE-RSA-AES128-SHA DHE-RSA-AES128-SHA256
@@ -277,10 +277,10 @@ Lorsque SHA-1 sera définitivement déprécié d’ici à fin 2016, on devra alo
 
 Cette configuration n’est pour le moment pas réellement utilisable, car certaines applications ne supportent pas autre chose que du SHA-1 (par exemple [DAVDroid](https://davdroid.bitfire.at/) ou [Mustard](http://mustard.macno.org/)).
 
-Quand ça sera au tour de CBC de tomber (POODLE et companie), il n’en restera plus que 6 : 
+Quand ça sera au tour de CBC de tomber (POODLE et companie), il n’en restera plus que 6 :
 
     openssl ciphers 'EECDH+AESGCM:EDH+AESGCM+aRSA:!SHA'
-    
+
     DHE-RSA-AES128-GCM-SHA256 DHE-RSA-AES256-GCM-SHA384
     ECDHE-ECDSA-AES128-GCM-SHA256 ECDHE-ECDSA-AES256-GCM-SHA384
     ECDHE-RSA-AES128-GCM-SHA256 ECDHE-RSA-AES256-GCM-SHA384
@@ -288,7 +288,7 @@ Quand ça sera au tour de CBC de tomber (POODLE et companie), il n’en restera 
 C’est encore moins utilisable que sans SHA-1, la très grosse majorité des clients en dehors des navigateurs standards dans leur version la plus récente ne supportant pas SHA-2.
 C’est pourtant actuellement la seule configuration permettant de fermer définitivement les vulnérabilités connues du moment et la faille POODLE en particulier.
 
-Pour Apache, la directive de configuration est `SSLCipherSuite` et la configuration actuelle de ce serveur web est « AES & ECDHE, AES128 d’abord, AES256 ensuite et les suites en SHA-1 à la fin » 
+Pour Apache, la directive de configuration est `SSLCipherSuite` et la configuration actuelle de ce serveur web est « AES & ECDHE, AES128 d’abord, AES256 ensuite et les suites en SHA-1 à la fin »
 
     SSLCipherSuite EECDH+AES:+AES128:+AES256:+SHA
 

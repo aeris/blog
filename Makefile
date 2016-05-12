@@ -1,5 +1,8 @@
 all: deploy
 
+dev:
+	bundle exec guard -i
+
 optimize:
 	trimage -d assets/images
 

@@ -9,7 +9,7 @@ Après avoir vu [comment stocker ses mots de passe]({% post_url 2015-10-27-stock
 Le mode de chiffrement [ECB](https://fr.wikipedia.org/wiki/Mode_d'opération_(cryptographie)#Dictionnaire_de_codes_:_.C2.AB_Electronic_codebook_.C2.BB_.28ECB.29) (Electronic CodeBook) a été le premier mode inventé pour chiffrer une donnée.
 Le principe est très simple : on découpe les données à chiffrer en bloc de X bits, et on [XOR](https://fr.wikipedia.org/wiki/Fonction_OU_exclusif) chaque bloc avec une clef de chiffrement de X bits.
 
-C<sub>i</sub> =  K ⊕ P<sub>i</sub>
+C<sub>i</sub> = K ⊕ P<sub>i</sub>
 {:.center}
 
 Ce mode souffre du coup d’un énorme problème.
@@ -24,9 +24,9 @@ vous n’aurez aucun problème à deviner les données d’entrée…
 Vous ne devez aussi jamais réutiliser la même clef pour chiffrer 2 messages différents.
 En effet, si A et B sont chiffrés en CA et CB avec la clef K, alors :
 
-CA<sub>i</sub> = K ⊕ A<sub>i</sub>  
-CB<sub>i</sub> = K ⊕ AB<sub>i</sub>  
-CA<sub>i</sub> + CB<sub>i</sub> = K ⊕ A<sub>i</sub> ⊕ K ⊕ B<sub>i</sub> = K ⊕ K ⊕ A<sub>i</sub> ⊕ B<sub>i</sub> = A<sub>i</sub> ⊕ B<sub>i</sub>
+CA = K ⊕ A  
+CB = K ⊕ B  
+CA ⊕ CB = (K ⊕ A) ⊕ (K ⊕ B) = K ⊕ K ⊕ A ⊕ B = A ⊕ B
 {:.center}
 
 Vous obtenez donc les données en clair XORées entre elles.
@@ -42,14 +42,14 @@ Vu qu’on ne maîtrise pas les données d’entrée, on ne peut jouer que sur l
 Il faut trouver un moyen de la faire varier pour chaque bloc, pour qu’enfin à données identiques, on obtienne bien une sortie différente.
 La solution retenue est simplement d’utiliser la sortie du bloc précédent, de la mixer avec la clef et d’utiliser le résultat comme nouvelle clef de bloc :
 
-C<sub>i</sub> = K ⊕ P<sub>i-1</sub> ⊕ P<sub>i</sub>  
+C<sub>i</sub> = K ⊕ C<sub>i-1</sub> ⊕ P<sub>i</sub>  
 {:.center}
 
 Les petits malins en mathématiques vont s’apercevoir d’un problème pour i=0.
 En effet, on n’a pas encore de bloc précédent pour mixer avec la clef…
 Du coup, on va résoudre cette étape avec une donnée aléatoire, appeler vecteur d’initialisation (IV) :
 
-C<sub>0</sub> = K ⊕ IV ⊕ P<sub>0</sub>
+C<sub>0</sub> = K ⊕ IV ⊕ P<sub>0</sub>
 {:.center}
 
 Si on reprend notre petit Tux de départ, on obtient alors quelque chose de beaucoup plus cryptique :
