@@ -18,71 +18,87 @@ La mode étant à la virtualisation, on va réserver une (grosse) partie de l’
 
 Au cas où des volumes LVM existeraient déjà sur le système, on va désactiver tous les volumes logiques existants :
 
-	swapoff -a
-	vgchange -a n
+{% highlight shell %}
+swapoff -a
+vgchange -a n
+{% endhighlight %}
 
 Ensuite, on s’occupe de désactiver tous les volumes RAID potentiels, puis de remettre à 0 la détection automatique :
 
-	ls /dev/md[0-9]* | xargs -n 1 mdadm -S
-	ls /dev/sd*[0-9]* | xargs -n 1 mdadm --zero-superblock
+{% highlight shell %}
+ls /dev/md[0-9]* | xargs -n 1 mdadm -S
+ls /dev/sd*[0-9]* | xargs -n 1 mdadm --zero-superblock
+{% endhighlight %}
 
 On s’occupe ensuite des partitions proprement dites.
 Personnellement, je prévois une partition de 100Go pour la Debian, le reste ira aux conteneurs LXC.
 Comme on va avoir tout ça en RAID-1, on recopie la table des partitions du disque `sda` vers le disque `sdb` :
 
-	/sbin/parted -a optimal --script /dev/sda \
-		mklabel msdos \
-		mkpart primary 8M 100GB \
-		mkpart primary 100GB 100% \
-		toggle 1 boot
-	sfdisk -d /dev/sda | sfdisk /dev/sdb
+{% highlight shell %}
+/sbin/parted -a optimal --script /dev/sda \
+    mklabel msdos \
+    mkpart primary 8M 100GB \
+    mkpart primary 100GB 100% \
+    toggle 1 boot
+sfdisk -d /dev/sda | sfdisk /dev/sdb
+{% endhighlight %}
 
 On met ensuite du RAID-1 en place autour de tout ça :
 
-	mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 --assume-clean /dev/sda1 /dev/sdb1
-	mdadm --create --verbose /dev/md1 --level=1 --raid-devices=2 --assume-clean /dev/sda2 /dev/sdb2
+{% highlight shell %}
+mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 --assume-clean /dev/sda1 /dev/sdb1
+mdadm --create --verbose /dev/md1 --level=1 --raid-devices=2 --assume-clean /dev/sda2 /dev/sdb2
+{% endhighlight %}
 
 (Généralement à ce moment-là, il faut rebooter pour faire prendre en compte les modifications…)
 On finit par créer les conteneurs LVM :
 
-	pvcreate /dev/md0
-	vgcreate debian /dev/md0
-	lvcreate -n root -L 10G debian
-	lvcreate -n boot -L 200M debian
-	lvcreate -n var -L 20G debian
-	lvcreate -n log -L 10G debian
-	lvcreate -n tmp -L 10G debian
-	lvcreate -n home -L 10G debian
-	lvcreate -n swap -L 1G debian
-	lvcreate -n srv -l 100%FREE debian
-	
-	pvcreate /dev/md1
-	vgcreate lxc /dev/md1
+{% highlight shell %}
+pvcreate /dev/md0
+vgcreate debian /dev/md0
+lvcreate -n root -L 10G debian
+lvcreate -n boot -L 200M debian
+lvcreate -n var -L 20G debian
+lvcreate -n log -L 10G debian
+lvcreate -n tmp -L 10G debian
+lvcreate -n home -L 10G debian
+lvcreate -n swap -L 1G debian
+lvcreate -n srv -l 100%FREE debian
+
+pvcreate /dev/md1
+vgcreate lxc /dev/md1
+{% endhighlight %}
 
 Et enfin, les systèmes de fichiers :
 
-	for d in root boot var log tmp home srv; do mkfs.ext4 /dev/mapper/debian-${d} -L debian-${d}; done
+{% highlight shell %}
+for d in root boot var log tmp home srv; do mkfs.ext4 /dev/mapper/debian-${d} -L debian-${d}; done
 	mkswap /dev/mapper/debian-swap -L debian-swap
+{% endhighlight %}
 
 # Debootstrap
 
 Maintenant qu’on a toutes les partitions nécessaires, on peut s’attaquer à l’installation de Debian avec Debootstrap.
 On commence par recréer toute l’arborescence standard du futur GNU/Linux et par y monter les bonnes partitions :
 
-	mount /dev/mapper/debian-root /mnt
-	mkdir -p /mnt/{boot,var,tmp,home}
-	mount /dev/mapper/debian-boot /mnt/boot
-	mount /dev/mapper/debian-var /mnt/var
-	mkdir -p /mnt/var/log
-	mount /dev/mapper/debian-log /mnt/var/log
-	mount /dev/mapper/debian-tmp /mnt/tmp
-	mount /dev/mapper/debian-home /mnt/home
-	mkdir -p /mnt/{proc,sys,dev}
-	for i in proc sys dev; do mount -o bind /$i /mnt/$i; done
+{% highlight shell %}
+mount /dev/mapper/debian-root /mnt
+mkdir -p /mnt/{boot,var,tmp,home}
+mount /dev/mapper/debian-boot /mnt/boot
+mount /dev/mapper/debian-var /mnt/var
+mkdir -p /mnt/var/log
+mount /dev/mapper/debian-log /mnt/var/log
+mount /dev/mapper/debian-tmp /mnt/tmp
+mount /dev/mapper/debian-home /mnt/home
+mkdir -p /mnt/{proc,sys,dev}
+for i in proc sys dev; do mount -o bind /$i /mnt/$i; done
+{% endhighlight %}
 
 Et ensuite, en avant Debootstrap !
 
-	debootstrap --arch=amd64 jessie /mnt http://http.debian.net/debian/
+{% highlight shell %}
+debootstrap --arch=amd64 jessie /mnt http://http.debian.net/debian/
+{% endhighlight %}
 
 # Configuration de Debian
 
@@ -90,11 +106,13 @@ Pour une raison qui m’échappe, il arrive parfois que `/proc` et `/sys` se dé
 On prend donc le temps de vérifier via un `mount` que tout est bien présent et on fait le nécessaire si besoin (`for i in proc sys dev; do mount -o bind /$i /mnt/$i`).
 On rentre dans notre nouveau système Debian pour finir l’installation de tout ce qui est nécessaire :
 
-	chroot /mnt
+{% highlight shell %}
+chroot /mnt
+{% endhighlight %}
 
 On configure APT et on met à jour le système :
 
-{% highlight bash %}
+{% highlight shell %}
 cat > /etc/apt/sources.list <<EOF
 deb http://http.debian.net/debian/ jessie main
 deb http://http.debian.net/debian/ jessie-updates main
@@ -109,14 +127,16 @@ apt update && apt -y dist-upgrade
 
 On installe les paquets qui fournissent certains composants essentiels :
 
-	apt -y install locales
-	apt -y install localepurge
-	apt -y install busybox vim bind9 bash-completion less cron rsyslog
-	apt -y autoremove --purge nano
+{% highlight shell %}
+apt -y install locales
+apt -y install localepurge
+apt -y install busybox vim bind9 bash-completion less cron rsyslog
+apt -y autoremove --purge nano
+{% endhighlight %}
 
 Configurer le réseau :
 
-{% highlight bash %}
+{% highlight shell %}
 cat > /etc/network/interfaces.d/eth0 <<EOF
 auto eth0
 iface eth0 inet static
@@ -156,7 +176,7 @@ echo XX:XX:XX:XX:XX:XX:XX:XX:XX:XX > /var/lib/dibbler/client-duid
 
 On renseigne ensuite le `/etc/fstab` et le RAID :
 
-{% highlight bash %}
+{% highlight shell %}
 cat > /etc/fstab <<EOF
 # /etc/fstab: static file system information.
 #
