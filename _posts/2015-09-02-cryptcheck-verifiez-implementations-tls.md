@@ -12,7 +12,7 @@ Suite à plusieurs demandes, un petit billet de survol.
 
 Vous trouverez des explications plus détaillées dans [cette conférence](https://confs.imirhil.fr/20141116_ubuntu-party_comprendre-https.webm) ou [celle-ci](https://confs.imirhil.fr/20150620_pses_tls.webm), mais le principal objectif de TLS est de pouvoir garantir la confidentialité de vos données lorsque vous surfez sur Internet.
 
-TLS se base essentiellement sur un certificat, émis par une autorité de certification sensée s’assurer de l’identité du propriétaire du serveur, qui embarque une clef publique dont seul le serveur consulté possède la clef privée.
+TLS se base essentiellement sur un certificat, émis par une autorité de certification censée s’assurer de l’identité du propriétaire du serveur, qui embarque une clef publique dont seul le serveur consulté possède la clef privée.
 Via ce couple de clef, un visiteur est capable d’échanger une clef de chiffrement avec le serveur, bien que le canal de communication entre lui et le serveur ne soit pas fiable (on y peut être espionné).
 L’intérêt de cette négociation est de pouvoir basculer sur du chiffrement symétrique par la suite pour protéger la communication, chiffrement qui est bien plus rapide que le chiffrement asymétrique permis par la bi-clef mais qui suppose, lui, un canal de communication fiable car il nécessite un secret partagé (vous ne pouvez pas vous mettre d’accord sur ce secret en clair sur Internet).
 
@@ -181,7 +181,7 @@ Il existe 2 algorithmes permettant un échange de Diffie-Hellman et donc la PFS�
 
 **ECDHE** (Elliptic Curve Diffie-Hellman Exchange), basé sur ECDSA (géométrie sur des courbes elliptiques).
 
-Comme pour l’algorithme d’authentification, les 2 solutions sont considérés comme fiables à l’heure actuelle, avec la même préférence pour ECDHE qui permet une meilleure protection pour une taille de clef et une consommation de temps de
+Comme pour l’algorithme d’authentification, les 2 solutions sont considérées comme fiables à l’heure actuelle, avec la même préférence pour ECDHE qui permet une meilleure protection pour une taille de clef et une consommation de temps de
  calcul plus faible.
 À noter cependant que de plus en plus de vulnérabilités apparaissent sur EDH, par exemple [Logjam](https://en.wikipedia.org/wiki/Logjam_(computer_security)) (exploitant aussi la faille du mode EXPORT) ou [RSA-CRT](https://securityblog.redhat.com/2015/09/02/factoring-rsa-keys-with-tls-perfect-forward-secrecy/), lié à des défauts de configuration des serveurs plus qu’à une faille du protocole.
 
