@@ -10,14 +10,14 @@ Revue de détails.
 # Objectif : portabilité
 
 Le but initial est un peu dans le prolongement de ce qu’a fait Java : construire une fois, déployer partout (« build once, deploy everywhere »).
-On ne peut nier que l’idée initiale est bonne tellement le problème du déploiement est un véritable parcours du combattant en pratique.
+On ne peut nier que l’idée initiale soit bonne tellement le problème du déploiement est un véritable parcours du combattant en pratique.
 
 Un logiciel est rarement un morceau totalement isolé.
 Il vient avec son interpréteur, ses bibliothèques, nécessite un moteur de base de données, des fichiers de configuration, un serveur web et tout un tas d’autres choses.
 Cet écosystème va être à gérer tout au long de la chaîne de fabrication, que ça soit en développement, en phase de validation/qualification, en recette ou encore en production.
 
 Avant Docker, chaque étape nécessitait de remonter l’ensemble de l’environnement, d’y installer le logiciel (parfois à partir des sources via compilation), de le lancer…
-Et c’était un gros bordel, puisque la moindre déviation entre deux environnements pouvait conduire à des bugs non reproductibles fonction d’où on lançait le logiciel, d’où l’apparition du trop fameux « Ça marche chez moi ™ ».
+Et c’était un gros bordel, puisque la moindre déviation entre deux environnements pouvait conduire à des bugs non reproductibles en fonction de l’endroit où l’on lançait le logiciel, d’où l’apparition du trop fameux « Ça marche chez moi ™ ».
 
 Avec Docker, point de tout cela.
 Les développeurs construisent une image du logiciel qui va contenir tout ce qui lui faut pour fonctionner, depuis l’OS jusqu’au logiciel lui-même en passant par toutes les autres briques.
@@ -31,7 +31,7 @@ Le premier rempart à l’usage de Docker est que les besoins entre la productio
 Un développeur va vouloir accéder facilement aux journaux, si possible en mode `debug`, alors que la prod préférera les envoyer à un [Logstash](https://www.elastic.co/fr/products/logstash) et en mode `info` voire `warn` ou `error`.
 Un développeur préférera utiliser directement le serveur d’application léger de son choix comme [Jetty](https://eclipse.org/jetty/), [Thin](http://code.macournoyer.com/thin/) ou [Gunicorn](http://gunicorn.org/), alors que la production configurera un backend [Nginx](https://nginx.org/) devant ou utilisera des serveurs d’application plus puissant tel que [Tomcat](https://tomcat.apache.org/) ou [Passenger](https://www.phusionpassenger.com/).
 Un développeur préférera sûrement compiler en mode `debug` pour avoir des retours utilisables en cas de problème alors que la production insistera pour le faire en mode `release`.
-La production voudra mettre en place un pare-feu, ou ses outils de supervision de parc, dont le développement n’a même aucune idée de l’existence puisque ça ne fait pas parti de ses compétences !
+La production voudra mettre en place un pare-feu, ou ses outils de supervision de parc, dont le développement n’a même aucune idée de l’existence puisque ça ne fait pas partie de ses compétences !
 J’évite même de parler d’intégrer ses outils de développement à un environnement Docker, par exemple lancer son projet Java présent sur son Eclipse local sur le Tomcat présent sur l’image Docker, ça ferait trop mal.  
 Bref, en pratique, c’est compliqué…
 On peut quand même s’en sortir pour certains morceaux, surtout grâce à certaines fonctionnalités de Docker, mais l’intérêt en devient limité.
@@ -49,7 +49,7 @@ La production devra donc aussi repasser une bonne partie des étapes précédent
 Pas folichon non plus.
 
 Dans les deux cas il aurait été plus intelligent que le dev et la prod travaillent ensemble dès le départ (qui a dit [Devops](https://fr.wikipedia.org/wiki/Devops) ?) pour fournir une image Docker à la QA qui partira en production telle quelle une fois approuvée.
-Mais alors qu’on utilise Docker ou n’importe quelle autre technologie (virtualisation classique, automatisation d’installation via un outil comme [Chef](https://www.chef.io/), [Puppet](https://puppet.com/), [Ansible](https://www.ansible.com/) ou [Salt](https://saltstack.com/)) aurait conduit au même résultat.
+Mais alors qu’on utilise Docker ou n’importe quelle autre technologie (virtualisation classique, automatisation d’installation via un outil comme [Chef](https://www.chef.io/), [Puppet](https://puppet.com/), [Ansible](https://www.ansible.com/) ou [Salt](https://saltstack.com/)) on aurait obtenu le même résultat.
 
 # Quid de la sécurité ?
 
@@ -84,7 +84,7 @@ En pratique, beaucoup utilisent des images pré-construites qu’ils assemblent 
 Il existe des dépôts d’images, dont le plus connu est le [Hub Docker](https://hub.docker.com/).
 Du coup, en cas de faille, il va vous falloir attendre une mise-à-jour.
 L’unique mainteneur est [passé sous un bus](http://savoiragile.com/2015/03/19/mefiez-vous-des-bus/) ? Vous êtes mal…  
-En terme de sécurité, c’est même encore plus gore dans ce cas, puisque vous n’avez pas beaucoup de moyens de vous assurer que l’image de 600Mo (n’oublions pas que ça intègre un OS complet) que vous allez utiliser n’intègre pas une porte dérobée ou une version obsolète d’une bibliothèque, surtout quand l’image [est réalisée avec les pieds](https://github.com/discourse/discourse_docker/blob/master/image/base/install-nginx#L18-L34) et ne permettent aucune vérification a posteriori.
+En termes de sécurité, c’est même encore plus gore dans ce cas, puisque vous n’avez pas beaucoup de moyens de vous assurer que l’image de 600Mo (n’oublions pas que ça intègre un OS complet) que vous allez utiliser n’intègre pas une porte dérobée ou une version obsolète d’une bibliothèque, surtout quand l’image [est réalisée avec les pieds](https://github.com/discourse/discourse_docker/blob/master/image/base/install-nginx#L18-L34) et ne permettent aucune vérification a posteriori.
 Les paquets Debian sont par exemple construits en [compilation reproductible](https://wiki.debian.org/ReproducibleBuilds) et vous pouvez facilement vous assurer que le `nginx` que vous utilisez est bien le même que celui du paquet Debian officiel alors que sous Docker, je vous souhaite bien du courage ne serait-ce que pour connaître le numéro de version utilisé.
 Sur chaque image Docker, il faudrait faire une revue assez poussée de ce qui se trouve sur l’image, au moins pour lister les différents composants et bibliothèques intégrés et ainsi connaître les impacts réels sur votre parc d’un correctif de sécurité.
 
@@ -108,7 +108,7 @@ C’est tout de même assez galère à faire puisque votre distribution adorée 
 La méthode recommandée par Docker pour gérer vos environnements est l’utilisation de [Docker Compose](https://docs.docker.com/compose/).
 Vous allez créer autant de conteneurs que de composants de votre écosystème (un pour l’application, un pour la base de données, un pour le serveur de courriel…) et les assembler entre-eux pour qu’ils communiquent correctement.  
 Pour certains composants comme la base de données, je trouve ça intéressant de séparer du reste, exactement comme on l’aurait fait dans une infrastructure non virtualisée.
-Pour d’autres, comme un serveur de courriel dédié pour envoyer 3 courriels au mois, c’est du gaspillage de resources flagrants.
+Pour d’autres, comme un serveur de courriel dédié pour envoyer 3 courriels au mois, c’est du gaspillage de ressources flagrant.
 Et pour la majorité, c’est d’une prise de tête sans nom…
 Par exemple dans une application [Ruby-on-Rails](http://rubyonrails.org/) utilisant [Sidekiq](http://sidekiq.org/) comme ordonnanceur, on va se retrouver à avoir 4 conteneurs :
 
@@ -142,29 +142,29 @@ Sauf que musl n’est pas compatible avec la glibc disponible un peu partout.
 Ni au niveau binaire, ce qui signifie que vous devez compiler explicitement vos logiciels avec cette libc et donc maintenir à la fois un livrable *-glibc* pour les gens hors de Alpine et un *-musl* pour Alpine.  
 Ni au niveau fonctionnalités, ce qui fait que vous pouvez rencontrer des bugs incompréhensibles et non reproductibles sur d’autres plate-formes plus standard. Ça peut aller jusqu’à l’impossibilité totale de compiler votre logiciel, comme c’est le cas actuellement avec [OpenJDK 8](https://github.com/gliderlabs/docker-alpine/issues/11) ou [Phusion Passenger](https://github.com/phusion/passenger/issues/1870).
 
-Bref, vous allez vous retrouver à soit utiliser des images du Hub Docker avec une chance [non négligable](https://github.com/search?l=dockerfile&q="FROM+alpine"&ref=searchresults&type=Code&utf8=✓) d’utiliser un conteneur Alpine dans votre chaîne et faire la chasse aux bugs vraiment chiants à comprendre, soit à devoir faire votre propre image personnelle sans Alpine…
+Bref, vous allez vous retrouver à soit utiliser des images du Hub Docker avec une chance [non négligeable](https://github.com/search?l=dockerfile&q="FROM+alpine"&ref=searchresults&type=Code&utf8=✓) d’utiliser un conteneur Alpine dans votre chaîne et faire la chasse aux bugs vraiment chiants à comprendre, soit à devoir faire votre propre image personnelle sans Alpine…
 Le tout en croisant les doigts à chaque construction d’image pour ne pas tomber en plus sur une image contenant une faille de sécurité…
 
 Au final, Docker passe en plus complètement à côté de la plaque en termes de consommation de ressources.
 À titre d’exemple, la stack précédente RoR/Redis/Sidekiq/Nginx ramène pour 60 overlays Docker et 3.1 Go d’espace disque, quand je m’en tire pour 1.8 Go pour Cryptcheck avec une stack dev/RoR/Redis/Sidekiq/Nginx/Elasticsearch/CryptCheck/données.
-[Un beau gâchi d’espace](https://www.youtube.com/watch?v=tXFYxBdKiNY)…
+[Un beau gâchis d’espace](https://www.youtube.com/watch?v=tXFYxBdKiNY)…
 
 # Une tendance qui se propage de plus en plus
 
 Cette tendance du « je package tout dans un seul truc » est devenu à la mode et on la retrouve vraiment partout.
-Même si la complexité induise par ce type de systèmes peut être problématique, c’est vraiment le problème de la gestion de la sécurité qui est très dangereuse en pratique.
+Même si la complexité induite par ce type de systèmes peut être problématique, c’est vraiment le problème de la gestion de la sécurité qui est très dangereuse en pratique.
 On a déjà du mal à maintenir nos parcs plus ou moins à jour avec une infrastructure pas trop complexe, ça risque de devenir un véritable carnage une fois des outils comme Docker (mal) utilisé un peu partout…  
 
 [Go](https://golang.org/), langage d’ailleurs utilisé par Docker lui-même, compile vos projets sous forme d’un [exécutable statique](https://fr.wikipedia.org/wiki/Édition_de_liens) qui embarque donc toutes vos bibliothèques.
 Ça a l’avantage de ne pas nécessiter leur installation, mais ça pose tous les problèmes de sécurité vus auparavant avec la recompilation nécessaire de tous vos binaires au moindre changement d’une bibliothèque.  
 Sachant en plus que la gestion des dépendances y est très mauvaise puisque se base par défaut sur les branches `master` de dépôts GitHub et non sur des tags, c’est une bombe à retardement dans vos systèmes.
-Par exemple vous êtes actuellement incapable de recompiler d’anciennes versions de pas mal de logiciels puisque des dépendances ont fait [des modifications](https://www.google.fr/search?q=undefined:+os.Unsetenv) [non rétro-compatibles](https://www.google.fr/search?q=undefined:+os.Unsetenv#q=+unknown+tls.Config+field+'GetCertificate'+in+struct+literal) avec les anciennes versions de Go et que les versions des dépendances utilisées à l’époque ne sont mentionnées nul part.
+Par exemple vous êtes actuellement incapable de recompiler d’anciennes versions de pas mal de logiciels puisque des dépendances ont fait [des modifications](https://www.google.fr/search?q=undefined:+os.Unsetenv) [non rétro-compatibles](https://www.google.fr/search?q=undefined:+os.Unsetenv#q=+unknown+tls.Config+field+'GetCertificate'+in+struct+literal) avec les anciennes versions de Go et que les versions des dépendances utilisées à l’époque ne sont mentionnées nulle part.
 La situation devrait cependant s’améliorer avec l’introduction du *vendoring* depuis [Go 1.5](https://github.com/golang/go/wiki/PackageManagementTools#go15vendorexperiment).
 
-[Snap](http://snapcraft.io/docs/snaps/), ~~la nouvelle idée à la con~~ le nouveau format de paquets d’Ubuntu/Canonical embarque aussi dans une image statique votre logiciel et toutes ses bibliothèque.
+[Snap](http://snapcraft.io/docs/snaps/), ~~la nouvelle idée à la con~~ le nouveau format de paquets d’Ubuntu/Canonical embarque aussi dans une image statique votre logiciel et toutes ses bibliothèques.
 La problématique de sécurité devient encore pire puisqu’ici, on parle d’une utilisation en tant qu’environnement de bureau.  
 Par exemple sur mon PC, je me retrouverais avec 60 versions de libssl, utilisée par postfix, openssl, bind9, gstreamer, virtualbox, isync, ntp, postgresql, nmap, tor, mumble, irssi, xca, openssh, apache2, telnet ou encore socat…
-Le jour où il faudra mettre à jour tout ça, ça va être une belle tranche de rigolade et on n’aura sûrement pas la réactivité qu’a pu avoir le projet Debian sur Heartbleed par exemple, corrigé en [quelques heures](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=743883) et disponibles tout aussi rapidement sur l’ensemble des dépôts.
+Le jour où il faudra mettre à jour tout ça, ça va être une belle tranche de rigolade et on n’aura sûrement pas la réactivité qu’a pu avoir le projet Debian sur Heartbleed par exemple, corrigé en [quelques heures](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=743883) et disponible tout aussi rapidement sur l’ensemble des dépôts.
 [Quand je leur ai posé la question](https://kyrofa.com/posts/snapping-nextcloud-mysql#comment_39), ils ont uniquement réfléchi à la mise-à-jour d’un point de vue « binaires » et n’ont même pas pensé à la problématique des migrations de données.  
 Encore une fois, transformer les mainteneurs d’une application en mainteneurs d’un écosystème complet est loin d’être anodin ici, et le travail à abattre fera que la sécurité ne pourra plus être assurée.
 
