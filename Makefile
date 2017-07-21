@@ -10,4 +10,4 @@ build:
 	JEKYLL_ENV=production bundle exec jekyll build
 
 deploy: build
-	rsync -ahvxP --delete _site/ server:/srv/www/imirhil.fr/blog/
+	rsync -ahvxP --delete _site/ tatooine:/srv/www/fr.imirhil/blog/
