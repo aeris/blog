@@ -4,9 +4,9 @@ title: ! '« Que faut-il pour XXX ? » « Du logiciel libre ! » Non, une
 
 Ce billet risque d’en surprendre plus d’un. Et pourtant.
 
-Je commence à être légèrement saoulé d’entendre des gens brandir le logiciel libre comme la solution à la plupart des maux de la terre, de la libération de l’Éducation Nationale à la priorité dans l’administration en passant par la protection de la vie privée, le retour de l’être aimé et la guérison du cancer.
+Je commence à être légèrement saoulé d’entendre certains brandir le logiciel libre comme la solution à la plupart des maux de la terre, de la libération de l’Éducation Nationale à la priorité dans l’administration en passant par la protection de la vie privée, le retour de l’être aimé et la guérison du cancer. Et en particulier [durant les cafés-vie-privée](https://twitter.com/aeris22/status/831109717388836867).
 
-Je suis pourtant un fervent défenseur du logiciel libre, mais je pense qu’il va aussi être temps de se mettre au goût du jour. Nous ne sommes plus en 1980 avec les problèmes d’imprimante de rms, les problématiques ont beaucoup évoluées alors que le discours autour du Libre non.
+Je suis pourtant un fervent défenseur du logiciel libre, mais je pense qu’il va aussi être temps de se mettre au goût du jour. Nous ne sommes plus en 1980 avec les problèmes d’imprimante de rms, les problématiques ont beaucoup évolué alors que le discours autour du Libre non.
 
 # Le Logiciel Libre a gagné.
 
@@ -28,11 +28,11 @@ Il reste effectivement quelques points durs qui limitent la diffusion du Libre, 
 
 Alors qu’on se battait becs et ongles sur le plan juridique pour justement faire tomber ces points handicapants, ou à diffuser nos outils et idées de 1980, le monde lui, a continué à se transformer.
 
-On n’est jamais sorti du problème de la vente forcée sur PC et on se retrouve encore aujourd’hui à épuiser toutes nos forces sur ce sujet quand tout le monde ne jure plus que par les tablettes ou les téléphones intelligents, qui représentent aujourd’hui plus de 50% des ventes, en progression constante depuis une décennie.
-Et donc même si on arrivait à obtenir la mise-à-mort de la vente forcée d’ici 5 ou 10 ans, les seules personnes réellement touchées seraient les 2 ou 3 geeks dans un garage qui continuent à acheter des PC (et qui en plus ont à disposition [de plus en plus](http://pcw.fr/) [d’alternatives](http://www.zdnet.fr/actualites/dell-mise-un-peu-plus-sur-les-pc-sous-ubuntu-39833994.htm), même [en grande distribution](http://www.ldlc.com/informatique/ordinateur-portable/pc-portable/c4265/+fv403-2134.html)).
-Et qu’il faudra aller se battre encore plus durement pour obtenir la même chose pour nos smartphones ou tablette, problème qui sera ô combien plus difficile puisque ne concernant plus uniquement du logiciel mais aussi du matériel.
+On n’est jamais sortis du problème de la vente forcée sur PC et on se retrouve encore aujourd’hui à épuiser toutes nos forces sur ce sujet quand tout le monde ne jure plus que par les tablettes ou les téléphones intelligents, qui représentent aujourd’hui plus de 50% des ventes, en progression constante depuis une décennie.
+Et donc même si on arrivait à obtenir la mise à mort de la vente forcée d’ici 5 ou 10 ans, les seules personnes réellement touchées seraient les 2 ou 3 geeks dans un garage qui continuent à acheter des PC (et qui en plus ont à disposition [de plus en plus](http://pcw.fr/) [d’alternatives](http://www.zdnet.fr/actualites/dell-mise-un-peu-plus-sur-les-pc-sous-ubuntu-39833994.htm), même [en grande distribution](http://www.ldlc.com/informatique/ordinateur-portable/pc-portable/c4265/+fv403-2134.html)).
+Et qu’il faudra aller se battre encore plus durement pour obtenir la même chose pour nos smartphones ou tablettes, problème qui sera ô combien plus difficile puisque ne concernant plus uniquement du logiciel mais aussi du matériel.
 
-On en est encore à s’arracher la tête en permanence pour obtenir une priorité au logiciel libre pour notre administration, nos écoles ou notre armée. Alors que le « cloud » est en train de tout grignoter au grand galot.
+On en est encore à s’arracher la tête en permanence pour obtenir une priorité au logiciel libre pour notre administration, nos écoles ou notre armée. Alors que le « cloud » est en train de tout grignoter au grand galop.
 Et que le jour où la priorité sera actée, on ouvrira les yeux pour découvrir que tout ce petit monde tourne sur des versions « cloudisées » de LibreOffice ou Microsoft Office, et que l’un ou l’autre pose les mêmes problèmes d’enfermement dans ce mode de fonctionnement. Voire que Microsoft aura lancé une offre à base de [LibreOffice Online](https://wiki.documentfoundation.org/Development/LibreOffice_Online) d’ici-là pour contrer une éventuelle loi sur le sujet et ainsi pouvoir continuer à ~~voler~~ remporter tous les marchés publics et à siphonner les données personnelles de ses utilisateurs tout en faisant de l’évasion fiscale massive.
 
 On continue à se faire mal avec nos outils « desktop » du siècle passé alors que 90% de la population utilise totalement autre chose, entre les applications mobiles, les applications web, le « cloud », ou a besoin de mobilité, de la gestion des machines multiples, de synchronisation…
@@ -46,10 +46,10 @@ Nos données sont dans des silos de données type Facebook ou Google. Stockées 
 
 Android, pourtant un [projet 100% libre](https://source.android.com/) est devenu le premier violeur de notre liberté individuelle et de notre vie privée, via à la fois les composants non libres des versions commerciales (Google Services) mais aussi [la saleté](https://twitter.com/fuolpit/status/799947440010960897) des applications (y compris libres) installées par la plupart des utilisateurs.
 
-Amazon, proposant en très grande majorité du GNU/Linux à ses clients et possédant une infrastructure interne quasiment exclusivement libre, représente actuellement plus de 31% de parts de marché du secteur, nécessitant même que l’IETF revoit un des protocoles les plus anciens d’Internet ([RFC7626](https://tools.ietf.org/html/rfc7626) & [RFC7816](https://tools.ietf.org/html/rfc7816)) afin de protéger la vie privée des internautes.
+Amazon, proposant en très grande majorité du GNU/Linux à ses clients et possédant une infrastructure interne quasiment exclusivement libre, représente actuellement plus de 31% de parts de marché du secteur, nécessitant même que l’IETF revoie un des protocoles les plus anciens d’Internet ([RFC7626](https://tools.ietf.org/html/rfc7626) & [RFC7816](https://tools.ietf.org/html/rfc7816)) afin de protéger la vie privée des internautes.
 
-Les gens écoutent de la musique sur SoundCloud, regarde des vidéos sur NetFlix, stockent leurs données sur DropBox ou leurs vidéos sur Youtube. Et devinez-quoi ? Ces outils pourraient être libres que l’utilisateur n’y gagnerait pas grand-chose. Ils n’ont ni les compétences ni les moyens financiers ou matériels de remonter l’équivalent chez eux.  
-Des objets connectés, basés exclusivement sous GNU/Linux, sont déployés par milliards sur le réseau. Et devinez-quoi ? [Ça ne protège en rien ses utilisateurs](http://www.lemonde.fr/pixels/article/2017/02/20/en-allemagne-une-poupee-connectee-qualifiee-de-dispositif-d-espionnage-dissimule_5082452_4408996.html).
+Les gens écoutent de la musique sur SoundCloud, regardent des vidéos sur NetFlix, stockent leurs données sur DropBox ou leurs vidéos sur Youtube. Et devinez quoi ? Ces outils pourraient être libres que l’utilisateur n’y gagnerait pas grand-chose. Ils n’ont ni les compétences ni les moyens financiers ou matériels de remonter l’équivalent chez eux.  
+Des objets connectés, basés exclusivement sous GNU/Linux, sont déployés par milliards sur le réseau. Et devinez quoi ? [Ça ne protège en rien ses utilisateurs](http://www.lemonde.fr/pixels/article/2017/02/20/en-allemagne-une-poupee-connectee-qualifiee-de-dispositif-d-espionnage-dissimule_5082452_4408996.html).
 
 # Le Logiciel Libre n’apporte finalement plus grand chose.
 
@@ -86,7 +86,7 @@ Le détail qui fait la différence ? La gouvernance et la confiance. Certainemen
 
 J’ai confiance en Qwant parce que [des gens bien](https://twitter.com/gchampeau) y travaillent.
 J’ai confiance en ProtonMail parce que les morceaux qu’ils publient me semblent corrects, même si je n’ai absolument aucune preuve que c’est exactement ceux qui tournent sur leur production.
-J’ai confiance en [Mailden](https://www.mailden.net/) parce que quand tu leurs tapes dessus à leur lancement, [ils viennent t’expliquer leur infra autour d’une fondue](https://twitter.com/aeris22/status/504529352969969664).
+J’ai confiance en [Mailden](https://www.mailden.net/) parce que quand tu leur tapes dessus à leur lancement, [ils viennent t’expliquer leur infra autour d’une fondue](https://twitter.com/aeris22/status/504529352969969664).
 
 En fait avec les infrastructures modernes, les libertés d’étudier et de modifier ne sont plus réellement possibles. Parce que personne de sensé ne vous donnera les clefs de sa baie et son mot de passe root pour que vous puissiez aller voir ce qui tourne réellement dans son système. Et vous autorisera encore moins à y faire des modifications.
 
@@ -95,7 +95,7 @@ La gouvernance des projets devient alors la clef.
 La naissance du projet [CHATONS](https://chatons.org/), même s’il impose pour le coup du logiciel libre dans sa charte, en est une belle illustration.
 La transparence de qu’est-ce qu’on fait réellement, comment ça tourne, qui a accès, où sont les données, comment [on se fait mal](https://twitter.com/wallabagit/status/832628267819507712) pour se débarrasser des GAFAM partout.
 
-La gouvernance devient le véritable enjeu du XXIème siècle.
+La gouvernance devient le véritable enjeu du XXI<sup>e</sup> siècle.
 
 L’usage imposé de logiciels libres dans la charte des CHATONS y est finalement plutôt anecdotique puisque d’une part le libre s’est plus qu’imposé dans le monde du serveur et donc va de soi et d’autre part des entités qui auraient utilisé du logiciel privateur n’auraient pas été plus problématiques que ça, le logiciel libre simplifiant « uniquement » la portabilité ou l’interopérabilité, un logiciel privateur pourrait les permettre aussi.
 
@@ -112,18 +112,18 @@ La Gouvernance Éthique, elle, sera un caillou permanent dans votre chaussure pa
 Déjà, en termes d’infrastructure.  
 Vous ne pouvez plus avoir en 3 clics un système de statistique comme Google Analytics, il va vous falloir gérer un [Piwik](https://piwik.org/).
 Vous ne pourrez plus gérer vos retours d’erreur via New Relic, il va aussi falloir investir dans du [Sentry](https://sentry.io/welcome/).
-Fini les joies de claquer des doigts pour héberger tout ça via EC2, il va falloir gérer votre propre ferme [OpenStack](https://www.openstack.org/) sur des machines physiques vous appartenant.
+Finies les joies de claquer des doigts pour héberger tout ça via EC2, il va falloir gérer votre propre ferme [OpenStack](https://www.openstack.org/) sur des machines physiques vous appartenant.
 C’était bien pratique le stockage S3, pas de bol, il va vous falloir monter un cluster [Ceph](https://ceph.com/).
 Vous pouvez aussi dire adieu aux Google Fonts, à l’usage des [CDN](https://fr.wikipedia.org/wiki/Content_delivery_network), vos sauvegardes vont devenir un enfer, votre « big data » ou votre « intelligence artificielle » aussi.
 
 Pour les fonctionnalités, vous allez aussi bien patauger.  
-La portabilité des données ou l’intéropérabilité par exemple. L’usage du Logiciel Libre vous garantie une certaine intéropérabilité pour un format donné, mais hormis les usages bureautiques personnels du passé, ils ne garantissent aucunement la portabilité. Une instance [GNU/Social](https://gnu.io/social/) complète se transporte « facilement » d’une machine à une autre, mais en sortir un utilisateur particulier pour faire une migration vers une autre instance ne va pas être une sinécure… Cozy a [le même souci](https://forum.cozy.io/t/fr-a-propos-de-la-road-map-vers-cozy-version-3/3808/10?u=aeris). Chaque composant libre est techniquement intéropérable, mais l’ensemble (même libre) ne l’est pas nativement et on doit investir dans des développements coûteux pour le mettre en place.
+La portabilité des données ou l’intéropérabilité par exemple. L’usage du Logiciel Libre vous garantit une certaine intéropérabilité pour un format donné, mais hormis les usages bureautiques personnels du passé, ils ne garantissent aucunement la portabilité. Une instance [GNU/Social](https://gnu.io/social/) complète se transporte « facilement » d’une machine à une autre, mais en sortir un utilisateur particulier pour faire une migration vers une autre instance ne va pas être une sinécure… Cozy a [le même souci](https://forum.cozy.io/t/fr-a-propos-de-la-road-map-vers-cozy-version-3/3808/10?u=aeris). Chaque composant libre est techniquement intéropérable, mais l’ensemble (même libre) ne l’est pas nativement et on doit investir dans des développements coûteux pour le mettre en place.
 
 Enfin votre modèle commercial s’oppose à la tendance moderne du tout gratuit.  
 Les points précédents font que vous aurez en plus du mal à trouver un tarif viable, celui-ci allant être tiré vers le haut par les challenges à remporter mais vers le bas pour être compétitif face à la concurrence. Sans parler qu’une personne lambda n’aura pas les moyens d’investir dans 20 services différents à 3€/mois et donc que la compétition va être rude, y compris entre des projets ne proposant pas du tout les mêmes services…
 
 Tout ça cumulé fait qu’un projet à Gouvernance Éthique sera très certainement plus coûteux et donc moins attractif, en tout cas sur le court/moyen terme, qu’un équivalent sans éthique.
-Les concurrents peu scrupuleux n’auront pas à utiliser des pratiques illégales comme ils le font actuellement avec le Logiciel Libre (lobbying, marché public truqué, partenariat caché…) pour s’imposer, il leurs suffira de présenter légalement une réponse à un appel d’offre donné, réponse qui sera par nature moins chère, avec plus de fonctionnalités et moins de délais…
+Les concurrents peu scrupuleux n’auront pas à utiliser des pratiques illégales comme ils le font actuellement avec le Logiciel Libre (lobbying, marché public truqué, partenariat caché…) pour s’imposer, il leur suffira de présenter légalement une réponse à un appel d’offre donné, réponse qui sera par nature moins chère, avec plus de fonctionnalités et moins de délais…
 Et donc la Gouvernance Éthique est vouée à l’échec si on ne l’aide pas.
 
 Les solutions comme les CHATONS permettront sûrement de lancer la machine, de montrer qu’une autre voie est possible, mais il faudra des décisions juridiques fortes, comme la [GDPR](https://www.nextinpact.com/news/102927-vie-privee-cnil-europeennes-preparent-gdpr-quand-eprivacy-continue-son-chemin.htm) pour rétablir l’équilibre et espérer une adoption réellement massive des solutions éthiques via des offres commerciales (ou non) pérennes qui toucheront bien au-delà du milieu geek et libristes.
@@ -132,4 +132,6 @@ Bref, il est plus qu’urgent de faire le bilan du monde actuel pour recentrer n
 Pendant que de l’autre côté l’ennemi a conquis tout le reste du monde et ne fera qu’une bouchée de nous le jour où on parviendra enfin à traverser l’enceinte.
 Parce ce qu’on aura toujours nos bons vieux boucliers quand lui aura fabriqué des armes nucléaires :)
 
-Le Logiciel Libre restera une brique importante d’un écosystème sain, mais ne doit pas occulter tous les problèmes qu’il n’adresse pas ou plus. Et ne doit certainement pas être brandi [de manière quasi dogmatique](https://twitter.com/aeris22/status/831109717388836867), d’autant plus quand il n’est justement pas une réponse adaptée à la question posée.
+Le Logiciel Libre restera une brique importante d’un écosystème sain, mais ne doit pas occulter tous les problèmes qu’il ne résout pas ou plus. Et ne doit certainement pas être brandi de manière quasi dogmatique, d’autant plus quand il n’est justement pas une réponse adaptée à la question posée.
+
+(Merci à [@btreguier](https://twitter.com/btreguier) et [@goofy_fr](https://twitter.com/Goofy_fr) pour la relecture :))
