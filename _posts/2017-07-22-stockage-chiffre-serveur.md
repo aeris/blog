@@ -26,16 +26,16 @@ Comme pour l’ancienne procédure, tout va se passer en mode secours Online. À
 
 Une fois connecté en SSH, on commence par installer les outils nécessaires. Il va y avoir des erreurs à l’installation, c’est « normal » et ça ne bloquera pas la suite.
 
-{% highlight bash %}
+```bash
 apt update
 apt install -y dialog
 apt dist-upgrade -y
 apt install -y cryptsetup lvm2 thin-provisioning-tools debootstrap debian-archive-keyring
-{% endhighlight %}
+```
 
 On passe ensuite au formatage proprement dit. J’ai choisi de faire une partition (nécessairement) en clair de 1G pour mon `/boot`, puis tout le reste du disque en tant que *physical volume* LVM. Si vous faites [du LXC]({% post_url 2015-03-11-virtualisation-facile-lxc %}), vous pouvez faire deux PV LVM, un pour le système et un pour vos machines virtuelles. Vous pouvez bien entendu adapter les *logical volumes* à vos besoins.
 
-{% highlight bash %}
+```bash
 swapoff -a
 vgchange -a n
 
@@ -61,11 +61,11 @@ lvcreate --thin --virtualsize 1G   -n swap system/system
 mkfs.ext4 -F /dev/sda1 -L boot -m 0
 for d in root var log home srv; do mkfs.ext4 "/dev/system/${d}" -L "${d}" -m 0; done
 mkswap /dev/system/swap -L swap
-{% endhighlight %}
+```
 
 On monte ensuite tout ça et on lance la création du nouveau système Debian.
 
-{% highlight bash %}
+```bash
 mount /dev/system/root /mnt
 mkdir -p /mnt/{boot,var,tmp,home}
 mount /dev/sda1 /mnt/boot
@@ -80,11 +80,11 @@ debootstrap --arch=amd64 --variant=minbase stretch /mnt http://deb.debian.org/de
 
 mkdir -p /mnt/{proc,sys,dev}
 for i in proc sys dev; do mount -o bind "/${i}" "/mnt/${i}"; done
-{% endhighlight %}
+```
 
 On est alors prêt à configurer le minimum vital pour un démarrage correct.
 
-{% highlight bash %}
+```bash
 chroot /mnt
 
 cat > /usr/sbin/policy-rc.d <<EOF
@@ -168,14 +168,14 @@ apt -y install localepurge
 localepurge
 dpkg-reconfigure localepurge
 apt -y install bash-completion less rsyslog unbound systemd-sysv kbd console-setup console-data net-tools isc-dhcp-client
-{% endhighlight %}
+```
 	
 Jusque-là, pas grand-chose de très nouveau par rapport à la version non chiffrée. C’est à partir d’ici que les choses vont se gâter un peu.
 
 On va maintenant installer le nécessaire pour que le système embarque un serveur SSH léger, [`dropbear`](https://matt.ucc.asn.au/dropbear/dropbear.html) et réclamer à [`initramfs`](https://www.kernel.org/doc/Documentation/filesystems/ramfs-rootfs-initramfs.txt) d’embarquer tout ça et de monter les interfaces réseau au démarrage histoire qu’on puisse se connecter, alors que nos disques durs ne seront pas accessibles à ce moment-là !  
 Deux difficultées réelles ici. *dropbear* ne supporte pas encore toutes les possibilités de SSH. En particulier, il ne tolère pas les clefs ED25519. Vous devez donc utiliser soit une ECDSA, soit une RSA. Et côté Debian, *thin-provisioning-tools* ne déploie pas nativement de hook sur *initramfs*, ce qui fait qu’il n’est pas embarqué. Il faut donc penser à patcher un peu à la main.
 
-{% highlight bash %}
+```bash
 apt -y install lvm2 thin-provisioning-tools cryptsetup dropbear busybox ifupdown
 apt -y install linux-image-amd64 linux-headers-amd64 grub2
 
@@ -218,11 +218,11 @@ EOF
 chmod +x /etc/initramfs-tools/hooks/thin-provisioning-tools
 
 update-initramfs -uk all
-{% endhighlight %}
+```
 
 On finit par tout nettoyer et préparer pour le reboot.
 
-{% highlight bash %}
+```bash
 systemctl enable getty@ttyS1.service
 systemctl disable dropbear
 
@@ -245,17 +245,17 @@ EOF
 passwd
 
 exit
-{% endhighlight %}
+```
 
 On démonte tout ça, et hop, reboot !
 
-{% highlight bash %}
+```bash
 for i in dev sys proc var/log var home srv boot ""; do umount "/mnt/${i}"; done
 vgchange -a n
 cryptsetup luksClose crypt_system
 
 reboot
-{% endhighlight %}
+```
 
 « Normalement », vous devriez pouvoir vous connecter à votre serveur en cours de démarrage en SSH, puis pouvoir lancer le déchiffrement des disques avec `cryptroot-unlock`. Vous saisissez votre phrase de passe et votre machine va continuer son processus de boot normal (ça peut prendre un peu de temps, soyez patient !).
 
@@ -267,7 +267,7 @@ Il est donc conseillé de redémarrer votre machine en gardant un œil sur [son 
 
 Pour corriger une erreur, vous devrez redémarrer en mode secours, déchiffrer vos disques et les monter.
 
-{% highlight bash %}
+```bash
 apt install -y cryptsetup lvm2 thin-provisioning-tools
 cryptsetup luksOpen /dev/sda2 crypt_system
 vgchange -a y
@@ -282,7 +282,7 @@ for i in dev sys proc ""; do umount "/mnt/${i}"; done
 vgchange -a n
 cryptsetup luksClose crypt_system
 reboot
-{% endhighlight %}
+```
 
 En piste de trucs qui peuvent merder sur l’`initramfs` :
 

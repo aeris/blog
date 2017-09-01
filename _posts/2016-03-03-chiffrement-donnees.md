@@ -62,7 +62,7 @@ Il reste aussi un autre problème à résoudre.
 Les données chiffrées restent malléables par un attaquant potentiel, le fonctionnement des chiffrements ne pouvant en effet pas détecter une modification et toute entrée chiffrée conduit obligatoirement à une donnée en clair valide.
 Pour illustrer ce problème, un petit bout de code (je suis passé en mode [CTR](https://fr.wikipedia.org/wiki/Mode_d'opération_(cryptographie)#Chiffrement_bas.C3.A9_sur_un_compteur_:_.C2.AB_CounTeR_.C2.BB_.28CTR.29) pour des questions de simplicité, le problème est identique en CBC mais nécessiterait d’aussi corriger le padding) :
 
-{% highlight ruby %}
+```ruby
 require 'openssl'
 
 data = 'You win 1.000.000€'
@@ -83,7 +83,7 @@ decipher.iv = iv
 
 plain = decipher.update(encrypted) + decipher.final
 puts plain # You win 9.000.000€
-{% endhighlight %}
+```
 
 Sans rien connaître du texte en clair, l’attaquant est capable de le modifier sans que cette modification ne soit décelable.
  
@@ -117,7 +117,7 @@ On procède ensuite au déchiffrement des données via `plain = AES(X, GCM).decr
 
 Pour ceux qui préfèrent du bon code :
 
-{% highlight ruby %}
+```ruby
 require 'openssl'
 
 def generate_salt(size)
@@ -172,4 +172,4 @@ encrypted = encrypt data, password
 p encrypted # [20000, "4\x03@\xB3\tBi\xC9\x04\x9D\x15\x91x\xBAiK", "\xB2\xEF\x0E\x96\xF8Vi\e\x0E\xC7\xF8\xFA\xB3\xA8e\x98", "&\x0E\xA4[\xFF\x99\x12\x91\xD5h\x9B\xF3\x05\xC8\xB0q\xDB\xDE\xC9o\xA5\xBC\xC7y\\]\xB3", 128]
 plain = decrypt encrypted, password
 puts plain # Very sensitive content !!!
-{% endhighlight %}
+```

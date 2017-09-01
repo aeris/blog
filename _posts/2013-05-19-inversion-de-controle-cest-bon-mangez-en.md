@@ -12,19 +12,19 @@ Imaginons qu'on ait à réaliser une application très simple qui consiste à li
 
 Si je soumet un tel problème à un candidat lors d'un entretien d'embauche, voici ce que j'obtiens généralement en quelques minutes :
 
-{% highlight java %}
+```java
 public class Program {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println(1D / scanner.nextDouble());
 	}
 }
-{% endhighlight %}
+```
 
 Ok, ça répond au problème initial… Mais après ? Est-ce que ça démontre la moindre connaissance ou maîtrise d'un langage objet ?
 Allez, seconde tentative !
 
-{% highlight java %}
+```java
 class KeyboardReader {
 	private final Scanner scanner = new Scanner(System.in);
 	
@@ -51,7 +51,7 @@ public class Program {
 		new Program().process();
 	}
 }
-{% endhighlight %}
+```
 
 Bon, y'a déjà du mieux. On sépare les concepts (lecture, écriture, traitement), on utilise des objets et des méthodes.
 On se retrouve aussi rapidement avec un gros problème sur des applications un peu plus conséquentes.
@@ -60,7 +60,7 @@ En effet, on a ici de la chance d'avoir les classes *KeyboardReader*, *ScreenWri
 Dans une application plus complexe, il n'est pas rare d'avoir plusieurs centaines de dépendances, avec des dizaines de paramètres de configuration.
 L'architecture vu au-dessus n'est pas scalable dans ce cas. Passer des paramètres au *reader* imposerait de les passer aussi au *program*. Dit autrement, chaque composant de niveau N doit exposer la configuration de toutes ses dépendances de niveau N-1 :
 
-{% highlight java %}
+```java
 class Level11 {
 	public Level11(params11) {}
 }
@@ -79,7 +79,7 @@ class Level2 {
 		this.init(params2);
 	}
 }
-{% endhighlight %}
+```
 
 Ceci casse la notion de séparation de concepts, le niveau N ne devant pas avoir besoin de savoir comment fonctionne le niveau N-1, et encore moins la nécessité de gérer ce niveau inférieur.
 
@@ -91,7 +91,7 @@ Il est par exemple impossible d'obtenir un *program1* et *program2* qui utilisen
 
 Pour résoudre le problème de scalabilité, la première solution que je vois <s>très</s> trop souvent apparaître est le bon vieux singleton :
 
-{% highlight java %}
+```java
 class Level11 {
 	public static Level11 INSTANCE;
 	public static init(params11) { INSTANCE = new Level11(params11); }
@@ -123,7 +123,7 @@ class Program {
 		Level2.INSTANCE.process();
 	}
 }
-{% endhighlight %}
+```
 
 Cette solution n'est vraiment pas idéale, et à plusieurs titres.
 
@@ -145,7 +145,7 @@ Je peux par exemple jouer mon client standard, et changer la spécification en c
 
 Solution 1 : rechercher *KeyboardReader*, remplacer par *TCPReader*.
 
-{% highlight java %}
+```java
 class TCPReader {
 	public static TCPReader INSTANCE = new TCPReader();		
 	public double read() { … }
@@ -161,11 +161,11 @@ public class Program {
 		ScreenWriter.INSTANCE.display(1D / TCPReader.INSTANCE.read());
 	}
 }
-{% endhighlight %}
+```
 
 En tant que bon client standard, je demande maintenant à ce que la lecture puisse être configurable, parce que j'aime parfois quand même bien reprendre mon bon vieux clavier !
 
-{% highlight java %}
+```java
 class Config {
 	public static Config INSTANCE = new Config();
 	public static void init(boolean keyboard) { INSTANCE = new Config(keyboard); }
@@ -203,7 +203,7 @@ public class Program {
 		ScreenWriter.INSTANCE.display(1D / read);
 	}
 }
-{% endhighlight %}
+```
 
 Bref, on voit bien que ça devient un gros tas de bordel, avec [des plâtrées de conditions partout](http://www.antiifcampaign.com/), et qu'on tend de plus en plus vers la non-maintenablité…
 
@@ -214,14 +214,14 @@ Un tel code est donc inutilisable en tant que librairie, où l'utilisation réel
 Ce problème est d'autant plus grave qu'il interdit de mettre en place des tests unitaires.
 Par exemple, j'aimerais bien valider le comportement de l'application, en particulier sur la valeur « 0 » en entrée.
 
-{% highlight java %}
+```java
 public ProgramTest {
 	@Test
 	public void testOnZero() {
 		assertThat(Program.INSTANCE.process(), is(Double.POSITIVE_INFITY));
 	}
 }
-{% endhighlight %}
+```
 
 Et mais ? Comment je peux faire pour automatiser mon test ?
 En effet, j'aimerais bien pouvoir faire en sorte que mon *reader* me retourne « 0 » comme un grand, afin que mon test soit complètement autonome et ne dépende ni de l'utilisateur (saisie clavier), ni d'un service externe (appel TCP).
@@ -247,7 +247,7 @@ Notre *KeyboardReader* ou autre *TCPReader*, au final, on s'en fiche de comment 
 Idem pour la sortie, la destination nous importe peu, on veut juste afficher quelque chose.
 On voit émerger des interfaces :
 
-{% highlight java %}
+```java
 interface Reader {
 	double read();
 }
@@ -255,11 +255,11 @@ interface Reader {
 interface Writer {
 	void write(double value);
 }
-{% endhighlight %}
+```
 
 Idem au niveau de notre programme, je n'ai que faire de qui, quoi ou comment va me donner un *reader* ou un *writer*, tout ce que je sais, c'est que j'en ai besoin d'un de chaque !
 
-{% highlight java %}
+```java
 class Program {
 	private Reader reader;
 	public Reader setReader(Reader reader) { this.reader = reader; }
@@ -271,7 +271,7 @@ class Program {
 		writer.write(1D / reader.read());
 	}	
 }
-{% endhighlight %}
+```
 
 Tous nos composants seront de simples [beans Java](http://www.oracle.com/technetwork/java/javase/documentation/spec-136004.html), en gros des classes avec le constructeur vide par défaut et des getters/setters pour chaque attribut de classe.
 Fini les singletons, les tests dans tous les sens et les dépendances en dur dans le code, tout le comportement de l'application va profiter au maximum des fonctionnalités de la programmation objet, via de l'héritage, du polymorphisme ou de la surcharge d'opérateur.
@@ -280,7 +280,7 @@ Niveau modularité, le client peut dorénavant me demander n'importe quoi comme 
 
 Pour notre problématique de test unitaire, idem, problème résolu, avec [Easymock](http://www.easymock.org/) par exemple :
 
-{% highlight java %}
+```java
 class ProgramTest {
 	@Test
 	public void testOnZero() {
@@ -297,7 +297,7 @@ class ProgramTest {
 		verifyAll();
 	}
 }
-{% endhighlight %}
+```
 
 Challenge accepted !
 
@@ -315,13 +315,13 @@ Avec quelques composants, ce n'est pas forcément un problème, avec 100 ou 200,
 Spring va nous simplifier la vie avec 2 outils.
 Le premier, un [DSL](http://fr.wikipedia.org/wiki/Domain-specific_programming_language) XML qui va nous permettre de décrire chaque composant applicatif. Dans notre cas :
 
-{% highlight xml %}
+```xml
 <beans>
 	<bean id="reader" class="KeyboardReader" />
 	<bean id="writer" class="StdoutWriter" />
 	<bean id="program" class="Program" />
 </beans>
-{% endhighlight %}
+```
 
 Même sur une application très complexe, on voit bien que la configuration reste relativement simple, surtout que Spring permet de découper la configuration dans les fichiers XML distincts.
 
@@ -329,7 +329,7 @@ On pourrait bien sûr passer des paramètres à nos composants, comme des fichie
 
 Pour faire l'assemblage de nos composants, on pourrait tout aussi bien le faire par du XML :
 
-{% highlight xml %}
+```xml
 <beans>
 	<bean id="reader" class="KeyboardReader" />
 	<bean id="writer" class="StdoutWriter" />
@@ -338,25 +338,25 @@ Pour faire l'assemblage de nos composants, on pourrait tout aussi bien le faire 
 		<property name="writer" ref="writer" />
 	</bean>
 </beans>
-{% endhighlight %}
+```
 
 Le problème de la complexité des dépendances risque quand même de rendre cette configuration vite anarchique. Je préfère donc utiliser une autre possibilité de Spring, l'injection de dépendance :
 
-{% highlight java %}
+```java
 class Program {
 	@Resource
 	private Reader reader;
 	@Resource
 	private Writer writer;
 }
-{% endhighlight %}
+```
 
 Les développeurs n'ont qu'à déclarer ce dont ils ont besoin, Spring se chargera au démarrage d'injecter les bons composants au bon endroit au démarrage de l'application.
 Encore une fois, on transforme le « comment » en « quoi », charge au framework de faire son travail et de nous fournir les outils dont on a besoin.
 
 Une fois ceci fait, ne reste plus qu'à signaler à Spring où trouver nos fichiers de configuration et notre code, et à démarrer l'application !
 
-{% highlight java %}
+```java
 class Main {
 	public static void main(String[] args) {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
@@ -364,7 +364,7 @@ class Main {
 		program.process();
 	}
 }
-{% endhighlight %}
+```
 
 Un avantage à tout ça, c'est que simplement en changeant de fichier de configuration et sans toucher à une seule ligne de code supplémentaire, je change totalement le comportement de l'application.
 Ceci est particulièrement utile dans deux situations :

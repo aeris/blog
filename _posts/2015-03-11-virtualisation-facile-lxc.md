@@ -45,7 +45,7 @@ Pour créer un nouvel invité, il suffit d’utiliser `lxc-create`, en lui préc
 
 Niveau réseau, je branche toutes mes VM sur un [pont](https://fr.wikipedia.org/wiki/Pont_(informatique)) `lxc-private`, qu’il faut donc créer auparavant :
 
-{% highlight bash %}
+```bash
 cat > /etc/network/interfaces.d/lxc-private <<EOF
 auto lxc-private
 iface lxc-private inet static
@@ -56,7 +56,7 @@ iface lxc-private inet static
 iface lxc-private inet6 static
 	address 2001:bc8:XXXX:XXXX:101::1/64
 EOF
-{% endhighlight %}
+```
 
 et qu’on démarre ensuite :
 
@@ -64,7 +64,7 @@ et qu’on démarre ensuite :
 
 On configure ensuite l’invité pour utiliser ce pont et y connecter sa future carte réseau virtuelle :
 
-{% highlight bash %}
+```bash
 # cat > /var/lib/lxc/test/config <<EOF
 lxc.network.type = veth
 lxc.network.flags = up
@@ -82,13 +82,13 @@ lxc.include = /usr/share/lxc/config/debian.common.conf
 lxc.utsname = test
 lxc.arch = amd64
 EOF
-{% endhighlight %}
+```
 
 On doit ensuite configurer la future carte réseau de l’invité, histoire qu’il accroche des IP dès le boot.
 On fait ça normalement, via son fichier `/etc/network/interfaces.d/eth0` standard.
 L’invité n’étant pas démarré, on va monter directement son système de fichier et éditer le fichier depuis l’hôte :
 
-{% highlight bash %}
+```bash
 mount /dev/lxc/test /var/lib/lxc/test/rootfs
 cat > /var/lib/lxc/test/rootfs/etc/network/interfaces.d/eth0 <<EOF
 auto eth0
@@ -99,7 +99,7 @@ iface eth0 inet6 static
 	address 2001:bc8:XXXX:XXXX:101::2/64
 	gateway 2001:bc8:XXXX:XXXX:101::1
 EOF
-{% endhighlight %}
+```
 
 Vous devriez normalement maintenant pouvoir démarrer votre machine et la pinguer :
 

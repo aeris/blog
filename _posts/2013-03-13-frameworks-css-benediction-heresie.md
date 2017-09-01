@@ -66,19 +66,19 @@ Alors qu'on martèle à tous les apprentis web-développeurs que HTML doit uniqu
 Le pire exemple est Bootstrap. On doit développer le site que Bootstrap nous impose, et non pas le site tel qu'on le souhaite.
 Par exemple, alors qu'on aurait aimé afficher une ligne centrée qui prend 50% de la page, en HTML sans framework, cela donnerait (je mélange volontairement HTML et CSS par soucis de lisibilité)
 
-{% highlight html %}
+```html
 <div style="margin: auto; width: 50%">...</div>
-{% endhighlight %}
+```
 
 alors qu'avec Bootstrap, on se retrouve rapidement à du
 
-{% highlight html %}
+```html
 <div class="container-fluid">
 	<div class="row-fluid span6 offset3">
 		...
 	</div>
 </div>
-{% endhighlight %}
+```
 
 Pourquoi un container ? Pourquoi un offset de 3 et un span de 6 (Ah oui, la grid fait 12 donc 3 de marge à gauche + 6 pour la div + 3 pour la marge de droite ! Euh attend, c'est 12 ou 16 colonnes ?) ?
 On est contraint d'ajouter des balises et du contenu uniquement pour tomber sur les bons sélecteurs CSS de Bootstrap.

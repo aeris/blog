@@ -10,10 +10,10 @@ Pour installer votre système en raidZ, il faut d’abord faire l’installation
 
 On commence par dézinguer tous les anciens pools ZFS :
 
-{% highlight shell %}
+```shell
 zpool import -fR /mnt zroot
 zpool destroy zroot
-{% endhighlight %}
+```
 
 On crée ensuite les partitions qui vont bien aller :
 
@@ -24,7 +24,7 @@ On crée ensuite les partitions qui vont bien aller :
 On en profite pour installe le bootloader GPT au passage.  
 (Le script suivant considère que vous utilisez 3 disques, adaptez-le en conséquence)
 
-{% highlight shell %}
+```shell
 foreach n ( 0 1 2 )
     gpart destroy -F ada${n}
     gpart create -s gpt ada${n}
@@ -37,21 +37,21 @@ foreach n ( 0 1 2 )
 
     gnop create -S 4096 /dev/gpt/disk${n}
 end
-{% endhighlight %}
+```
 
 On créé ensuite le pool ZFS en raidZ, avec les 3 disques formatés :
 
-{% highlight shell %}
+```shell
 zpool create -o altroot=/mnt -O canmount=off -o compression=lz4 -o checksum=fletcher4 -o atime=off -m none zroot raidz /dev/gpt/disk0 /dev/gpt/disk1 /dev/gpt/disk2
 
 zfs create -o mountpoint=none -o quota=10G zroot/ROOT
 zfs create -o mountpoint=/ zroot/ROOT/default
 zfs create -o mountpoint=/tmp -o quota=2G -o setuid=off zroot/tmp
-{% endhighlight %}
+```
 
 Ensuite, on installe le futur système sur le pool nouvellement créé :
 
-{% highlight shell %}
+```shell
 chmod 1777 /mnt/tmp
 
 zpool set bootfs=zroot/ROOT/default zroot
@@ -107,13 +107,13 @@ nameserver 213.186.33.99
 EOF
 
 chroot /mnt passwd
-{% endhighlight %}
+```
 
 On repasse le serveur en boot sur le disque, et on lance un reboot.
 Normalement, votre nouvelle machine devrait prendre vie rapidement !
 
 En cas de soucis, vous pouvez toujours repasser en mode rescue, et remonter votre pool pour travailler dessus :
 
-{% highlight shell %}
+```shell
 zpool import -fR /mnt zroot
-{% endhighlight %}
+```

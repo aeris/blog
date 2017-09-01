@@ -7,7 +7,7 @@ title: ! 'Gestion des cas d’erreur : les exceptions'
 Le premier jour, il n'y avait rien. Et le développeur s'ennuyait.
 Alors le développeur inventa le C. Et tout marchait pour le mieux :
 
-{% highlight c %}
+```c
 char* readFile(char *path) {
 	…
 }
@@ -20,7 +20,7 @@ void main() {
 	char *content = readFile("/mon/fichier/qui/existe");
 	writeFile("/mon/fichier/qui/existe/aussi");
 }
-{% endhighlight %}
+```
 
 Ainsi naquit le premier jour.
 Le développeur ne faisant jamais d'erreur et connaissant l'intégralité de l'univers, ce code est propre et robuste.
@@ -28,7 +28,7 @@ Et le développeur était content.
 Mais le développeur se sentait seul dans ce grand univers…
 Aussi il inventa le client. Et là, il ne s'ennuyait plus du tout…
 
-{% highlight c %}
+```c
 int readFile(char *path, char **content) {
 	if (fileNotExist(path)) {
 		return NO_SUCH_FILE;
@@ -57,13 +57,13 @@ int main() {
 	if (ret) return ret;
 	return 0;
 }
-{% endhighlight %}
+```
 
 Ce fut le second jour.
 Le client était content, mais le développeur ne l'était plus du tout avec du code aussi sale.
 Alors le développeur envoya son client en enfer, et inventa Java.
 
-{% highlight java %}
+```java
 class Main {
 	public static void main() {
 		try (InputStream input = new FileInputStream("/un/fichier")) {
@@ -76,7 +76,7 @@ class Main {
 		}
 	}
 }
-{% endhighlight %}
+```
 
 Ainsi apparu le troisième jour.
 Le développeur était content, avec du code propre.
@@ -97,16 +97,16 @@ Ce genre de solution pose de multiples problèmes.
 Déjà, cela génère du code spaghetti, où chaque appel de méthode doit théoriquement être suivi d'un test pour vérifier si l'appel s'est bien passé.
 Quand on a que deux ou trois appels relativement indépendants, le code obtenu reste maintenable :
 
-{% highlight c %}
+```c
 int foo() {
 	if (bar()) return SOME_ERROR;
 	if (baz()) return SOME_OTHER_ERROR;
 }
-{% endhighlight %}
+```
 
 Dès qu'on commence à avoir des dépendances entre appel, ça en devient rapidement inbouffable…
 
-{% highlight c %}
+```c
 int foo() {
 	char *buffer = malloc(256);
 	if (buffer) {
@@ -121,17 +121,17 @@ int foo() {
 		return OUT_OF_MEMORY;
 	}
 }
-{% endhighlight %}
+```
 
 fOn se retrouve avec des imbrications de test en pagaille, du code dupliqué pour gérer les cas de sortie, peu ou pas de mutualisation de code, et surtout un code totalement illisible comparé à la version naïve (qui n'est correcte que s'il n'y a aucun accroc à l'exécution et conduit à une fuite mémoire dans tous les autres cas) :
 
-{% highlight c %}
+```c
 int foo() {
 	char *buffer = malloc(256);
 	readFile("/foo", buffer);
 	free(buffer);
 }
-{% endhighlight %}
+```
 
 La complexité devient aussi très vite très élevée :
 
@@ -153,7 +153,7 @@ Pour gérer un cas qui surviendra dans 1% des cas, on multiplie le travail néce
 En fait, si on regarde bien ce qu'on cherche à traiter dans les exemples précédents, c'est uniquement que le code appelant soit notifié d'une erreur survenue dans le code appelé, de manière globale et générique, et sans parasiter le code avec des codes de retour ou des tests en cascade.
 C'est pour accomplir cette tache que les systèmes de gestion des exceptions ont été créés.
 
-{% highlight java %}
+```java
 BusinessReturnValue foo(BusinessParameters params) throws QuzException  {
 	try {
 		bar(); // can throw BarException
@@ -166,7 +166,7 @@ BusinessReturnValue foo(BusinessParameters params) throws QuzException  {
 		alwaysExecuted();
 	}
 }
-{% endhighlight %}
+```
 
 Chaque appel de méthode peut lever une ou plusieurs exceptions, interrompant brutalement l'exécution du code.
 Si un ``catch`` existe pour l'exception levée, le code correspondant est exécuté.
@@ -181,7 +181,7 @@ Mieux, si on ne sait pas gérer l'erreur à notre niveau, on n'a strictement rie
 Quelques règles sont à respecter pour conserver l'intérêt des exceptions.
 En particulier, aucune erreur ne devrait être masquée. Je ne vois que trop souvent des choses comme ça :
 
-{% highlight java %}
+```java
 void foo() {
 	…
 	try {
@@ -190,12 +190,12 @@ void foo() {
 	}
 	…
 }
-{% endhighlight %}
+```
 
 Si un problème survient, il sera purement et simplement impossible à tracer, le code continuera à s'exécuter sans aucun erreur visible, et l'application risque fort de planter plus loin, avec un message sans aucun lien avec la véritable cause initiale.
 Au minimum, pensez à tracer l'erreur, voire à la relancer plus haut, avec une préférence pour la seconde méthode plutôt que la première.
 
-{% highlight java %}
+```java
 void foo() {
 	…
 	try {
@@ -213,7 +213,7 @@ void foo() {
 	}
 	…
 }
-{% endhighlight %}
+```
 
 Les exceptions, si elles sont bien gérées, simplifient énormément le code et le rendent vraiment robuste (théoriquement, avec une bonne gestion, un crash applicatif est impossible sauf cas **VRAIMENT** graves)
 
@@ -230,7 +230,7 @@ L'exception est donc vérifiée au sens où le code obtenu ne laisse aucune plac
 Avec une exception non vérifiée, les méthodes pouvant les générer ne les déclarent pas explicitement, et personne n'est obligé par le compilateur a les traiter.
 Dans le pire des cas, l'exception remontera toute la pile d'appel et arrétera sauvagement votre application !
 
-{% highlight java %}
+```java
 class CheckedException1 extends Exception {}
 class CheckedException2 extends Exception {}
 class UncheckedException1 extends RuntimeException {}
@@ -255,7 +255,7 @@ class Main {
 		}
 	}
 }
-{% endhighlight %}
+```
 
 Dans l'exemple Java précédent, les exceptions non vérifiées héritent toutes de *RuntimeException*, toute autre exception qui ne dérive pas de cette classe sont des exceptions vérifiées.
 La méthode *foo()* peut potentiellement échouée par un des 4 cas d'erreurs représentés par les 4 classes d'exception.
@@ -278,25 +278,25 @@ Difficile de savoir quoi faire d'un fichier manquant dans une bibliothèque de l
 Est-ce que je suis en train de tester si mon fichier de configuration est présent afin d'appliquer ou non les paramètres par défaut ?
 L'erreur est alors normale et pas vraiment une erreur.
 
-{% highlight java %}
+```java
 try {
 	this.params = File.read("config.properties");
 } catch (IOException e) {
 	this.params = DEFAULT_PARAMS;
 }
-{% endhighlight %}
+```
 
 Est-ce que je suis en train de générer un fichier de sortie ?
 Là, ça en devient beaucoup plus méchant !
 
-{% highlight java %}
+```java
 try {
 	File.write("output.ods", content);
 } catch (IOException e) {
 	Gui.warn("Unable to generate output file");
 	throw e;
 }
-{% endhighlight %}
+```
 
 Ce n'est donc clairement pas dans la classe *File* qu'on pourra décider de quoi faire ou ne pas faire…
 

@@ -30,7 +30,7 @@ Il casse souvent le modèle objet standard et possède des subtilités dangereus
 
 Par exemple, l'héritage et la généricité sont un véritable cauchemard…
 
-{% highlight c# %}
+```c#
 class Porte {
 	public void Ouvre() { Console.WriteLine("Ouverture"); }
 }
@@ -49,7 +49,7 @@ class Program {
 		porte.Ouvre();
 	}
 }
-{% endhighlight %}
+```
 
 Que va faire ce programme ? On s'attend tous à ce qu'on nous demande le code de la porte… Et ben non !!!
 Adieu le polymorphisme enseigné en école ! La méthode appelée sera celle du type **déclaré** et non du type **réel**, ici _Porte_ et non _Digicode_…
@@ -60,7 +60,7 @@ Mais il est donc **impossible** de réimplémenter la méthode d'une librairie q
 
 Aller, on continue dans la débilité la plus profonde…
 
-{% highlight c# %}
+```c#
 static void Main(string[] args) {
 	List<Porte> portes = new List<Porte>();
 	portes.Add(new Porte());
@@ -68,7 +68,7 @@ static void Main(string[] args) {
 		digicode.Ouvre();
 	}
 }
-{% endhighlight %}
+```
 
 Sisi, je vous garanti, ce code compile sans erreur et sans le moindre warning !!!
 Par contre, il plante bien comme il faut à l'exécution, une _Porte_ n'étant pas un _Digicode_…
@@ -179,7 +179,7 @@ Il ne sort pas vraiment du lot. On pourrait même lui reprocher d'être extrème
 Un des points qui lui donne vraiment un charme fou, ce sont les génériques, apparus avec Java 5.0.
 Certains me prennent généralement pour un fou quand j'arrive à coder quelque chose du type
 
-{% highlight java %}
+```java
 abstract class Content<T> {
 	T value;
 }
@@ -211,7 +211,7 @@ class Sheet implements Iterable<Row> {
 class Workbook implements Iterable<Sheet> {
 	List<Sheet> sheets;
 }
-{% endhighlight %}
+```
 
 Ceci est pourtant la représentation d'un fichier de tableur totalement type-safe, auquel on ne peut pas mettre de valeurs d'un type différent de celui de sa cellule, et **avec les erreurs de typage détectées dès la compilation**.
 Effectivement, on arrive à un niveau d'abstraction assez impressionnant, et je ne demanderai jamais à un débutant d'arriver à sortir ça du premier coup, encore moins d'y penser en phase de conception.
@@ -261,9 +261,9 @@ Ce langage est un peu le croisement entre la flexibilité de Python et le roulea
 
 C'est un langage essentiellement orienté paradigme fonctionnel, ce qui permet d'écrire des programmes très concis.
 
-{% highlight ruby %}
+```ruby
 (0..10).collect { |i| i**2 }.select { |i| i % 3 == 1 }[-5..-2]
-{% endhighlight %}
+```
 
 Ça ne sert strictement à rien, mais écrire des choses comme ça en Java ou autre demanderait au moins quelques bonnes dizaines de lignes peu lisibles.
 

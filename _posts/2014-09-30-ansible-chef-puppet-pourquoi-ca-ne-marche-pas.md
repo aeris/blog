@@ -56,7 +56,7 @@ Bref, un outil pour gérer tout ça s'est très vite imposé !
 Pour faire « comme tout le monde », j'ai commencé mon long périple <s>au travers du Mordor</s> par Puppet, à l'époque (2012) très utilisé un peu partout. 
 Premier tour sur le site : « cool, c'est du Ruby ! » (mon petit langage de prédilection du moment). Première déception, c'est codé en Ruby mais la configuration s'effectue dans un [DSL](https://fr.wikipedia.org/wiki/Langage_dédié)…
 
-{% highlight ruby %}
+```ruby
 class ntp {
 	# On installe le package si besoin
 	package { ntp:
@@ -77,7 +77,7 @@ class ntp {
 		subscribe > [Package[ntp], File["/etc/ntp.conf"]]
 	}
 }
-{% endhighlight %}
+```
 
 Bref, c'est du ruby sans vraiment y être, avec des trucs parfois un peu mystiques dedans (les *>*, voire même des fois des *<<||>>*). Bon, passons…
 (Au passage, merci [Vincib](https://twitter.com/vincib) pour l'[exemple de config](https://www.octopuce.fr/puppet-administration-systeme-centralisee/) :D)
@@ -97,7 +97,7 @@ Pour palier à ce problème, il existe quand même un mécanisme de partage d'in
 On veut par exemple que chaque installation d'un serveur Apache génère automatiquement une vérification [Nagios](http://www.nagios.org/) sur le port 80.
 On va donc déclarer une ressource exportée, qui pourra être lue lors du déploiement du Nagios pour installer tout ça correctement.
 
-{% highlight ruby %}
+```ruby
 puppet/modules/nagios/manifests/target/apache.pp
 class nagios::target::apache {
 	@@nagios_host { $fqdn:
@@ -114,7 +114,7 @@ class nagios::target::apache {
 		service_description => "${hostname}_check_http"
 	}
 }
-{% endhighlight %}
+```
 
 Et là, j'ai fais une crise cardiaque.
 Et une grosse.
@@ -169,7 +169,7 @@ Là où tout change c'est que Chef fournit de base une base de données [Solr](h
 Cette base est bien entendue requétable depuis les descriptions, ce qui permet de faire des choses assez sympathiques pour régler les problèmes précédents.
 Par exemple, on a une tache qui a créé les comptes des administrateurs de la machine :
 
-{% highlight json %}
+```json
 # data_bags/users/root.json
 {
 	"id": "root", "uid": 1, "gid": 1,
@@ -181,8 +181,8 @@ Par exemple, on a une tache qui a créé les comptes des administrateurs de la m
 	"id": "aeris", "uid": 1000, "gid": 1000,
 	"password": "$6$mHFbw…98/"
 }
-{% endhighlight %}
-{% highlight ruby %}
+```
+```ruby
 # cookbooks/users/recipes/default.rb
 data_bag(:users).each do | id |
 	user = data_bag_item(:users, id)
@@ -192,7 +192,7 @@ data_bag(:users).each do | id |
 		password user['password']
 	end
 end
-{% endhighlight %}
+```
 
 Déjà on remarque qu'on est en pur Ruby, avec un DSL beaucoup plus léger et qu'on navigue donc en terrain connu.
 On retrouve aussi toute la puissance des boucles et autres fonctions Ruby, on peut réellement coder quelque chose et ne plus subir le DSL.
@@ -205,7 +205,7 @@ Et là, y'a une demande du client qui se pointe à l'arrache : faut déployer d
 En Puppet, j'aurais du revoir ma recette *users* pour ajouter des ressources  exportées, et en prime commencer à mixer des données « compte UNIX » et « clefs SSH » dans cette recette, comme on l'a vu précédemment.
 En Chef, le problème se règle en quelques lignes et sans tricks :
 
-{% highlight json %}
+```json
 # data_bags/users/root.json
 {
 	"id": "root", "uid": 1, "gid": 1,
@@ -221,8 +221,8 @@ En Chef, le problème se règle en quelques lignes et sans tricks :
 	"ssh_keys": [ "ssh-rsa AAAA…4nv5 aeris@imirhil.fr" ],
 	"ssh" : [ "2001:41d0:fc8e:1e00:d63d:7eff:fe49:eb0d" ]
 }
-{% endhighlight %}
-{% highlight ruby %}
+```
+```ruby
 # cookbooks/ssh/recipes/default.rb
 service 'ssh' do
   supports status: true, restart: true, reload: true
@@ -269,7 +269,7 @@ template '/etc/ssh/sshd_config' do
 		allow_users: allow_users.uniq.sort
 	)
 end
-{% endhighlight %}
+```
 
 J'ai uniquement éditer les fichiers de données (databag), qui ne sont pas liés à une recette et peuvent donc contenir pas mal d'information, pour y ajouter les clefs SSH à déployer ainsi que les IP autorisées pour les accès SSH.
 Et la recette *ssh* va utiliser exactement le même jeu de données que la recette *users*, pour déployer tout ça proprement et remplir les fichiers de clefs et la config SSH.
@@ -308,7 +308,7 @@ Agentless, nécessitant uniquement SSH (mais malheureusement codé en Python :()
 
 Déjà, on repart sur du DSL qui masque le langage derrière, ici en l'occurence du [YAML](http://www.yaml.org/), qui est d'une syntaxe propre et élégante, que j'apprécie particulièrement (à ceci près qu'elle est basée sur l'indentation).
 
-{% highlight yaml %}
+```yaml
 # roles/apache/main.yml
 - name: Install related Apache stuff
   apt: name={{"{{ item "}}}}
@@ -337,14 +337,14 @@ Déjà, on repart sur du DSL qui masque le langage derrière, ici en l'occurence
     - ssl
     - rpaf
   notify: Restart apache
-{% endhighlight %}
+```
 
 Propre net et sans bavure.
 
 Ensuite, on retrouve aussi la notion de groupes que j'avais appréciée chez Chef, et qui modélise assez bien notre infrastructure réelle : chaque machine est associée à un groupe données, et en hérite donc des caractéristiques de configuration.
 Par exemple toutes les machines déployant SSH vont écouter sur le même port (pas le 22 s.v.p. :D), et il suffira donc de déclarer un petit
 
-{% highlight yaml %}
+```yaml
 # group_vars/apache.yml
 firewall:
   rules:
@@ -360,7 +360,7 @@ firewall:
     - fw -A INPUT -p tcp --dport 42 -j ACCEPT
 ssh:
   port: 42
-{% endhighlight %}
+```
 
 Et le travail est fait !
 
@@ -376,7 +376,7 @@ Typiquement, ma tache de création d'un utilisateur (humain) est décomposable e
 La création d'un administrateur est la création d'un utilisateur (humain) et déploiement de sa clef SSH pour root.
 J'aurais donc envie d'écrire quelque chose dans le style de
 
-{% highlight yaml %}
+```yaml
 # groups_var/users.yml
 users:
   admins:
@@ -407,7 +407,7 @@ users:
 - name: Create users
   call: Create user
   with_items: {{"{{ users.simples "}}}}
-{% endhighlight %}
+```
 
 Et bien non !
 Ça n'existe tout simplement pas en Ansible !
@@ -415,7 +415,7 @@ Et bien non !
 Pas de possibilité de définir des taches réutilisables !
 Du coup j'en suis réduit à faire
 
-{% highlight yaml %}
+```yaml
 # roles/users/main.yml
 - user: name={{"{{ item.name "}}}} uid={{"{{ item.uid "}}}} password={{"{{ item.password "}}}} groups={{"{{ item.name "}}}},adm,sudo shell=/bin/zsh
   with_items: users.admins
@@ -428,7 +428,7 @@ Du coup j'en suis réduit à faire
   with_items: users.simples
 - authorized_key: user={{"{{ item.name "}}}} key={{"{{ item.key "}}}}
   with_items: users.simples
-{% endhighlight %}
+```
 
 3 boucles pour rien…
 De la répétition partout…
@@ -441,7 +441,7 @@ Les groupes maintenant…
 J'ai dit un peu plus haut que les variables pouvaient être héritées via les variables de groupe.
 Mais Ansible a un concept d'héritage somme toute assez intéressant.
 
-{% highlight yaml %}
+```yaml
 # group_vars/ssh.yml
 firewall:
   rules:
@@ -467,7 +467,7 @@ apache:
       root: /srv/www/example.org/foo
     - host: bar.example.org
       root: /srv/www/example.org/bar
-{% endhighlight %}
+```
 
 Naïvement, j'ai voulu faire des choses comme ça.
 Naïvement hein, vu que c'est juste une description de ce qu'est réellement mon infra…
@@ -476,7 +476,7 @@ Toutes les machines qui font du Apache doivent avoir le port HTTP et HTTPS d'ouv
 Et enfin, toutes les machines Apache derrière le même proxy Nginx seront configurées toutes pareilles niveau RPAF.
 Et donc tout à fait naïvement toujours, je m'attend très logiquement à trouver comme valeurs de configuration à l'exécution pour la machine *www* Apache derrière le Nginx *proxy* quelque chose dans le goût de
 
-{% highlight yaml %}
+```yaml
 firewall:
   rules:
     - fw -A INPUT -p tcp --dport ssh -j ACCEPT
@@ -491,12 +491,12 @@ apache:
       root: /srv/www/example.org/foo
     - host: bar.example.org
       root: /srv/www/example.org/bar
-{% endhighlight %}
+```
 
 Ça ne semble pas trop stupide, non ?
 Mais quel benêt j'ai bien pu faire… Vraiment…
 
-{% highlight yaml %}
+```yaml
 firewall:
   rules:
     - fw -A INPUT -p tcp --dport http -j ACCEPT
@@ -507,7 +507,7 @@ apache:
       root: /srv/www/example.org/foo
     - host: bar.example.org
       root: /srv/www/example.org/bar
-{% endhighlight %}
+```
 
 Voilààààààààà…
 L'héritage au sens Ansibli-ien du terme, c'est « Zyva, pourquoi j'ai déjà une valeur moi ? Allez zou, fait pas suer, j'écrase ! ».
@@ -527,7 +527,7 @@ S'il y a un seul lecteur de ce blog qui considère que ce que je cherche à fair
 
 Bon. Aller, j'vais réussir à m'en remettre… J'vais déployer du firewall en attendant…
 
-{% highlight yaml %}
+```yaml
 # roles/firewall/tasks/main.yml
 - name: Install IPTables
   apt: name=iptables
@@ -539,7 +539,7 @@ Bon. Aller, j'vais réussir à m'en remettre… J'vais déployer du firewall en 
 # sites.yml
 - hosts: all
   roles: firewall
-{% endhighlight %}
+```
 
 Jusque là, c'est bon, tout le monde suit, et Ansible aussi…
 
@@ -547,7 +547,7 @@ Passont à [fail2ban](http://www.fail2ban.org/) maintenant.
 Dans mon déploiement, le `service fail2ban restart` nécessaire à la prise en compte des nouvelles règles de blocage de `fail2ban` est en réalité fait via un `service firewall restart`, vu que le firewall doit déployer des règles avant celle de fail2ban.
 J'ai donc besoin de faire
 
-{% highlight yaml %}
+```yaml
 roles/fail2ban/tasks/main.yml
 - name: Install Fail2Ban
   apt: name=fail2ban
@@ -559,22 +559,22 @@ roles/fail2ban/tasks/main.yml
 # sites.yml
 - hosts: all
   roles: [firewall, fail2ban]
-{% endhighlight %}
+```
 
 Question à 10 balles : où et comment je peux faire pour mutualiser le `Restart firewall` et ne définir sa tache associée qu'à un seul et unique endroit (principes KISS et DRY) ?
 Grand naïf que je suis, je tente un petit
 
-{% highlight yaml %}
+```yaml
 # roles/firewall/handlers/main.yml
 - name: Restart firewall
   action: service name=firewall state=restarted
-{% endhighlight %}
+```
 
 Bam…
 Ça passe très bien à l'exécution de la tache `firewall` mais ça plante violemment à celle de `fail2ban`, comme quoi le handler est manquant.
 Bon ok, j'ai peut-être été un peu vache avec toi Ansible, j'vais quand même te mettre le handler dans un truc un peu plus commun et pas directement dans le role `firewall`…
 
-{% highlight yaml %}
+```yaml
 # roles/common/handlers/main.yml
 - name: Restart firewall
   action: service name=firewall state=restarted
@@ -582,12 +582,12 @@ Bon ok, j'ai peut-être été un peu vache avec toi Ansible, j'vais quand même 
 # sites.yml
 - hosts: all
   roles: [common, firewall, fail2ban]
-{% endhighlight %}
+```
 
 Bon là, c'est cool, ça passe bien…
 Et en plus c'est doublement cool parce que je peux mettre tous mes handlers dans le même fichier en fait !
 
-{% highlight yaml %}
+```yaml
 # roles/common/handlers/main.yml
 - name: Reload MySQL
   action: service name=mysql state=reloaded
@@ -613,21 +613,21 @@ Et en plus c'est doublement cool parce que je peux mettre tous mes handlers dans
   action: service name=postfix state=reloaded
 - name: Restart Postfix
   action: service name=postfix state=restarted
-{% endhighlight %}
+```
 
 (Et parce qu'on se rend bien compte que ce fichier va devenir ultra-barbant à maintenir, on va faire une ptite moulinette en Ruby pour le générer tout seul \o/)
 
 Mais en fait, non, j'ai fait une erreur, je n'ai pas tous mes serveurs qui déploient du fail2ban, mais juste ceux avec ssh.
 Gros naïf va…
 
-{% highlight yaml %}
+```yaml
 # sites.yml
 - hosts: all
   roles: [common, firewall]
 
 - hosts: ssh
   roles: fail2ban
-{% endhighlight %}
+```
 
 Le firewall ? Ça passe ! \o/
 Le fail2ban ? Ça paaaaass… pas ! /o\
@@ -635,14 +635,14 @@ Handler manquant…
 Mais il est commun à tout le monde en fait, non ?
 Retour sur IRC. Et là, une « solution » m'est proposée…
 
-{% highlight yaml %}
+```yaml
 # sites.yml
 - hosts: all
   roles: [common, firewall]
 
 - hosts: ssh
   roles: [common, fail2ban]
-{% endhighlight %}
+```
 
 Wait ? [Wat](https://www.destroyallsoftware.com/talks/wat) ‽
 J'ai bien lu ?

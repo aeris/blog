@@ -16,7 +16,7 @@ Elles consomment des données fournies par l'utilisateur, vérifient si elles re
 
 La théorie voudrait donc que je code quelque chose comme :
 
-{% highlight java %}
+```java
 class SomeService {
 	public void load(input) throws BusinessException {
 		checkRule1(input);
@@ -32,7 +32,7 @@ class SomeService {
 		…
 	}
 }
-{% endhighlight %}
+```
 
 Code clair, facilement testable unitairement, avec une complexité cyclomatique très faible…
 On peut même imaginer générifier facilement le système en externalisant les vérifications (dans un fichier de configuration par exemple).
@@ -46,7 +46,7 @@ C'est encore pire quand la vérification prend parfois plusieurs heures, obtenir
 
 On en arrive donc à coder des choses du style :
 
-{% highlight java %}
+```java
 class SomeService {
 	public Collection<BusinessException> load(input) {
 		Collection<BusinessException> errors = new List<>();
@@ -72,7 +72,7 @@ class SomeService {
 		…
 	}
 }
-{% endhighlight %}
+```
 
 Gloups… SonarQube en perd son joli vert pomme…
 Ce code devient difficile à tester (dans quel sens vont sortir les erreurs, je ne peux pas différencier facilement deux cas d'erreurs différents qui remontent la même exception…), est peu évolutif (ajouter une règle = beaucoup de lignes de code et de risque d'erreur).
@@ -100,7 +100,7 @@ Qui n'a jamais pesté devant ce message…
 Et bien pourtant, certains clients en redemandent !
 Dans le cas idéal, une application est censée vérifier les données saisies et d'interdire formellement toute saisie erronée.
 
-{% highlight java %}
+```java
 class SomeGui {	
 	void onValid() {
 		try {
@@ -120,7 +120,7 @@ class SomeService {
 		…
 	}
 }
-{% endhighlight %}
+```
 
 Là encore, code propre, complexité cyclomatique proche de 0, bonne testabilité…
 Et surtout la garantie que l'API de l'application (couches *service* et inférieures sur une architecture 3-tiers) ne permet pas de faire quelque chose d'interdit au niveau métier.
@@ -130,7 +130,7 @@ Bref, c'est interdit mais c'est autorisé…
 Le besoin exprimé en terme technique est « On doit vérifier que ce cas n'arrive pas. S'il arrive, on doit le signaler à l'utilisateur qui prendra la décision de continuer ou non ».
 Niveau code :
 
-{% highlight java %}
+```java
 class SomeGui {	
 	public void onValid() {
 		try {
@@ -155,7 +155,7 @@ class SomeService {
 		…
 	}
 }
-{% endhighlight %}
+```
 
 Rhaaaaaaaaaa… « Complexité cyclomatique en hausse… Testabilité en baisse… Environnement critique… Danger… Danger… Veuillez évacuer le vaisseau, auto-destruction dans 10… 9… ».
 
@@ -196,7 +196,7 @@ Un exemple typique est les listes liées.
 Une liste B affiche les éléments associés aux éléments sélectionnés d'une liste A. Idem entre la liste C et la liste B.
 Le code est donc très simple :
 
-{% highlight java %}
+```java
 class SomeGui {
 	SomeGui() {
 		listA.onSelectionChange({
@@ -214,7 +214,7 @@ class SomeGui {
 		listA.selectItem(0);
 	}
 }
-{% endhighlight %}
+```
 
 Ça peut paraître très simple comme ça, mais en fait le processus des évènements va être ultra-complexe. Un des effets de bord les plus visibles a lieu lorsqu'on change les données de la liste A, par exemple si on recharge les données.
 
@@ -250,14 +250,14 @@ Ici, on va passer surtout dans le monde web, même si on peut trouver la même c
 Le problème est simple : on aimerait pouvoir définir des composants graphiques réutilisable. Par exemple, le formulaire de création d'un utilisateur.
 Conceptuellement parlant, on devrait écrire quelque chose comme ça :
 
-{% highlight erb %}
+```erb
 <%= form_for @user, class: %w(well) do |f| %>
 	<%= f.text_field :name, required: true %>
 	<%= f.text_field :surname, required: true %>
 	<%= f.password_field :password, required: true %>
 	<%= f.submit %>
 <% end %>
-{% endhighlight %}
+```
 
 En Ruby on Rails, on pourrait en faire un *partial* réutilisable en définissant ça dans un fichier `_user.html.erb` séparé, et en l'appelant avec un `render 'user'`.
 
@@ -265,7 +265,7 @@ Tadam ! On n'est-y pas les rois du monde là ?
 « Euh oui, mais moi sur la page X, je veux le formulaire centré et qui prend la moitié de la page, alors que sur Y, je le veux tout à droite à 33% »
 Bam… Dur retour à la réalité du terrain… Bon, rajoutons des arguments :
 
-{% highlight erb %}
+```erb
 <% classes = %w(well)
 	classes << span
 %>
@@ -277,13 +277,13 @@ Bam… Dur retour à la réalité du terrain… Bon, rajoutons des arguments :
 <% end %>
 
 <%= render 'user', span: 'span6' %>
-{% endhighlight %}
+```
 
 Où est le couteau que je me coupe la main d'avoir osé écrire ça !!!
 « Ah oui, mais si on est sur la page des administrateurs, on saisit le mot de passe pour l'utilisateur, donc il doit être en clair et pas avec des étoiles »
 Quuuuuuuoi ! Comment ça les admins connaissent le mot de passe de vos utilisateurs ‽‽‽ Et en plus parce que tu fais n'importe quoi, tu me demandes d'en faire de même ‽‽‽ Awé, zut, c'est toi qui paie… Bon…
 
-{% highlight erb %}
+```erb
 <% classes = %w(well)
 	classes << span
 %>
@@ -295,7 +295,7 @@ Quuuuuuuoi ! Comment ça les admins connaissent le mot de passe de vos utilisat
 <% end %>
 
 <%= render 'user', span: 'span6', clear: true %>
-{% endhighlight %}
+```
 
 La seconde main vient d'y passer… Et il reste encore à gérer la couleur, la police, la gestion des erreurs, à intégrer le framework graphique ([qui a dit *Bootstrap* !]({% post_url 2013-03-13-frameworks-css-benediction-heresie %}))…
 « Dev cherche mains d'occasion, bon état, peu kilométrages. Faire suivre au journal qui transmettra »

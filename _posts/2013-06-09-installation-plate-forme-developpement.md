@@ -25,13 +25,13 @@ L'installation de Tomcat est enfantine sous Debian :
 
 Comme je n'accèderai pas au Tomcat par HTTP mais uniquement par AJP, une modification s'impose dans */etc/tomcat7/server.xml*
 
-{% highlight xml %}
+```xml
 <!-- Commentez cette ligne -->
 <!-- Connector port="8080" protocol="HTTP/1.1" /-->
 
 <!-- Décommentez cette ligne et ajouter l'attribut URIEncoding -->
 <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" URIEncoding="UTF-8" />
-{% endhighlight %}
+```
 
 Côté Apache, ce n'est guère plus compliqué
 
@@ -40,7 +40,7 @@ Côté Apache, ce n'est guère plus compliqué
 
 On déclare ensuite un nouveau vhost pour Apache, qui servira tout le contenu de notre forge, dans */etc/apache2/sites-available/forge* :
 
-{% highlight apache %}
+```apache
 <VirtualHost *:80>
 	ServerName forge
 	DocumentRoot /var/www
@@ -49,7 +49,7 @@ On déclare ensuite un nouveau vhost pour Apache, qui servira tout le contenu de
 	CustomLog ${APACHE_LOG_DIR}/forge.log combined
 	ErrorLog ${APACHE_LOG_DIR}/forge.err
 </VirtualHost>
-{% endhighlight %}
+```
 
 On active le vhost :
 
@@ -84,13 +84,13 @@ Ensuite, on télécharge Jenkins et on le prépare à être déployer dans Tomca
 
 Côté Apache, on lui déclare de servir Jenkins via appel proxy AJP, dans */etc/apache2/sites-available/forge* :
 
-{% highlight apache %}
+```apache
 <VirtualHost *:80>
 	…
 	ProxyPass        /jenkins ajp://localhost:8009/jenkins
 	ProxyPassReverse /jenkins ajp://localhost:8009/jenkins
 </VirtualHost>
-{% endhighlight %}
+```
 
 Et voilà, c'est fini pour Jenkins !
 
@@ -128,19 +128,19 @@ Ensuite, on télécharge, on compile et on déploie :
 
 Et on finit par activer un nouveau proxy dans */etc/apache2/sites-available/forge* :
 
-{% highlight apache %}
+```apache
 <VirtualHost *:80>
 	…
 	ProxyPass        /sonar ajp://localhost:8009/sonar
 	ProxyPassReverse /sonar ajp://localhost:8009/sonar
 </VirtualHost>
-{% endhighlight %}
+```
 
 Il existe bien sûr un [plugin Sonar pour Jenkins](http://docs.codehaus.org/pages/viewpage.action?pageId=116359341), qui permet de lancer une analyse Sonar après un build réussi sur Jenkins.
 
 Côté client, on peut indiquer à Maven comment accéder au Sonar, via *~/.m2/settings.xml*
 
-{% highlight xml %}
+```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
@@ -160,7 +160,7 @@ Côté client, on peut indiquer à Maven comment accéder au Sonar, via *~/.m2/s
 		</profile>
 	</profiles>
 </settings>
-{% endhighlight %}
+```
 
 # Nexus
 
@@ -193,13 +193,13 @@ Indiquer ensuite à Tomcat où se trouvera le répertoire des données de Nexus,
 
 Pour publier Nexus via Apache, on ajoute à nouveau quelques lignes dans */etc/apache2/sites-available/forge* :
 
-{% highlight apache %}
+```apache
 <VirtualHost *:80>
 	…
 	ProxyPass        /nexus ajp://localhost:8009/nexus
 	ProxyPassReverse /nexus ajp://localhost:8009/nexus
 </VirtualHost>
-{% endhighlight %}
+```
 
 Zou, affaire classée côté serveur.
 Attention tout de même, étant donné que Nexus va sauvegarder sur disque tout ce qui sera téléchargé, on peut vite utiliser beaucoup d'espace disque.
@@ -208,7 +208,7 @@ Dans mon cas, j'atteins déjà 2Go sur mon Nexus personnel, 15Go sur mon pro, sa
 Côté client, il faut indiquer à Maven qu'il faut passer par le nouveau Nexus au lieu de directement passer par Internet.
 Ceci se fait via le fichier *~/.m2/settings.xml* :
 
-{% highlight xml %}
+```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
@@ -225,7 +225,7 @@ Ceci se fait via le fichier *~/.m2/settings.xml* :
 		</mirror>
 	</mirrors>
 </settings>
-{% endhighlight %}
+```
 
 Et voilà, tous nos outils nécessaires sont maintenant installés.
 Pensez à redémarrer Tomcat (*service tomcat7 start*) et tout le nécessaire sera accessible.

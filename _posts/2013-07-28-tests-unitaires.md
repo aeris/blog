@@ -10,13 +10,13 @@ Les tests unitaires ont mauvaise presse dans le monde du développement. Génér
 
 On souhaite développer une petite calculatrice, qui permet de diviser des nombres. L'API est relativement simple :
 
-{% highlight java %}
+```java
 class Calculator {
 	// @return a / b
 	// @throw DivideByZeroException when b = 0
 	double divide(double a, double b) throws DivideByZeroException;
 }
-{% endhighlight %}
+```
 
 Un développeur débutant se ruerait sur son IDE pour coder directement l'application. Mauvaise idée !
 Il vaut mieux appliquer une méthodologie TDD ([Test Driven Development](http://fr.wikipedia.org/wiki/Test_Driven_Development)) et développer les tests unitaires avant le code.
@@ -28,7 +28,7 @@ Ceci permet d'éviter des erreurs très courantes :
 
 Le code de l'application est bien entendu trivial :
 
-{% highlight java %}
+```java
 public class Calculator {
 	public double divide(final double a, final double b)
 			throws DivideByZeroException {
@@ -38,7 +38,7 @@ public class Calculator {
 		return a / b;
 	}
 }
-{% endhighlight %}
+```
 
 Ici, on a donc 2 tests à réaliser : que le résultat est bien la division de *a* par *b*, l'autre pour le cas particulier *b = 0*.
 
@@ -48,7 +48,7 @@ Un jeune développeur naïf, qui n'a jamais fait de test, il risque très probab
 « Ben j'ai lancé l'exe, pourquoi ? »
 « Quel exe ‽‽‽ »
 
-{% highlight java %}
+```java
 public class CalculatorTest {
 	public static void main(String[] args) throws Exception {
 		Calculator calculator = new Calculator();
@@ -56,7 +56,7 @@ public class CalculatorTest {
 		System.out.println(calculator.divide(1D, 0D));
 	}
 }
-{% endhighlight %}
+```
 
 … No comment …
 
@@ -73,7 +73,7 @@ On peut aussi privilégier [Fest-Assert](https://github.com/alexruiz/fest-assert
 
 Pour les dépendances maven :
 
-{% highlight xml %}
+```xml
 <dependencies>
 	<dependency>
 		<groupId>junit</groupId>
@@ -88,11 +88,11 @@ Pour les dépendances maven :
 		<scope>test</scope>
 	</dependency>
 </dependencies>
-{% endhighlight %}
+```
 
 Et les tests unitaires qui vont bien :
 
-{% highlight java %}
+```java
 public class CalculatorTest {
 	private final Calculator calculator = new Calculator();
 
@@ -106,7 +106,7 @@ public class CalculatorTest {
 		this.calculator.divide(6D, 0D);
 	}
 }
-{% endhighlight %}
+```
 
 Tadam !!!
 ![Tests results](/assets/images/20130811/test-results.png){:.center}
@@ -157,7 +157,7 @@ Dans le cas de la mini-application précédente, on est tout bon niveau couvertu
 Maven permet de générer facilement des rapports de passage des tests unitaires et de sa couverture de code associée.
 Tout se passe encore une fois dans le *pom.xml* :
 
-{% highlight xml %}
+```xml
 <build>
 	<plugins>
 		<plugin>
@@ -200,7 +200,7 @@ Tout se passe encore une fois dans le *pom.xml* :
 		</plugin>
 	</plugins>
 </reporting>
-{% endhighlight %}
+```
 
 C'est un peu indigeste, surtout pour la partie JaCoCo (Cobertura est plus simple mais ne fonctionne plus avec Java 7), mais le résultat est là après un petit *mvn site* :
 ![Tests report](/assets/images/20130811/test-report.png){:.center}
